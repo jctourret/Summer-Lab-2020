@@ -2,5 +2,57 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="game_loop.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="camion.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="edificio.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="menu.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="creditos.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="System">
+      <UniqueIdentifier>{217fe929-a6fc-4579-82dc-68883647540d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{89734bac-4844-489d-9e6f-6ffa4945f679}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{773bd4df-eec1-4f21-91f6-3f2ea896528b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Music">
+      <UniqueIdentifier>{c7a49f4e-48a4-49a0-8659-2459fde51c2f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="game_loop.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="camion.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="edificio.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="creditos.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -133,6 +133,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="camion.cpp" />
+    <ClCompile Include="creditos.cpp" />
+    <ClCompile Include="edificio.cpp" />
+    <ClCompile Include="gameplay.cpp" />
+    <ClCompile Include="game_loop.cpp" />
+    <ClCompile Include="menu.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="camion.h" />
+    <ClInclude Include="creditos.h" />
+    <ClInclude Include="edificio.h" />
+    <ClInclude Include="gameplay.h" />
+    <ClInclude Include="game_loop.h" />
+    <ClInclude Include="menu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
