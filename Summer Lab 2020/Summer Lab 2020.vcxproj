@@ -18,6 +18,25 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Objects\camion.cpp" />
+    <ClCompile Include="..\src\Objects\edificio.cpp" />
+    <ClCompile Include="..\src\Scenes\creditos.cpp" />
+    <ClCompile Include="..\src\Scenes\gameplay.cpp" />
+    <ClCompile Include="..\src\Scenes\menu.cpp" />
+    <ClCompile Include="..\src\System\game_loop.cpp" />
+    <ClCompile Include="..\src\System\pantalla.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\Objects\camion.h" />
+    <ClInclude Include="..\src\Objects\edificio.h" />
+    <ClInclude Include="..\src\Scenes\creditos.h" />
+    <ClInclude Include="..\src\Scenes\gameplay.h" />
+    <ClInclude Include="..\src\Scenes\menu.h" />
+    <ClInclude Include="..\src\System\game_loop.h" />
+    <ClInclude Include="..\src\System\pantalla.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{2000B8E8-8A2F-46F1-986A-60160CE4DA8E}</ProjectGuid>
@@ -84,6 +103,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\raylib-2.5.0-Win32-msvc15\include;$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GRAPHICS_API_OPENGL_33;
+PLATFORM_DESKTOP
+;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\raylib-2.5.0-Win32-msvc15\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -108,6 +130,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\raylib-2.5.0-Win32-msvc15\include;$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GRAPHICS_API_OPENGL_33;
+PLATFORM_DESKTOP
+;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -131,23 +156,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\main.cpp" />
-    <ClCompile Include="camion.cpp" />
-    <ClCompile Include="creditos.cpp" />
-    <ClCompile Include="edificio.cpp" />
-    <ClCompile Include="gameplay.cpp" />
-    <ClCompile Include="game_loop.cpp" />
-    <ClCompile Include="menu.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="camion.h" />
-    <ClInclude Include="creditos.h" />
-    <ClInclude Include="edificio.h" />
-    <ClInclude Include="gameplay.h" />
-    <ClInclude Include="game_loop.h" />
-    <ClInclude Include="menu.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

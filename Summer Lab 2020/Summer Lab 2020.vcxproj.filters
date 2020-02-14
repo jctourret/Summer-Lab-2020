@@ -1,27 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\main.cpp" />
-    <ClCompile Include="game_loop.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="camion.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="edificio.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="gameplay.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="menu.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="creditos.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="System">
       <UniqueIdentifier>{217fe929-a6fc-4579-82dc-68883647540d}</UniqueIdentifier>
     </Filter>
@@ -36,23 +15,50 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="game_loop.h">
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\System\game_loop.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Scenes\creditos.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Scenes\gameplay.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Scenes\menu.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Objects\camion.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Objects\edificio.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\System\pantalla.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\System\game_loop.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="camion.h">
+    <ClInclude Include="..\src\Scenes\creditos.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Scenes\gameplay.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Scenes\menu.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Objects\camion.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="edificio.h">
+    <ClInclude Include="..\src\Objects\edificio.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="gameplay.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="menu.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="creditos.h">
-      <Filter>Scenes</Filter>
+    <ClInclude Include="..\src\System\pantalla.h">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
