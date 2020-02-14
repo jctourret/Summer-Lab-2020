@@ -6,16 +6,15 @@ namespace SummerLab {
 	class menu {
 	private:
 		bool _menuOn;
-		bool _aGameplay;
-		bool _aCreditos;
+		bool _toGameplay;
+		bool _toCredits;
 	public:
 		menu();
 		~menu();
-		void
-		void setAGameplay();
-		void setACreditos();
-		bool getAGameplay();
-		bool getACreditos();
+		void setToGameplay(bool aGameplay);
+		void setToCredits(bool aCreditos);
+		bool getToGameplay();
+		bool getToCredits();
 		void run();
 		void update();
 		void draw();

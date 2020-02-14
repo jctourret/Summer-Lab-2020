@@ -1,25 +1,25 @@
 #ifndef GAME_LOOP_H
 #define GAME_LOOP_H
 
-#include "Scenes/creditos.h"
+#include "Scenes/credits.h"
 #include "Scenes/menu.h"
 #include "Scenes/gameplay.h"
-#include "System/pantalla.h"
+#include "System/screen.h"
 
 namespace SummerLab {
 	
-	enum estado {
-		enMenu,
-		enGameplay,
-		enCreditos,
+	enum gamestate {
+		onMenu,
+		onGameplay,
+		onCredits,
 	};
 	
 	class game_loop{
 	private:
 		bool _gameOn;
-		estado _estado;
-		pantalla* _pantalla;
-		creditos* _creditos;
+		gamestate _gamestate;
+		screen* _screen;
+		credits* _credits;
 		menu* _menu;
 		gameplay* _gameplay;
 	public:

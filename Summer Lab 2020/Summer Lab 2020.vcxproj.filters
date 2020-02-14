@@ -19,9 +19,6 @@
     <ClCompile Include="..\src\System\game_loop.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Scenes\creditos.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Scenes\gameplay.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -34,17 +31,14 @@
     <ClCompile Include="..\src\Objects\edificio.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\System\pantalla.cpp">
+    <ClCompile Include="..\src\System\screen.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Scenes\credits.cpp">
+      <Filter>Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\System\game_loop.h">
-      <Filter>System</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Scenes\creditos.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Scenes\gameplay.h">
       <Filter>Scenes</Filter>
     </ClInclude>
@@ -57,8 +51,14 @@
     <ClInclude Include="..\src\Objects\edificio.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\System\pantalla.h">
+    <ClInclude Include="..\src\System\game_loop.h">
       <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\System\screen.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Scenes\credits.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

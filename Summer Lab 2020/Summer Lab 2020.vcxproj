@@ -22,20 +22,20 @@
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Objects\camion.cpp" />
     <ClCompile Include="..\src\Objects\edificio.cpp" />
-    <ClCompile Include="..\src\Scenes\creditos.cpp" />
+    <ClCompile Include="..\src\Scenes\credits.cpp" />
     <ClCompile Include="..\src\Scenes\gameplay.cpp" />
     <ClCompile Include="..\src\Scenes\menu.cpp" />
     <ClCompile Include="..\src\System\game_loop.cpp" />
-    <ClCompile Include="..\src\System\pantalla.cpp" />
+    <ClCompile Include="..\src\System\screen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Objects\camion.h" />
     <ClInclude Include="..\src\Objects\edificio.h" />
-    <ClInclude Include="..\src\Scenes\creditos.h" />
+    <ClInclude Include="..\src\Scenes\credits.h" />
     <ClInclude Include="..\src\Scenes\gameplay.h" />
     <ClInclude Include="..\src\Scenes\menu.h" />
     <ClInclude Include="..\src\System\game_loop.h" />
-    <ClInclude Include="..\src\System\pantalla.h" />
+    <ClInclude Include="..\src\System\screen.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
