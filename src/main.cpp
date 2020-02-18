@@ -8,7 +8,7 @@ void main() {
 	play = new game_loop();
 
 	if (play != 0) {
-		play->
+		play->gameLoop();
 	}
 
 	if (play != 0) {

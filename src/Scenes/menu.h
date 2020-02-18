@@ -11,8 +11,8 @@ namespace SummerLab {
 	public:
 		menu();
 		~menu();
-		void setToGameplay(bool aGameplay);
-		void setToCredits(bool aCreditos);
+		void setToGameplay(bool toGameplay);
+		void setToCredits(bool toCreditos);
 		bool getToGameplay();
 		bool getToCredits();
 		void run();

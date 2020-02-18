@@ -50,7 +50,7 @@ namespace SummerLab {
 	void menu::draw() {
 		BeginDrawing();
 		ClearBackground(BLACK);
-		DrawText("GUN FIGHT!", 500, 500, 20, YELLOW);
+		DrawText("Fire out!", 500, 500, 20, YELLOW);
 		EndDrawing();
 	}
 }

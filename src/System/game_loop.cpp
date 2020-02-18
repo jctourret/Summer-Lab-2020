@@ -10,7 +10,7 @@ namespace SummerLab{
 
 	game_loop::game_loop(){
 		_screen = new screen();
-		InitWindow(_screen->getScreenWidth(), _screen->getScreenHeight, "Summerlab");
+		InitWindow(_screen->getScreenWidth(), _screen->getScreenHeight(), "Summerlab");
 		SetExitKey(KEY_ESCAPE);
 
 		_gamestate = onMenu;
@@ -64,13 +64,13 @@ namespace SummerLab{
 				}
 				break;
 			case onCredits:
-				_creditos->run();
+				_credits->run();
 				if (_credits->getToGameplay()) {
-					_gameState = onGameplay;
+					_gamestate = onGameplay;
 					_credits->setToGameplay(false);
 				}
 				if (_credits->getToMenu()) {
-					_gameState = onMenu;
+					_gamestate = onMenu;
 					_credits->setToMenu(false);
 				}
 				break;

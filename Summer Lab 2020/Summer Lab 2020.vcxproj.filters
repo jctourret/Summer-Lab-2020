@@ -25,17 +25,17 @@
     <ClCompile Include="..\src\Scenes\menu.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Objects\camion.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Objects\edificio.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\System\screen.cpp">
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Scenes\credits.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="truck.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="building.cpp">
+      <Filter>Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -45,12 +45,6 @@
     <ClInclude Include="..\src\Scenes\menu.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Objects\camion.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Objects\edificio.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\System\game_loop.h">
       <Filter>System</Filter>
     </ClInclude>
@@ -59,6 +53,12 @@
     </ClInclude>
     <ClInclude Include="..\src\Scenes\credits.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="truck.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="building.h">
+      <Filter>Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

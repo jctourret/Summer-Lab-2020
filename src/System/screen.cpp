@@ -26,12 +26,3 @@ namespace SummerLab {
 	}
 }
 
-
-screen::screen()
-{
-}
-
-
-screen::~screen()
-{
-}
