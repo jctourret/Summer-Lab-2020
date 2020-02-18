@@ -20,22 +20,26 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Objects\building.cpp" />
+    <ClCompile Include="..\src\Objects\cannon.cpp" />
+    <ClCompile Include="..\src\Objects\truck.cpp" />
+    <ClCompile Include="..\src\Objects\window.cpp" />
     <ClCompile Include="..\src\Scenes\credits.cpp" />
     <ClCompile Include="..\src\Scenes\gameplay.cpp" />
     <ClCompile Include="..\src\Scenes\menu.cpp" />
     <ClCompile Include="..\src\System\game_loop.cpp" />
     <ClCompile Include="..\src\System\screen.cpp" />
-    <ClCompile Include="building.cpp" />
-    <ClCompile Include="truck.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\Objects\building.h" />
+    <ClInclude Include="..\src\Objects\cannon.h" />
+    <ClInclude Include="..\src\Objects\truck.h" />
+    <ClInclude Include="..\src\Objects\window.h" />
     <ClInclude Include="..\src\Scenes\credits.h" />
     <ClInclude Include="..\src\Scenes\gameplay.h" />
     <ClInclude Include="..\src\Scenes\menu.h" />
     <ClInclude Include="..\src\System\game_loop.h" />
     <ClInclude Include="..\src\System\screen.h" />
-    <ClInclude Include="building.h" />
-    <ClInclude Include="truck.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

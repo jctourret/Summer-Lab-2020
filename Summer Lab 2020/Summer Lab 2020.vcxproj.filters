@@ -31,10 +31,16 @@
     <ClCompile Include="..\src\Scenes\credits.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="truck.cpp">
+    <ClCompile Include="..\src\Objects\building.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="building.cpp">
+    <ClCompile Include="..\src\Objects\cannon.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Objects\truck.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Objects\window.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
   </ItemGroup>
@@ -54,10 +60,16 @@
     <ClInclude Include="..\src\Scenes\credits.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="truck.h">
+    <ClInclude Include="..\src\Objects\building.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="building.h">
+    <ClInclude Include="..\src\Objects\cannon.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Objects\truck.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Objects\window.h">
       <Filter>Objects</Filter>
     </ClInclude>
   </ItemGroup>
