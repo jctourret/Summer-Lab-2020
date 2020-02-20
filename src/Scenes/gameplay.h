@@ -1,6 +1,9 @@
 #ifndef GAMEPLAY_H
 #define GAMEPLAY_H
 
+#include "Objects/truck.h"
+#include "Objects/building.h"
+
 namespace SummerLab {
 	
 	
@@ -9,6 +12,9 @@ namespace SummerLab {
 		bool _gameplayOn;
 		bool _toMenu;
 		bool _toCredits;
+		truck* _truck;
+		building* _building;
+
 	public:
 		gameplay();
 		~gameplay();

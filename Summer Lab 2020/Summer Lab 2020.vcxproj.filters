@@ -13,6 +13,12 @@
     <Filter Include="Music">
       <UniqueIdentifier>{c7a49f4e-48a4-49a0-8659-2459fde51c2f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objects\Truck">
+      <UniqueIdentifier>{f1f03195-712b-4dc5-88ee-6b827a309d74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Building">
+      <UniqueIdentifier>{e4ac5d9b-6e48-492f-9309-e03736d840e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp" />
@@ -31,17 +37,17 @@
     <ClCompile Include="..\src\Scenes\credits.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Objects\building.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Objects\cannon.cpp">
-      <Filter>Objects</Filter>
+      <Filter>Objects\Truck</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Objects\truck.cpp">
-      <Filter>Objects</Filter>
+      <Filter>Objects\Truck</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Objects\building.cpp">
+      <Filter>Objects\Building</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Objects\window.cpp">
-      <Filter>Objects</Filter>
+      <Filter>Objects\Building</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -60,17 +66,17 @@
     <ClInclude Include="..\src\Scenes\credits.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Objects\building.h">
-      <Filter>Objects</Filter>
+    <ClInclude Include="..\src\Objects\truck.h">
+      <Filter>Objects\Truck</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Objects\cannon.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Objects\truck.h">
-      <Filter>Objects</Filter>
+      <Filter>Objects\Truck</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Objects\window.h">
-      <Filter>Objects</Filter>
+      <Filter>Objects\Building</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Objects\building.h">
+      <Filter>Objects\Building</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

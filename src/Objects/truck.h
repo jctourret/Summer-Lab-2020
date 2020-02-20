@@ -8,6 +8,7 @@ namespace SummerLab {
 	class truck {
 	private:
 		Rectangle _body;
+		Color _color;
 	public:
 		truck(float width, float height, float posX, float posY);
 		~truck();
@@ -20,6 +21,7 @@ namespace SummerLab {
 		float getBodyX();
 		float getBodyY();
 		void move();
+		void draw();
 	};
 }
 #endif

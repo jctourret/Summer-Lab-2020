@@ -3,20 +3,22 @@
 using namespace SummerLab;
 
 namespace SummerLab {
-	
+
 	const float truckSpeed = 500;
 
 	const float truckHeight = 100;
 	const float truckWidth = 200;
+	const Color truckColor = RED;
 
-	truck::truck(float height, float width, float posX, float posY){
+	truck::truck(float height, float width, float posX, float posY) {
 		_body.height = height;
 		_body.width = width;
 		_body.x = posX;
 		_body.y = posY;
+		_color = truckColor;
 	}
 
-	truck::~truck(){
+	truck::~truck() {
 
 	}
 
@@ -47,10 +49,14 @@ namespace SummerLab {
 	void truck::move() {
 		float time = GetFrameTime();
 		if (IsKeyDown(KEY_LEFT)) {
-			_body.y -= truckSpeed*time;
+			_body.x -= truckSpeed * time;
 		}
 		if (IsKeyDown(KEY_RIGHT)) {
-			_body.y += truckSpeed * time;
+			_body.x += truckSpeed * time;
 		}
+	}
+
+	void truck::draw() {
+		DrawRectangleRec(_body,_color);
 	}
 }
