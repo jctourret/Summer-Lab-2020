@@ -15,9 +15,13 @@ namespace SummerLab {
 		void setWaterTank(float waterTank);
 		void setPressure(float pressure);
 		void setWaterShotX(float x);
+		void setWaterShotY(float y);
+		void setWaterShotWidth(float width);
 		float getWaterTank();
 		float getPressure();
 		float getWaterShotX();
+		float getWaterShotY();
+		float getWaterShotWidth();
 		void shoot();
 		void draw();
 	};

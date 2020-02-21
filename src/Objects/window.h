@@ -22,6 +22,10 @@ namespace SummerLab {
 	public:
 		window(float height, float width, float x, float y);
 		~window();
+		float getWindowWidth();
+		float getWindowHeight();
+		float getWindowX();
+		float getWindowY();
 		void catchFire();
 		void dozeFire();
 		void growFire();

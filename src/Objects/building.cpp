@@ -39,12 +39,14 @@ namespace SummerLab {
 
 	void building::growFireTimers() {
 		for (int i = 0; i < (_columns*_floors); i++){
-
+			_windows[i]->dozeFireTimer();
 		}
 	}
+
 	void building::dozeFireTimers(){
 		for (int i = 0; i < (_columns*_floors); i++) {
-
+			if(_windows[i]->)
+			_windows[i]->dozeFireTimer();
 		}
 	}
 

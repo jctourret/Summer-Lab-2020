@@ -34,6 +34,12 @@ namespace SummerLab {
 	void cannon::setWaterShotX(float x) {
 		_waterShot.x = x;
 	}
+	void cannon::setWaterShotY(float y) {
+		_waterShot.y = y;
+	}
+	void cannon::setWaterShotWidth(float width) {
+		_waterShot.width = width;
+	}
 
 	
 	float cannon::getWaterTank() {
@@ -44,6 +50,12 @@ namespace SummerLab {
 	}
 	float cannon::getWaterShotX() {
 		return _waterShot.x;
+	}
+	float cannon::getWaterShotY() {
+		return _waterShot.y;
+	}
+	float cannon::getWaterShotWidth() {
+		return _waterShot.width;
 	}
 
 	void cannon::shoot() {

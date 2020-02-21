@@ -31,6 +31,19 @@ namespace SummerLab {
 	
 	}
 
+	float window::getWindowWidth() {
+		return _body.width;
+	}
+	float window::getWindowHeight() {
+		return _body.height;
+	}
+	float window::getWindowX() {
+		return _body.x;
+	}
+	float window::getWindowY() {
+		return _body.y;
+	}
+
 	void window::catchFire() {
 		_onFire = true;
 		_fire = smallFire;
