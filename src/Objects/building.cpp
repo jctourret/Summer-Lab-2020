@@ -1,5 +1,7 @@
 #include "building.h"
 
+#include "cannon.h"
+
 using namespace SummerLab;
 
 namespace SummerLab {
@@ -42,10 +44,13 @@ namespace SummerLab {
 			_windows[i]->dozeFireTimer();
 		}
 	}
-
-	void building::dozeFireTimers(){
+	
+	void building::dozeFireTimers(cannon* cannon){
 		for (int i = 0; i < (_columns*_floors); i++) {
-			if(_windows[i]->)
+			if (cannon->getWaterShotX() >= _windows[i]->getWindowX() - (cannon->getWaterShotWidth()) &&
+				cannon->getWaterShotX() <= _windows[i]->getWindowX()+ _windows[i]->getWindowWidth() &&
+				cannon->getWaterShotY() < _windows[i]->getWindowY() &&
+				cannon->getWaterShotY() > _windows[i]->getWindowY() + _windows[i]->getWindowHeight())
 			_windows[i]->dozeFireTimer();
 		}
 	}

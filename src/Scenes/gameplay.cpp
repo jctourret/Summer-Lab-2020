@@ -45,7 +45,6 @@ namespace SummerLab {
 
 	void gameplay::run() {
 		_gameplayOn = true;
-
 		while (_gameplayOn) {
 			update();
 			draw();
@@ -57,6 +56,8 @@ namespace SummerLab {
 			_gameplayOn = false;
 			_toCredits = true;
 		}
+		_building->growFireTimers();
+		_building->dozeFireTimers();
 		_truck->move();
 		_truck->shoot();
 	}
