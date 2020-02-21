@@ -15,15 +15,18 @@ namespace SummerLab {
 	class window {
 	private:
 		Rectangle _body;
+		Color _color;
+		Rectangle _fireBody;
 		bool _onFire;
 		fire _fire;
-		Color _color;
 	public:
 		window(float height, float width, float x, float y);
 		~window();
 		void catchFire();
 		void dozeFire();
 		void growFire();
+		void growFireTimer();
+		void dozeFireTimer();
 		void draw();
 	};
 }

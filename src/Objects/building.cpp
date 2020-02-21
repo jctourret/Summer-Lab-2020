@@ -5,9 +5,9 @@ using namespace SummerLab;
 namespace SummerLab {
 
 	const Color buildingColor = GRAY;
-	const float windowOffset = 50;
-	const float windowHeight = 100;
-	const float windowWidth = 100;
+	const float windowOffset = 60;
+	const float windowHeight = 90;
+	const float windowWidth = 90;
 
 	building::building(float height, float width, float x, float y, int floors, int columns) {
 		_body.height = height;
@@ -31,6 +31,23 @@ namespace SummerLab {
 
 	}
 	
+	void building::initFire() {
+		for  (int i = 0; i < _columns; i++){
+			_windows[i]->catchFire();
+		}
+	}
+
+	void building::growFireTimers() {
+		for (int i = 0; i < (_columns*_floors); i++){
+
+		}
+	}
+	void building::dozeFireTimers(){
+		for (int i = 0; i < (_columns*_floors); i++) {
+
+		}
+	}
+
 	void building::draw() {
 		DrawRectangleRec(_body, _color);
 		for (int i = 0; i < (_floors*_columns); i++){

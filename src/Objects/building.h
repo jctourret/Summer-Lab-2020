@@ -18,6 +18,9 @@ namespace SummerLab {
 	public:
 		building(float height, float width, float x, float y, int floors, int columns);
 		~building();
+		void initFire();
+		void growFireTimers();
+		void dozeFireTimers();
 		void draw();
 	};
 }

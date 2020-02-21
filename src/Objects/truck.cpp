@@ -16,6 +16,7 @@ namespace SummerLab {
 		_body.x = posX;
 		_body.y = posY;
 		_color = truckColor;
+		_cannon = new cannon(posX+(width/3),posY);
 	}
 
 	truck::~truck() {
@@ -50,13 +51,21 @@ namespace SummerLab {
 		float time = GetFrameTime();
 		if (IsKeyDown(KEY_LEFT)) {
 			_body.x -= truckSpeed * time;
+			_cannon->setWaterShotX(_cannon->getWaterShotX() - truckSpeed * time);
 		}
 		if (IsKeyDown(KEY_RIGHT)) {
 			_body.x += truckSpeed * time;
+			_cannon->setWaterShotX(_cannon->getWaterShotX() + truckSpeed * time);
 		}
+		
+	}
+
+	void truck::shoot() {
+		_cannon->shoot();
 	}
 
 	void truck::draw() {
 		DrawRectangleRec(_body,_color);
+		_cannon->draw();
 	}
 }

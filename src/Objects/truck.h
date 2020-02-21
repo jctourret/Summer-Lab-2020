@@ -2,12 +2,14 @@
 #define TRUCK_H
 
 #include "raylib.h"
+#include "cannon.h"
 
 namespace SummerLab {
 
 	class truck {
 	private:
 		Rectangle _body;
+		cannon* _cannon;
 		Color _color;
 	public:
 		truck(float width, float height, float posX, float posY);
@@ -21,6 +23,7 @@ namespace SummerLab {
 		float getBodyX();
 		float getBodyY();
 		void move();
+		void shoot();
 		void draw();
 	};
 }

@@ -1,13 +1,2 @@
-﻿  main.cpp
-c:\users\juan cruz\desktop\summer-lab-2020\src\main.cpp(5): warning C4326: el tipo de valor devuelto de 'main' debe ser 'int' en lugar de 'void'
-  building.cpp
-  cannon.cpp
-  truck.cpp
-  window.cpp
-  credits.cpp
-  gameplay.cpp
-  menu.cpp
-  game_loop.cpp
-  screen.cpp
-  Generando código...
+﻿  building.cpp
   Summer Lab 2020.vcxproj -> C:\Users\Juan Cruz\Desktop\Summer-Lab-2020\bin\Debug\Summer Lab 2020.exe
