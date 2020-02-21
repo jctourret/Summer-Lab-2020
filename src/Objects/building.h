@@ -2,7 +2,6 @@
 #define BUILDING_H
 
 #include "raylib.h"
-#include "cannon.h"
 #include "Objects/window.h"
 
 namespace SummerLab {
@@ -21,7 +20,7 @@ namespace SummerLab {
 		~building();
 		void initFire();
 		void growFireTimers();
-		void dozeFireTimers(cannon* cannon);
+		void dozeFireTimers(Rectangle rec);
 		void draw();
 	};
 }

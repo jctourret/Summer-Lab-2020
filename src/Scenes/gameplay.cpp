@@ -56,8 +56,9 @@ namespace SummerLab {
 			_gameplayOn = false;
 			_toCredits = true;
 		}
+		_building->initFire();
 		_building->growFireTimers();
-		_building->dozeFireTimers();
+		_building->dozeFireTimers(_truck->getWaterShot());
 		_truck->move();
 		_truck->shoot();
 	}

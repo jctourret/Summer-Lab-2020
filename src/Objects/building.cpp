@@ -1,7 +1,5 @@
 #include "building.h"
 
-#include "cannon.h"
-
 using namespace SummerLab;
 
 namespace SummerLab {
@@ -10,6 +8,7 @@ namespace SummerLab {
 	const float windowOffset = 60;
 	const float windowHeight = 90;
 	const float windowWidth = 90;
+	bool firstFire = true;
 
 	building::building(float height, float width, float x, float y, int floors, int columns) {
 		_body.height = height;
@@ -34,8 +33,11 @@ namespace SummerLab {
 	}
 	
 	void building::initFire() {
-		for  (int i = 0; i < _columns; i++){
-			_windows[i]->catchFire();
+		if (firstFire) {
+			for (int i = 0; i < _columns; i++) {
+				_windows[i]->catchFire();
+			}
+			firstFire = false;
 		}
 	}
 
@@ -45,12 +47,12 @@ namespace SummerLab {
 		}
 	}
 	
-	void building::dozeFireTimers(cannon* cannon){
+	void building::dozeFireTimers(Rectangle rec){
 		for (int i = 0; i < (_columns*_floors); i++) {
-			if (cannon->getWaterShotX() >= _windows[i]->getWindowX() - (cannon->getWaterShotWidth()) &&
-				cannon->getWaterShotX() <= _windows[i]->getWindowX()+ _windows[i]->getWindowWidth() &&
-				cannon->getWaterShotY() < _windows[i]->getWindowY() &&
-				cannon->getWaterShotY() > _windows[i]->getWindowY() + _windows[i]->getWindowHeight())
+			if (rec.x >= _windows[i]->getWindowX() - (rec.width) &&
+				rec.x <= _windows[i]->getWindowX()+ _windows[i]->getWindowWidth() &&
+				rec.y < _windows[i]->getWindowY() &&
+				rec.y > _windows[i]->getWindowY() + _windows[i]->getWindowHeight())
 			_windows[i]->dozeFireTimer();
 		}
 	}

@@ -18,8 +18,8 @@ namespace SummerLab {
 		_body.width = width;
 		_body.x = x;
 		_body.y = y;
-		_fireBody.height = height + fireOffset;
-		_fireBody.width = width + fireOffset;
+		_fireBody.height = height - fireOffset;
+		_fireBody.width = width - fireOffset;
 		_fireBody.x = x - (fireOffset/2);
 		_fireBody.y = y - (fireOffset/2);
 		_onFire = false;
