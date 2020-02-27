@@ -19,6 +19,9 @@
     <Filter Include="Objects\Building">
       <UniqueIdentifier>{e4ac5d9b-6e48-492f-9309-e03736d840e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objects\Hydrant">
+      <UniqueIdentifier>{81a6f1ea-6020-438c-9f96-6e7cb23ae509}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp" />
@@ -37,9 +40,6 @@
     <ClCompile Include="..\src\Scenes\credits.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Objects\cannon.cpp">
-      <Filter>Objects\Truck</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Objects\truck.cpp">
       <Filter>Objects\Truck</Filter>
     </ClCompile>
@@ -49,6 +49,7 @@
     <ClCompile Include="..\src\Objects\window.cpp">
       <Filter>Objects\Building</Filter>
     </ClCompile>
+    <ClCompile Include="Hydrant.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Scenes\gameplay.h">
@@ -69,14 +70,12 @@
     <ClInclude Include="..\src\Objects\truck.h">
       <Filter>Objects\Truck</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Objects\cannon.h">
-      <Filter>Objects\Truck</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Objects\window.h">
       <Filter>Objects\Building</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Objects\building.h">
       <Filter>Objects\Building</Filter>
     </ClInclude>
+    <ClInclude Include="Hydrant.h" />
   </ItemGroup>
 </Project>

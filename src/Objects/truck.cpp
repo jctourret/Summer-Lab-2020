@@ -11,6 +11,7 @@ namespace SummerLab {
 
 	const float pressureChargeRate = 200;
 	const float pressureDischargeRate = 180;
+	const float tankDrainRate = 50;
 
 	const float truckSpeed = 500;
 
@@ -113,6 +114,7 @@ namespace SummerLab {
 		if (IsKeyDown(KEY_UP)) {
 			_pressure += pressureChargeRate * time;
 			_waterShot.y -= pressureChargeRate * time;
+			_waterTank -= tankDrainRate * time;
 		}
 		if (_pressure > 0 && IsKeyUp(KEY_UP)) {
 			_pressure -= pressureDischargeRate * time;

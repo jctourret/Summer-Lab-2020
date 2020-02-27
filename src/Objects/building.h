@@ -21,6 +21,7 @@ namespace SummerLab {
 		void initFire();
 		void growFireTimers();
 		void dozeFireTimers(Rectangle rec);
+		void spreadFireTimers();
 		void draw();
 	};
 }

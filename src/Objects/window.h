@@ -19,6 +19,9 @@ namespace SummerLab {
 		Rectangle _fireBody;
 		bool _onFire;
 		fire _fire;
+		float _growTimer;
+		float _dozeTimer;
+		float _spreadTimer;
 	public:
 		window(float height, float width, float x, float y);
 		~window();
@@ -26,11 +29,13 @@ namespace SummerLab {
 		float getWindowHeight();
 		float getWindowX();
 		float getWindowY();
+		bool getOnFire();
 		void catchFire();
 		void dozeFire();
 		void growFire();
 		void growFireTimer();
 		void dozeFireTimer();
+		void spreadFireTimer();
 		void draw();
 	};
 }

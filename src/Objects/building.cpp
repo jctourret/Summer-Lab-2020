@@ -43,17 +43,61 @@ namespace SummerLab {
 
 	void building::growFireTimers() {
 		for (int i = 0; i < (_columns*_floors); i++){
-			_windows[i]->dozeFireTimer();
+			if (_windows[i]->getOnFire()){
+				_windows[i]->growFireTimer();
+			}
 		}
 	}
 	
 	void building::dozeFireTimers(Rectangle rec){
 		for (int i = 0; i < (_columns*_floors); i++) {
-			if (rec.x >= _windows[i]->getWindowX() - (rec.width) &&
-				rec.x <= _windows[i]->getWindowX()+ _windows[i]->getWindowWidth() &&
-				rec.y < _windows[i]->getWindowY() &&
-				rec.y > _windows[i]->getWindowY() + _windows[i]->getWindowHeight())
-			_windows[i]->dozeFireTimer();
+			if (_windows[i]->getOnFire()) {
+				if (rec.x >= _windows[i]->getWindowX() - (rec.width) &&
+					rec.x <= _windows[i]->getWindowX() + _windows[i]->getWindowWidth() + rec.width &&
+					rec.y > _windows[i]->getWindowY() &&
+					rec.y < _windows[i]->getWindowY() + _windows[i]->getWindowHeight()) {
+					_windows[i]->dozeFireTimer();
+				}
+			}
+		}
+	}
+
+	void building::spreadFireTimers() {
+		for (int i = 0; i < _columns; i++) {
+			if (_windows[i + _columns]->getOnFire() && !_windows[i]->getOnFire()) {
+				_windows[i]->spreadFireTimer();
+			}
+		}
+		for (int i = 0; i < _floors; i++){
+			if (_windows[(i*_columns) + 1]->getOnFire() && !_windows[i]->getOnFire()) {
+				_windows[i*_columns]->spreadFireTimer();
+			}
+		}
+		for  (int i = _columns; i < (_columns*_floors)-_columns; i++){
+			if (_windows[i - _columns]->getOnFire() && !_windows[i]->getOnFire()||
+				_windows[i + _columns]->getOnFire() && !_windows[i]->getOnFire()) {
+				_windows[i]->spreadFireTimer();
+			}
+		}
+		for (int i = _columns + 1; i < (_columns*_floors) - 1; i) {
+			if (_windows[i - 1]->getOnFire() && !_windows[i]->getOnFire() ||
+				_windows[i + 1]->getOnFire() && !_windows[i]->getOnFire()) {
+				_windows[i]->spreadFireTimer();
+			}
+			i++;
+			if (i == _columns - 1) {
+				i += 2;
+			}
+		}
+		for (int i = _columns-1; i < (_columns-1)*_floors; i+=_columns) {
+			if (_windows[i - 1]->getOnFire() && !_windows[i]->getOnFire()) {
+				_windows[i]->spreadFireTimer();
+			}
+		}
+		for (int i = (_columns*_floors) - _columns; i < (_columns*_floors); i++) {
+			if (_windows[i - _columns]->getOnFire() && !_windows[i]->getOnFire()) {
+				_windows[i]->spreadFireTimer();
+			}
 		}
 	}
 

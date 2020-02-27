@@ -4,12 +4,11 @@
 namespace SummerLab {
 	
 	const Color windowColor = BLUE;
-	const Color smallFireColor = BLUE;
-	const Color mediumFireColor = BLUE;
-	const Color largeFireColor = BLUE;
+	const Color smallFireColor = YELLOW;
+	const Color mediumFireColor = ORANGE;
+	const Color largeFireColor = RED;
 
-	static float growTimer = 0.0f;
-	static float dozeTimer = 0.0f;
+	
 
 	const float fireOffset = 10;
 
@@ -18,13 +17,16 @@ namespace SummerLab {
 		_body.width = width;
 		_body.x = x;
 		_body.y = y;
-		_fireBody.height = height - fireOffset;
-		_fireBody.width = width - fireOffset;
+		_fireBody.height = height + fireOffset;
+		_fireBody.width = width + fireOffset;
 		_fireBody.x = x - (fireOffset/2);
 		_fireBody.y = y - (fireOffset/2);
 		_onFire = false;
 		_fire = noFire;
 		_color = windowColor;
+		_growTimer = 0.0f;
+		_dozeTimer = 0.0f;
+		_spreadTimer = 0.0f;
 	}
 
 	window::~window(){
@@ -44,45 +46,62 @@ namespace SummerLab {
 		return _body.y;
 	}
 
+	bool window::getOnFire() {
+		return _onFire;
+	}
+
 	void window::catchFire() {
 		_onFire = true;
 		_fire = smallFire;
 	}
 
 	void window::dozeFire() {
-		if (_fire == largeFire) {
-			_fire = mediumFire;
-		}
-		if (_fire == mediumFire) {
-			_fire = smallFire;
-		}
 		if (_fire == smallFire) {
 			_onFire = false;
 			_fire = noFire;
 		}
+		if (_fire == mediumFire) {
+			_fire = smallFire;
+		}
+		if (_fire == largeFire) {
+			_fire = mediumFire;
+		}
 	}
 
 	void window::growFire() {
+		if (_fire == mediumFire) {
+			_fire = largeFire;
+		}
 		if (_fire == smallFire){
 			_fire = mediumFire;
-		}
-		if (_fire ==mediumFire){
-			_fire = largeFire;
 		}
 	}
 
 	void window::growFireTimer() {
-		growTimer += GetFrameTime();
-		if (growTimer >= 5.0f) {
+		_growTimer += GetFrameTime();
+		if (_growTimer >= 10.0f) {
 			growFire();
-			growTimer = 0.0f;
+			_growTimer = 0.0f;
+			_spreadTimer = 0.0f;
 		}
 	}
+
 	void window::dozeFireTimer() {
-		dozeTimer += GetFrameTime();
-		if (dozeTimer >= 4.0f) {
+		_dozeTimer += GetFrameTime();
+		if (_dozeTimer >= 2.0f) {
 			dozeFire();
-			dozeTimer = 0.0f;
+			_dozeTimer = 0.0f;
+			_growTimer = 0.0f;
+			_spreadTimer = 0.0f;
+		}
+	}
+
+	void window::spreadFireTimer() {
+		_spreadTimer += GetFrameTime();
+		if (_spreadTimer >= 10.0f) {
+			catchFire();
+			_spreadTimer = 0.0f;
+			_growTimer = 0.0f;
 		}
 	}
 
