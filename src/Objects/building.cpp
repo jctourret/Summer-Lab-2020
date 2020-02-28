@@ -8,6 +8,7 @@ namespace SummerLab {
 	const float windowOffset = 60;
 	const float windowHeight = 90;
 	const float windowWidth = 90;
+	const float civOffset = 90;
 	const float civHeight = 90;
 	const float civWidth = 90;
 	bool firstFire = true;
@@ -20,15 +21,18 @@ namespace SummerLab {
 		_floors = floors;
 		_columns = columns;
 		for (int k = 0; k < (columns + floors); k) {
-			for (int i = 0; i < columns; i++) {
-				for (int j = 0; j < floors; j++) {
+			for (int i = 0; i < floors; i++) {
+				for (int j = 0; j < columns; j++) {
 					_windows[k] = new window(windowHeight, windowWidth, (_body.x + windowOffset + (j*(_body.width / _columns))), (_body.y + windowOffset) + (i*(_body.height / (_floors+1))));
 					k++;
 				}
 			}
 		}
-		for (int i = 0; i < numberOfWindows; i++) {
-			_civilians[i] = new Civilian();
+		for (int k = 0; k < (columns + floors); k) {
+			for (int j = 0; j < floors; j++) {
+				_civilians[k] = new Civilian(civHeight, civWidth, (_body.x + civOffset + (j*(_body.width / _columns))), (_body.y + civHeight));
+				k++;
+			}
 		}
 		_color = buildingColor;
 	}
@@ -106,10 +110,17 @@ namespace SummerLab {
 		}
 	}
 
+	void building::civJumpTimers() {
+		
+	}
+
 	void building::draw() {
 		DrawRectangleRec(_body, _color);
 		for (int i = 0; i < (_floors*_columns); i++){
 			_windows[i]->draw();
+		}
+		for (int i = 0; i < (_floors*_columns); i++) {
+			_civilians[i]->draw();
 		}
 	}
 }
