@@ -2,7 +2,7 @@
 
 using namespace SummerLab;
 
-void main() {
+int main() {
 	game_loop* play = 0;
 
 	play = new game_loop();
@@ -14,5 +14,5 @@ void main() {
 	if (play != 0) {
 		delete play;
 	}
-
+	return 0;
 }

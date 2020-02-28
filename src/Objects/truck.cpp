@@ -12,7 +12,7 @@ namespace SummerLab {
 	const float pressureChargeRate = 200;
 	const float pressureDischargeRate = 180;
 	const float tankDrainRate = 5;
-	const float tankRechargeRate = 100;
+	const float tankRechargeRate = 10;
 
 	const float truckSpeed = 500;
 

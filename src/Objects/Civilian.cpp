@@ -6,6 +6,7 @@ namespace SummerLab {
 
 	const Color civColor = GREEN;
 
+
 	Civilian::Civilian(float height, float width,float x, float y){
 		_body.height = height;
 		_body.width = width;
@@ -43,13 +44,14 @@ namespace SummerLab {
 
 	void Civilian::jumpTimer() {
 		_onRoofTimer += GetFrameTime();
-		if (_onRoofTimer >= 2.0f) {
+		if (_onRoofTimer >= 5.0f) {
 			_jumping = true;
 			_onRoofTimer = 0.0f;
 		}
 	}
+
 	void Civilian::draw() {
-		if (_onRoof || _jumping) {
+		if (getOnRoof() || getJumping()) {
 			DrawRectangleRec(_body, _color);
 		}
 	}

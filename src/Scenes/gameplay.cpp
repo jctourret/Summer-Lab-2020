@@ -23,7 +23,7 @@ namespace SummerLab {
 		_toCredits = false;
 		_truck = new truck(truckHeight,truckWidth, screenWidth/2, screenHeight-(screenHeight/5));
 		_building = new building(buildingHeight,buildingWidth, screenWidth/2 -(buildingWidth/2), screenHeight/10, buildingFloors, buildingColumns );
-		_hydrant = new Hydrant(screenWidth / 4, screenHeight - (screenHeight / 4));
+		_hydrant = new Hydrant(screenWidth / 5, screenHeight - (screenHeight / 4));
 	}
 
 	gameplay::~gameplay() {
@@ -62,6 +62,7 @@ namespace SummerLab {
 		_building->growFireTimers();
 		_building->dozeFireTimers(_truck->getWaterShot());
 		_building->spreadFireTimers();
+		_building->spawnCiv();
 		_truck->move();
 		_truck->recharge(_hydrant->getBody());
 		_truck->shoot();
@@ -73,6 +74,7 @@ namespace SummerLab {
 		DrawText("Gameplay", 500, 500, 20, RED);
 		_building->draw();
 		_truck->draw();
+		_hydrant->draw();
 		EndDrawing();
 	}
 

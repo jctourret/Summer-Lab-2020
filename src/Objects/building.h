@@ -24,6 +24,7 @@ namespace SummerLab {
 		void growFireTimers();
 		void dozeFireTimers(Rectangle rec);
 		void spreadFireTimers();
+		void spawnCiv();
 		void civJumpTimers();
 		void draw();
 	};

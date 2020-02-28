@@ -19,6 +19,7 @@ namespace SummerLab {
 		void setJumping(bool jumping);
 		bool getOnRoof();
 		bool getJumping();
+		void spawn();
 		void jump();
 		void jumpTimer();
 		void draw();

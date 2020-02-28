@@ -10,8 +10,8 @@ namespace SummerLab {
 	static Color hydrantColor = MAROON;
 
 	Hydrant::Hydrant(float x, float y) {
-		_body.height;
-		_body.width;
+		_body.height = hydrantHeight;
+		_body.width = hydrantWidth;
 		_body.x = x;
 		_body.y = y;
 		_color = hydrantColor;

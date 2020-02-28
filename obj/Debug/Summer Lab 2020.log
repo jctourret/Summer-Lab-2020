@@ -1,2 +1,3 @@
-﻿  truck.cpp
-  Summer Lab 2020.vcxproj -> C:\Users\Juan Cruz\Desktop\Summer-Lab-2020\bin\Debug\Summer Lab 2020.exe
+﻿  main.cpp
+c:\users\administrador\desktop\summer-lab-2020\src\main.cpp(5): warning C4326: el tipo de valor devuelto de 'main' debe ser 'int' en lugar de 'void'
+  Summer Lab 2020.vcxproj -> C:\Users\Administrador\Desktop\Summer-Lab-2020\bin\Debug\Summer Lab 2020.exe
