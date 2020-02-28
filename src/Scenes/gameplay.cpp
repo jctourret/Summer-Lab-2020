@@ -12,6 +12,7 @@ namespace SummerLab {
 	static const float buildingWidth = 600;
 	static const int buildingFloors = 3;
 	static const int buildingColumns = 3;
+
 	static const float truckHeight= 100;
 	static const float truckWidth = 250;
 	static const Color truckColor = RED;
@@ -22,6 +23,7 @@ namespace SummerLab {
 		_toCredits = false;
 		_truck = new truck(truckHeight,truckWidth, screenWidth/2, screenHeight-(screenHeight/5));
 		_building = new building(buildingHeight,buildingWidth, screenWidth/2 -(buildingWidth/2), screenHeight/10, buildingFloors, buildingColumns );
+		_hydrant = new Hydrant(screenWidth / 4, screenHeight - (screenHeight / 4));
 	}
 
 	gameplay::~gameplay() {
@@ -61,6 +63,7 @@ namespace SummerLab {
 		_building->dozeFireTimers(_truck->getWaterShot());
 		_building->spreadFireTimers();
 		_truck->move();
+		_truck->recharge(_hydrant->getBody());
 		_truck->shoot();
 	}
 

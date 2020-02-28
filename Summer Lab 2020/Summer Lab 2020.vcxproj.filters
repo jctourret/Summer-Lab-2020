@@ -49,7 +49,12 @@
     <ClCompile Include="..\src\Objects\window.cpp">
       <Filter>Objects\Building</Filter>
     </ClCompile>
-    <ClCompile Include="Hydrant.cpp" />
+    <ClCompile Include="..\src\Objects\Hydrant.cpp">
+      <Filter>Objects\Hydrant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Objects\Civilian.cpp">
+      <Filter>Objects\Building</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Scenes\gameplay.h">
@@ -76,6 +81,11 @@
     <ClInclude Include="..\src\Objects\building.h">
       <Filter>Objects\Building</Filter>
     </ClInclude>
-    <ClInclude Include="Hydrant.h" />
+    <ClInclude Include="..\src\Objects\Hydrant.h">
+      <Filter>Objects\Hydrant</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Objects\Civilian.h">
+      <Filter>Objects\Building</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

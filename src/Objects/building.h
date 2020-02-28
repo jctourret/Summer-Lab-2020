@@ -3,6 +3,7 @@
 
 #include "raylib.h"
 #include "Objects/window.h"
+#include "Objects/Civilian.h"
 
 namespace SummerLab {
 
@@ -14,6 +15,7 @@ namespace SummerLab {
 		int _floors;
 		int _columns;
 		window* _windows[numberOfWindows];
+		Civilian* _civilians[numberOfWindows];
 		Color _color;
 	public:
 		building(float height, float width, float x, float y, int floors, int columns);

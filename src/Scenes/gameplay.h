@@ -3,6 +3,7 @@
 
 #include "Objects/truck.h"
 #include "Objects/building.h"
+#include "Objects/Hydrant.h"
 
 namespace SummerLab {
 	
@@ -14,7 +15,7 @@ namespace SummerLab {
 		bool _toCredits;
 		truck* _truck;
 		building* _building;
-
+		Hydrant* _hydrant;
 	public:
 		gameplay();
 		~gameplay();

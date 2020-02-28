@@ -12,6 +12,7 @@ namespace SummerLab {
 	const float pressureChargeRate = 200;
 	const float pressureDischargeRate = 180;
 	const float tankDrainRate = 50;
+	const float tankRechargeRate = 100;
 
 	const float truckSpeed = 500;
 
@@ -111,7 +112,7 @@ namespace SummerLab {
 
 	void truck::shoot() {
 		float time = GetFrameTime();
-		if (IsKeyDown(KEY_UP)) {
+		if (IsKeyDown(KEY_UP) && _waterTank > 0)) {
 			_pressure += pressureChargeRate * time;
 			_waterShot.y -= pressureChargeRate * time;
 			_waterTank -= tankDrainRate * time;
@@ -121,6 +122,13 @@ namespace SummerLab {
 			_waterShot.y += pressureDischargeRate * time;
 		}
 		_waterShot.height = _pressure;
+	}
+
+	void truck::recharge(Rectangle rec) {
+		float time = GetFrameTime();
+		if (CheckCollisionRecs(_body, rec) && IsKeyDown(KEY_DOWN)) {
+			_waterTank += tankRechargeRate * time;
+		}
 	}
 
 	void truck::draw() {

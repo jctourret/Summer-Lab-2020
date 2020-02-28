@@ -8,10 +8,12 @@ namespace SummerLab {
 	class Hydrant {
 	private:
 		Rectangle _body;
+		Color _color;
 	public:
-		Hydrant();
+		Hydrant(float x, float y);
 		~Hydrant();
-		draw();
+		Rectangle getBody();
+		void draw();
 	};
 }
 

@@ -36,6 +36,7 @@ namespace SummerLab {
 		float getWaterShotWidth();
 		void move();
 		void shoot();
+		void recharge(Rectangle rec);
 		void draw();
 	};
 }

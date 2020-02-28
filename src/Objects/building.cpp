@@ -8,6 +8,8 @@ namespace SummerLab {
 	const float windowOffset = 60;
 	const float windowHeight = 90;
 	const float windowWidth = 90;
+	const float civHeight = 90;
+	const float civWidth = 90;
 	bool firstFire = true;
 
 	building::building(float height, float width, float x, float y, int floors, int columns) {
@@ -24,6 +26,9 @@ namespace SummerLab {
 					k++;
 				}
 			}
+		}
+		for (int i = 0; i < numberOfWindows; i++) {
+			_civilians[i] = new Civilian();
 		}
 		_color = buildingColor;
 	}
