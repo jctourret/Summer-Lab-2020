@@ -27,6 +27,10 @@ namespace SummerLab {
 		_building = new building(buildingHeight,buildingWidth, screenWidth/2 -(buildingWidth/2), screenHeight/10, buildingFloors, buildingColumns );
 		_hydrant = new Hydrant(screenWidth / 5, screenHeight - (screenHeight / 4));
 		_deadCivs = 0;
+		Image background = LoadImage("../res/assets/img/FondoNivel1.jpg");
+		ImageResize(&background,1280,720);
+		_background = LoadTextureFromImage(background);
+		UnloadImage(background);
 	}
 
 	gameplay::~gameplay() {
@@ -80,6 +84,8 @@ namespace SummerLab {
 	void gameplay::draw() {
 		BeginDrawing();
 		ClearBackground(BLACK);
+		DrawTexture(_background, 0,0,RAYWHITE);
+		DrawRectangle(10, 10, 50, 50, RAYWHITE);
 		_building->draw();
 		_truck->draw();
 		_hydrant->draw();

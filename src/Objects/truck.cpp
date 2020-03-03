@@ -38,7 +38,10 @@ namespace SummerLab {
 		_trampoline.y = posY - _trampoline.height;
 		_trampColor = trampColor;
 		_bounceOnce = false;
-		_truck100 = LoadTexture("../res/assets/img/Camion100.png");
+		Image truck100 = LoadImage("../res/assets/img/Camion100.png");
+		ImageResize(&truck100, width, height);
+		_truck100 = LoadTextureFromImage(truck100);
+		UnloadImage(truck100);
 	}
 
 	truck::~truck() {
@@ -143,7 +146,7 @@ namespace SummerLab {
 
 	bool truck::checkLeftBounce(Rectangle rec) {
 		if (rec.x > _trampoline.x - (rec.width) &&
-			rec.x <= _trampoline.x + (_trampoline.width / 2) - rec.width &&
+			rec.x < _trampoline.x + ((_trampoline.width / 2) - rec.width) &&
 			rec.y > _trampoline.y &&
 			rec.y < _trampoline.y + _trampoline.height &&
 			_bounceOnce == false) {
@@ -156,8 +159,8 @@ namespace SummerLab {
 		}
 	}
 	bool truck::checkUpBounce(Rectangle rec) {
-		if (rec.x > _trampoline.x + (_trampoline.width / 2) + rec.width &&
-			rec.x < _trampoline.x + (_trampoline.width / 2) - rec.width &&
+		if (rec.x >= _trampoline.x + ((_trampoline.width / 2) + rec.width) &&
+			rec.x <= _trampoline.x + ((_trampoline.width / 2) - rec.width) &&
 			rec.y + rec.height > _trampoline.y &&
 			rec.y + rec.height < _trampoline.y + _trampoline.height &&
 			_bounceOnce == false) {
@@ -185,7 +188,7 @@ namespace SummerLab {
 	}
 	void truck::draw() {
 		DrawRectangleRec(_body,_color);
-		//DrawTexture(_truck100, _body.x, _body.y, RAYWHITE);
+		DrawTexture(_truck100, _body.x, _body.y, RAYWHITE);
 		DrawRectangleRec(_waterShot, waterColor);
 		DrawRectangleRec(_trampoline, _trampColor);
 	}

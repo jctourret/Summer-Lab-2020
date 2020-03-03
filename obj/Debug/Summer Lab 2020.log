@@ -1,11 +1,9 @@
-﻿  main.cpp
-  truck.cpp
-c:\users\juan cruz\desktop\summer-lab-2020\src\objects\truck.cpp(188): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+﻿  truck.cpp
+c:\users\administrador\desktop\summer-lab-2020\src\objects\truck.cpp(42): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+c:\users\administrador\desktop\summer-lab-2020\src\objects\truck.cpp(191): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
   gameplay.cpp
-  game_loop.cpp
-  Ambulance.cpp
   Generando código...
-c:\users\juan cruz\desktop\summer-lab-2020\src\objects\truck.cpp(157): warning C4715: 'SummerLab::truck::checkLeftBounce': no todas las rutas de acceso de control devuelven un valor
-c:\users\juan cruz\desktop\summer-lab-2020\src\objects\truck.cpp(171): warning C4715: 'SummerLab::truck::checkUpBounce': no todas las rutas de acceso de control devuelven un valor
-c:\users\juan cruz\desktop\summer-lab-2020\src\objects\truck.cpp(185): warning C4715: 'SummerLab::truck::checkRightBounce': no todas las rutas de acceso de control devuelven un valor
-  Summer Lab 2020.vcxproj -> C:\Users\Juan Cruz\Desktop\Summer-Lab-2020\bin\Debug\Summer Lab 2020.exe
+c:\users\administrador\desktop\summer-lab-2020\src\objects\truck.cpp(160): warning C4715: 'SummerLab::truck::checkLeftBounce': no todas las rutas de acceso de control devuelven un valor
+c:\users\administrador\desktop\summer-lab-2020\src\objects\truck.cpp(174): warning C4715: 'SummerLab::truck::checkUpBounce': no todas las rutas de acceso de control devuelven un valor
+c:\users\administrador\desktop\summer-lab-2020\src\objects\truck.cpp(188): warning C4715: 'SummerLab::truck::checkRightBounce': no todas las rutas de acceso de control devuelven un valor
+  Summer Lab 2020.vcxproj -> C:\Users\Administrador\Desktop\Summer-Lab-2020\bin\Debug\Summer Lab 2020.exe

@@ -17,6 +17,7 @@ namespace SummerLab {
 		building* _building;
 		Hydrant* _hydrant;
 		int _deadCivs;
+		Texture2D _background;
 	public:
 		gameplay();
 		~gameplay();
