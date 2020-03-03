@@ -13,6 +13,8 @@ namespace SummerLab {
 	static const int buildingFloors = 3;
 	static const int buildingColumns = 3;
 
+	static const int maxDeadCivs = 3;
+
 	static const float truckHeight= 100;
 	static const float truckWidth = 250;
 	static const Color truckColor = RED;
@@ -24,6 +26,7 @@ namespace SummerLab {
 		_truck = new truck(truckHeight,truckWidth, screenWidth/2, screenHeight-(screenHeight/5));
 		_building = new building(buildingHeight,buildingWidth, screenWidth/2 -(buildingWidth/2), screenHeight/10, buildingFloors, buildingColumns );
 		_hydrant = new Hydrant(screenWidth / 5, screenHeight - (screenHeight / 4));
+		_deadCivs = 0;
 	}
 
 	gameplay::~gameplay() {
@@ -47,7 +50,7 @@ namespace SummerLab {
 
 	void gameplay::run() {
 		_gameplayOn = true;
-		while (_gameplayOn) {
+		while (_gameplayOn ) {
 			update();
 			draw();
 		}
@@ -63,19 +66,53 @@ namespace SummerLab {
 		_building->dozeFireTimers(_truck->getWaterShot());
 		_building->spreadFireTimers();
 		_building->spawnCiv();
+		_building->civJumpTimers();
 		_truck->move();
 		_truck->recharge(_hydrant->getBody());
 		_truck->shoot();
+		checkCiviliansBounce();
+		bounceCivilians();
+		checkCivilianDeath();
 	}
 
 	void gameplay::draw() {
 		BeginDrawing();
 		ClearBackground(BLACK);
-		DrawText("Gameplay", 500, 500, 20, RED);
 		_building->draw();
 		_truck->draw();
 		_hydrant->draw();
 		EndDrawing();
 	}
+
+	void gameplay::checkCiviliansBounce() {
+		for (int i = 0; i < (buildingColumns*buildingFloors); i++){
+			if (_truck->checkLeftBounce(_building->getCivilianBody(i))) {
+				_building->setCivBounceDirection(i, Left);
+				_building->resetCivBounce(i);
+			}
+			if (_truck->checkUpBounce(_building->getCivilianBody(i))) {
+				_building->setCivBounceDirection(i, Up);
+				_building->resetCivBounce(i);
+			}
+			if (_truck->checkRightBounce(_building->getCivilianBody(i))) {
+				_building->setCivBounceDirection(i, Right);
+				_building->resetCivBounce(i);
+			}
+		}
+	}
+
+	void gameplay::bounceCivilians() {
+		for (int i = 0; i < (buildingColumns*buildingFloors); i++){
+			_building->civBounce(i);
+		}
+	}
+
+	void gameplay::checkCivilianDeath() {
+		for (int i = 0; i < buildingColumns * buildingFloors; i++){
+			_building->killCivilians(i);
+		}
+	}
+
+	void gameplay::gameResult()
 
 }

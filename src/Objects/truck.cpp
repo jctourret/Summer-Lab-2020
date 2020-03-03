@@ -16,9 +16,9 @@ namespace SummerLab {
 
 	const float truckSpeed = 500;
 
-	const float truckHeight = 100;
-	const float truckWidth = 200;
 	const Color truckColor = RED;
+
+	const Color trampColor = DARKGREEN;
 
 	truck::truck(float height, float width, float posX, float posY) {
 		_body.height = height;
@@ -32,6 +32,12 @@ namespace SummerLab {
 		_waterShot.width = waterShotWidth;
 		_waterShot.x = posX + (width / 3);
 		_waterShot.y = posY;
+		_trampoline.height = height / 10;
+		_trampoline.width = width / 2;
+		_trampoline.x = (posX + width) - _trampoline.width;
+		_trampoline.y = posY - _trampoline.height;
+		_trampColor = trampColor;
+		_bounceOnce = false;
 	}
 
 	truck::~truck() {
@@ -103,10 +109,12 @@ namespace SummerLab {
 		if (IsKeyDown(KEY_LEFT)) {
 			_body.x -= truckSpeed * time;
 			_waterShot.x -= (truckSpeed * time);
+			_trampoline.x -= (truckSpeed * time);
 		}
 		if (IsKeyDown(KEY_RIGHT)) {
 			_body.x += truckSpeed * time;
 			_waterShot.x += (truckSpeed * time);
+			_trampoline.x += (truckSpeed * time);
 		}
 	}
 
@@ -118,7 +126,7 @@ namespace SummerLab {
 			_waterTank -= tankDrainRate * time;
 		}
 		if ((_pressure > 0 && !IsKeyDown(KEY_UP)) ||
-			(_pressure > 0 && _waterTank <=0)) {
+			(_pressure > 0 && _waterTank <= 0)) {
 			_pressure -= pressureDischargeRate * time;
 			_waterShot.y += pressureDischargeRate * time;
 		}
@@ -132,8 +140,51 @@ namespace SummerLab {
 		}
 	}
 
+	bool truck::checkLeftBounce(Rectangle rec) {
+		if (rec.x > _trampoline.x - (rec.width) &&
+			rec.x <= _trampoline.x + (_trampoline.width / 2) - rec.width &&
+			rec.y > _trampoline.y &&
+			rec.y < _trampoline.y + _trampoline.height &&
+			_bounceOnce == false) {
+			_bounceOnce = true;
+			return true;
+		}
+		if (!CheckCollisionRecs(_trampoline,rec)){
+			_bounceOnce = false;
+			return false;
+		}
+	}
+	bool truck::checkUpBounce(Rectangle rec) {
+		if (rec.x > _trampoline.x + (_trampoline.width / 2) + rec.width &&
+			rec.x < _trampoline.x + (_trampoline.width / 2) - rec.width &&
+			rec.y + rec.height > _trampoline.y &&
+			rec.y + rec.height < _trampoline.y + _trampoline.height &&
+			_bounceOnce == false) {
+			_bounceOnce = true;
+			return true;
+		}
+		if (!CheckCollisionRecs(_trampoline, rec)) {
+			_bounceOnce = false;
+			return false;
+		}
+	}
+	bool truck::checkRightBounce(Rectangle rec) {
+		if (rec.x < _trampoline.x + _trampoline.width &&
+			rec.x > _trampoline.x + (_trampoline.width / 2) + rec.width &&
+			rec.y + rec.height > _trampoline.y &&
+			rec.y + rec.height < _trampoline.y + _trampoline.height &&
+			_bounceOnce == false) {
+			_bounceOnce = true;
+			return true;
+		}
+		if (!CheckCollisionRecs(_trampoline, rec)) {
+			_bounceOnce = false;
+			return false;
+		}
+	}
 	void truck::draw() {
 		DrawRectangleRec(_body,_color);
 		DrawRectangleRec(_waterShot, waterColor);
+		DrawRectangleRec(_trampoline, _trampColor);
 	}
 }

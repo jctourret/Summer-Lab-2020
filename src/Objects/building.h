@@ -20,12 +20,17 @@ namespace SummerLab {
 	public:
 		building(float height, float width, float x, float y, int floors, int columns);
 		~building();
+		Rectangle getCivilianBody(int i);
+		void setCivBounceDirection(int i, Direction x);
 		void initFire();
 		void growFireTimers();
 		void dozeFireTimers(Rectangle rec);
 		void spreadFireTimers();
 		void spawnCiv();
 		void civJumpTimers();
+		void civBounce(int i);
+		void resetCivBounce(int i);
+		void killCivilians(int i);
 		void draw();
 	};
 }

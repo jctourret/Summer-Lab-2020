@@ -12,6 +12,10 @@ namespace SummerLab {
 		float _waterTank;
 		float _pressure;
 		Rectangle _waterShot;
+		Rectangle _trampoline;
+		Color _trampColor;
+
+		bool _bounceOnce;
 	public:
 		truck(float width, float height, float posX, float posY);
 		~truck();
@@ -37,6 +41,9 @@ namespace SummerLab {
 		void move();
 		void shoot();
 		void recharge(Rectangle rec);
+		bool checkLeftBounce(Rectangle rec);
+		bool checkUpBounce(Rectangle rec);
+		bool checkRightBounce(Rectangle rec);
 		void draw();
 	};
 }

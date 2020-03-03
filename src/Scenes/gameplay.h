@@ -16,6 +16,7 @@ namespace SummerLab {
 		truck* _truck;
 		building* _building;
 		Hydrant* _hydrant;
+		int _deadCivs;
 	public:
 		gameplay();
 		~gameplay();
@@ -26,6 +27,10 @@ namespace SummerLab {
 		void run();
 		void update();
 		void draw();
+		void checkCiviliansBounce();
+		void bounceCivilians();
+		void checkCivilianDeath();
+		void gameResult();
 	};
 }
 #endif

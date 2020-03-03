@@ -8,9 +8,9 @@ namespace SummerLab {
 	const float windowOffset = 60;
 	const float windowHeight = 90;
 	const float windowWidth = 90;
-	const float civOffset = 90;
-	const float civHeight = 90;
-	const float civWidth = 90;
+	const float civOffset = 85;
+	const float civHeight = 100;
+	const float civWidth = 50;
 
 	float civSpawnTimer = 0.0f;
 
@@ -33,7 +33,7 @@ namespace SummerLab {
 		}
 		for (int k = 0; k < (columns * floors); k) {
 			for (int j = 0; j < floors; j++) {
-				_civilians[k] = new Civilian(civHeight, civWidth, (_body.x + civOffset + (j*(_body.width / _columns))), (_body.y + civHeight));
+				_civilians[k] = new Civilian(civHeight, civWidth, (_body.x + civOffset + (j*(_body.width / _columns))), (_body.y - civHeight));
 				k++;
 			}
 		}
@@ -44,6 +44,14 @@ namespace SummerLab {
 
 	}
 	
+	Rectangle building::getCivilianBody(int i) {
+		return _civilians[i]->getBody();
+	}
+
+	void building::setCivBounceDirection(int i, Direction x) {
+		_civilians[i]->setBounceDirection(x);
+	}
+
 	void building::initFire() {
 		if (firstFire) {
 			for (int i = 0; i < _columns; i++) {
@@ -125,9 +133,21 @@ namespace SummerLab {
 	void building::civJumpTimers() {
 		for (int i = 0; i < _columns*_floors; i++){
 			if (_civilians[i]->getOnRoof()){
-				
+				_civilians[i]->jumpTimer();
 			}
 		}
+	}
+
+	void building::civBounce(int i) {
+		_civilians[i]->bounce();
+	}
+
+	void building::resetCivBounce(int i) {
+		_civilians[i]->resetBounceForce();
+	}
+
+	void building::killCivilians(int i) {
+		_civilians[i]->die();
 	}
 
 	void building::draw() {
