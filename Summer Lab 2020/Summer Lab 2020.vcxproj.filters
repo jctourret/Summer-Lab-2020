@@ -55,6 +55,7 @@
     <ClCompile Include="..\src\Objects\Civilian.cpp">
       <Filter>Objects\Building</Filter>
     </ClCompile>
+    <ClCompile Include="Ambulance.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Scenes\gameplay.h">
@@ -87,5 +88,6 @@
     <ClInclude Include="..\src\Objects\Civilian.h">
       <Filter>Objects\Building</Filter>
     </ClInclude>
+    <ClInclude Include="Ambulance.h" />
   </ItemGroup>
 </Project>

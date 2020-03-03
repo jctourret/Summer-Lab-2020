@@ -32,6 +32,7 @@ namespace SummerLab {
 	gameplay::~gameplay() {
 
 	}
+
 	void gameplay::setToMenu(bool toMenu) {
 		_toMenu = toMenu;
 	}
@@ -50,7 +51,7 @@ namespace SummerLab {
 
 	void gameplay::run() {
 		_gameplayOn = true;
-		while (_gameplayOn ) {
+		while (_gameplayOn && !WindowShouldClose()) {
 			update();
 			draw();
 		}
@@ -73,6 +74,7 @@ namespace SummerLab {
 		checkCiviliansBounce();
 		bounceCivilians();
 		checkCivilianDeath();
+		gameResult();
 	}
 
 	void gameplay::draw() {
@@ -109,10 +111,21 @@ namespace SummerLab {
 
 	void gameplay::checkCivilianDeath() {
 		for (int i = 0; i < buildingColumns * buildingFloors; i++){
-			_building->killCivilians(i);
+			if (_building->getCivIsAlive(i)){
+				_building->killCivilians(i);
+				if (!_building->getCivIsAlive(i)){
+					_deadCivs++;
+				}
+			}
 		}
 	}
 
-	void gameplay::gameResult()
+	void gameplay::gameResult() {
+		if (_deadCivs >= maxDeadCivs) {
+			_gameplayOn = false;
+			_toMenu = true;
+			_deadCivs = 0;
+		}
+	}
 
 }

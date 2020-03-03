@@ -44,12 +44,16 @@ namespace SummerLab {
 
 	}
 	
+	void building::setCivBounceDirection(int i, Direction x) {
+		_civilians[i]->setBounceDirection(x);
+	}
+	
 	Rectangle building::getCivilianBody(int i) {
 		return _civilians[i]->getBody();
 	}
 
-	void building::setCivBounceDirection(int i, Direction x) {
-		_civilians[i]->setBounceDirection(x);
+	bool building::getCivIsAlive(int i) {
+		return _civilians[i]->getIsAlive();
 	}
 
 	void building::initFire() {

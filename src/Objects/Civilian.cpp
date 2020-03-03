@@ -46,6 +46,10 @@ namespace SummerLab {
 		_bounceDirection = x;
 	}
 
+	bool Civilian::getIsAlive() {
+		return _isAlive;
+	}
+
 	bool Civilian::getOnRoof() {
 		return _onRoof;
 	}
@@ -105,7 +109,7 @@ namespace SummerLab {
 	}
 
 	void Civilian::die() {
-		if (_body.y+_body.height >= screenHeight - screenHeight/20) {
+		if (_body.y+_body.height >= screenHeight - screenHeight/20 && _isAlive) {
 			_isAlive = false;
 		}
 	}

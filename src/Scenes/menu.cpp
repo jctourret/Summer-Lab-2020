@@ -34,7 +34,7 @@ namespace SummerLab {
 
 	void menu::run() {
 		_menuOn = true;
-		while (_menuOn) {
+		while (_menuOn && !WindowShouldClose()) {
 			update();
 			draw();
 		}

@@ -28,7 +28,8 @@ namespace SummerLab {
 		~Civilian();
 		void setOnRoof(bool onRoof);
 		void setJumping(bool jumping);
-		void setBounceDirection(Direction i);
+		void setBounceDirection(Direction x);
+		bool getIsAlive();
 		bool getOnRoof();
 		bool getJumping();
 		Rectangle getBody();

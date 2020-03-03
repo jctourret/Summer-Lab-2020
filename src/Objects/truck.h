@@ -14,7 +14,7 @@ namespace SummerLab {
 		Rectangle _waterShot;
 		Rectangle _trampoline;
 		Color _trampColor;
-
+		Texture2D _truck100;
 		bool _bounceOnce;
 	public:
 		truck(float width, float height, float posX, float posY);

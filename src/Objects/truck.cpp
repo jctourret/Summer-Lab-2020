@@ -38,6 +38,7 @@ namespace SummerLab {
 		_trampoline.y = posY - _trampoline.height;
 		_trampColor = trampColor;
 		_bounceOnce = false;
+		_truck100 = LoadTexture("../res/assets/img/Camion100.png");
 	}
 
 	truck::~truck() {
@@ -184,6 +185,7 @@ namespace SummerLab {
 	}
 	void truck::draw() {
 		DrawRectangleRec(_body,_color);
+		//DrawTexture(_truck100, _body.x, _body.y, RAYWHITE);
 		DrawRectangleRec(_waterShot, waterColor);
 		DrawRectangleRec(_trampoline, _trampColor);
 	}

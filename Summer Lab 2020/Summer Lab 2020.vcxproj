@@ -30,6 +30,7 @@
     <ClCompile Include="..\src\Scenes\menu.cpp" />
     <ClCompile Include="..\src\System\game_loop.cpp" />
     <ClCompile Include="..\src\System\screen.cpp" />
+    <ClCompile Include="Ambulance.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Objects\building.h" />
@@ -42,6 +43,7 @@
     <ClInclude Include="..\src\Scenes\menu.h" />
     <ClInclude Include="..\src\System\game_loop.h" />
     <ClInclude Include="..\src\System\screen.h" />
+    <ClInclude Include="Ambulance.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

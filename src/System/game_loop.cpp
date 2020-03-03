@@ -38,8 +38,7 @@ namespace SummerLab{
 	}
 
 	void game_loop::gameLoop() {
-		while (_gameOn || WindowShouldClose()) {
-			
+		while (_gameOn && !WindowShouldClose()) {
 			switch (_gamestate) {
 			case onMenu:
 				_menu->run();
