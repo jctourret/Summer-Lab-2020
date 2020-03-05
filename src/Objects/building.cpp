@@ -5,9 +5,11 @@ using namespace SummerLab;
 namespace SummerLab {
 
 	const Color buildingColor = GRAY;
-	const float windowOffset = 60;
-	const float windowHeight = 90;
-	const float windowWidth = 90;
+	const float windowXOffset = 75;
+	const float windowYOffset = 85;
+	const float lowerWindowsYOffset = 34;
+	const float windowHeight = 70;
+	const float windowWidth = 70;
 	const float civOffset = 85;
 	const float civHeight = 100;
 	const float civWidth = 50;
@@ -26,7 +28,7 @@ namespace SummerLab {
 		for (int k = 0; k < (columns + floors); k) {
 			for (int i = 0; i < floors; i++) {
 				for (int j = 0; j < columns; j++) {
-					_windows[k] = new window(windowHeight, windowWidth, (_body.x + windowOffset + (j*(_body.width / _columns))), (_body.y + windowOffset) + (i*(_body.height / (_floors+1))));
+					_windows[k] = new window(windowHeight, windowWidth, _body.x + windowXOffset + (j*(_body.width / _columns)) - (j*18), _body.y + windowYOffset + (i*(_body.height / (_floors+1))) - (i*lowerWindowsYOffset));
 					k++;
 				}
 			}
@@ -155,7 +157,7 @@ namespace SummerLab {
 	}
 
 	void building::draw() {
-		DrawRectangleRec(_body, _color);
+		//DrawRectangleRec(_body, _color);
 		for (int i = 0; i < (_floors*_columns); i++){
 			_windows[i]->draw();
 		}

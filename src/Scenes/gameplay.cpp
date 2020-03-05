@@ -8,8 +8,8 @@ using namespace SummerLab;
 
 namespace SummerLab {
 
-	static const float buildingHeight = 600;
-	static const float buildingWidth = 600;
+	static const float buildingHeight = 700;
+	static const float buildingWidth = 500;
 	static const int buildingFloors = 3;
 	static const int buildingColumns = 3;
 
@@ -24,11 +24,11 @@ namespace SummerLab {
 		_toMenu = false;
 		_toCredits = false;
 		_truck = new truck(truckHeight,truckWidth, screenWidth/2, screenHeight-(screenHeight/5));
-		_building = new building(buildingHeight,buildingWidth, screenWidth/2 -(buildingWidth/2), screenHeight/10, buildingFloors, buildingColumns );
+		_building = new building(buildingHeight,buildingWidth, screenWidth/2 -(buildingWidth/2), screenHeight/7, buildingFloors, buildingColumns );
 		_hydrant = new Hydrant(screenWidth / 5, screenHeight - (screenHeight / 4));
 		_deadCivs = 0;
 		Image background = LoadImage("../res/assets/img/FondoNivel1.jpg");
-		ImageResize(&background,1280,720);
+		ImageResize(&background,1920,1080);
 		_background = LoadTextureFromImage(background);
 		UnloadImage(background);
 	}
@@ -84,8 +84,7 @@ namespace SummerLab {
 	void gameplay::draw() {
 		BeginDrawing();
 		ClearBackground(BLACK);
-		DrawTexture(_background, 0,0,RAYWHITE);
-		DrawRectangle(10, 10, 50, 50, RAYWHITE);
+		DrawTexture(_background, 0, 0, RAYWHITE);
 		_building->draw();
 		_truck->draw();
 		_hydrant->draw();

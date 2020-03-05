@@ -28,10 +28,54 @@ namespace SummerLab {
 		_bounceDirection = None;
 		_bounceForce.x = xBounceForce;
 		_bounceForce.y = yBounceForce;
+		Image normalFemaleCiv1 = LoadImage("../res/assets/img/civilians/normalFemale1.png");
+		ImageResize(&normalFemaleCiv1, width, height);
+		_normalFemaleCiv1 = LoadTextureFromImage(normalFemaleCiv1);
+		UnloadImage(normalFemaleCiv1);
+		Image normalFemaleCiv2 = LoadImage("../res/assets/img/civilians/normalFemale2.png");
+		ImageResize(&normalFemaleCiv2, width, height);
+		_normalFemaleCiv2 = LoadTextureFromImage(normalFemaleCiv2);
+		UnloadImage(normalFemaleCiv2);
+		Image normalFemaleCiv3 = LoadImage("../res/assets/img/civilians/normalFemale3.png");
+		ImageResize(&normalFemaleCiv3, width, height);
+		_normalFemaleCiv3 = LoadTextureFromImage(normalFemaleCiv3);
+		UnloadImage(normalFemaleCiv3);
+		_normalMaleCiv1 = LoadTexture("../res/assets/img/civilians/normalMale1.png");;
+		_normalMaleCiv2 = LoadTexture("../res/assets/img/civilians/normalMale2.png");;
+		_normalMaleCiv3 = LoadTexture("../res/assets/img/civilians/normalMale3.png");;
+		_workingFemaleCiv1 = LoadTexture("../res/assets/img/civilians/workingFemale1.png");;
+		_workingFemaleCiv2 = LoadTexture("../res/assets/img/civilians/workingFemale2.png");;
+		_workingFemaleCiv3 = LoadTexture("../res/assets/img/civilians/workingFemale3.png");;
+		_workingMaleCiv1 = LoadTexture("../res/assets/img/civilians/workingMale1.png");;
+		_workingMaleCiv2 = LoadTexture("../res/assets/img/civilians/workingMale2.png");;
+		_workingMaleCiv3 = LoadTexture("../res/assets/img/civilians/workingMale3.png");;
+		_partyFemaleCiv1 = LoadTexture("../res/assets/img/civilians/partyFemale1.png");;
+		_partyFemaleCiv2 = LoadTexture("../res/assets/img/civilians/partyFemale2.png");;
+		_partyFemaleCiv3 = LoadTexture("../res/assets/img/civilians/partyFemale3.png");;
+		_partyMaleCiv1 = LoadTexture("../res/assets/img/civilians/partyMale1.png");;
+		_partyMaleCiv2 = LoadTexture("../res/assets/img/civilians/partyMale2.png");;
+		_partyMaleCiv3 = LoadTexture("../res/assets/img/civilians/partyMale3.png");;
 	}
 
 	Civilian::~Civilian(){
-
+		UnloadTexture(_normalFemaleCiv1);
+		UnloadTexture(_normalFemaleCiv2);
+		UnloadTexture(_normalFemaleCiv3);
+		UnloadTexture(_normalMaleCiv1);
+		UnloadTexture(_normalMaleCiv2);
+		UnloadTexture(_normalMaleCiv3);
+		UnloadTexture(_workingFemaleCiv1);
+		UnloadTexture(_workingFemaleCiv2);
+		UnloadTexture(_workingFemaleCiv3);
+		UnloadTexture(_workingMaleCiv1);
+		UnloadTexture(_workingMaleCiv2);
+		UnloadTexture(_workingMaleCiv3);
+		UnloadTexture(_partyFemaleCiv1);
+		UnloadTexture(_partyFemaleCiv2);
+		UnloadTexture(_partyFemaleCiv3);
+		UnloadTexture(_partyMaleCiv1);
+		UnloadTexture(_partyMaleCiv2);
+		UnloadTexture(_partyMaleCiv3);
 	}
 
 	void Civilian::setOnRoof(bool onRoof) {
@@ -117,6 +161,7 @@ namespace SummerLab {
 	void Civilian::draw() {
 		if ((getOnRoof() || getJumping()) && _isAlive) {
 			DrawRectangleRec(_body, _color);
+			DrawTexture(_normalFemaleCiv1, _body.x, _body.y, RAYWHITE);
 		}
 	}
 }

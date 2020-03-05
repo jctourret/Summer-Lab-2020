@@ -12,6 +12,7 @@ namespace SummerLab{
 		_screen = new screen();
 		InitWindow(_screen->getScreenWidth(), _screen->getScreenHeight(), "Summerlab");
 		SetExitKey(KEY_ESCAPE);
+		//ToggleFullscreen();
 
 		_gamestate = onMenu;
 		_gameOn = true;

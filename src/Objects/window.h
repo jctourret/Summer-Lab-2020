@@ -22,6 +22,17 @@ namespace SummerLab {
 		float _growTimer;
 		float _dozeTimer;
 		float _spreadTimer;
+		Texture2D _smallFire1;
+		Texture2D _smallFire2;
+		Texture2D _smallFire3;
+
+		Texture2D _mediumFire1;
+		Texture2D _mediumFire2;
+		Texture2D _mediumFire3;
+
+		Texture2D _largeFire1;
+		Texture2D _largeFire2;
+		Texture2D _largeFire3;
 	public:
 		window(float height, float width, float x, float y);
 		~window();
