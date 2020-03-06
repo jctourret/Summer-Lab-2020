@@ -6,10 +6,10 @@
 namespace SummerLab {
 	
 	enum Direction {
-		Left,
-		Up,
-		Right,
-		None,
+		cLeft,
+		cUp,
+		cRight,
+		cNone,
 	};
 
 	class Civilian{

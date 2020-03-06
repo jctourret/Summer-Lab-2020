@@ -11,8 +11,8 @@ namespace SummerLab {
 	const float windowHeight = 70;
 	const float windowWidth = 70;
 	const float civOffset = 85;
-	const float civHeight = 100;
-	const float civWidth = 50;
+	const float civHeight = 106;
+	const float civWidth = 91;
 
 	float civSpawnTimer = 0.0f;
 

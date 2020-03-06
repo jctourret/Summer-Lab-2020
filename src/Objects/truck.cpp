@@ -1,5 +1,6 @@
 #include "truck.h"
-
+#include <iostream>
+using namespace std;
 using namespace SummerLab;
 
 namespace SummerLab {
@@ -27,24 +28,32 @@ namespace SummerLab {
 
 	const Color truckColor = RED;
 
+	static const float trampYOffset = 50;
+	static const float trampXOffset = 17;
 	const Color trampColor = DARKGREEN;
+
+	static float trampolineXHitboxWidth;
 
 	truck::truck(float height, float width, float posX, float posY) {
 		_body.height = height;
 		_body.width = width;
 		_body.x = posX;
 		_body.y = posY;
+		trampolineXHitboxWidth = width / 3;
 		_color = truckColor;
 		_waterTank = maxWaterTank;
 		_pressure = 0;
-		_waterShot.height = 0;
-		_waterShot.width = waterShotWidth;
-		_waterShot.x = posX + (width / 3);
-		_waterShot.y = posY;
+		_waterShotLine.height = 0;
+		_waterShotLine.width = waterShotWidth;
+		_waterShotLine.x = posX + (width / 3);
+		_waterShotLine.y = posY;
+		_waterShotSpread.height = 0;
+		_waterShotSpread.width = waterShotWidth;
+		_waterShotSpread.x = 0;
 		_trampoline.height = height / 10;
 		_trampoline.width = width / 2;
-		_trampoline.x = (posX + width) - _trampoline.width;
-		_trampoline.y = posY + _trampoline.height;
+		_trampoline.x = (posX + width) - _trampoline.width-trampXOffset;
+		_trampoline.y = posY + trampYOffset;
 		_trampColor = trampColor;
 		_bounceOnce = false;
 		Image truck100 = LoadImage("res/assets/img/truck/Camion100.png");
@@ -83,17 +92,17 @@ namespace SummerLab {
 		_pressure = pressure;
 	}
 	void truck::setWaterShotX(float x) {
-		_waterShot.x = x;
+		_waterShotLine.x = x;
 	}
 	void truck::setWaterShotY(float y) {
-		_waterShot.y = y;
+		_waterShotLine.y = y;
 	}
 	void truck::setWaterShotWidth(float width) {
-		_waterShot.width = width;
+		_waterShotLine.width = width;
 	}
 
 	Rectangle truck::getWaterShot() {
-		return _waterShot;
+		return _waterShotLine;
 	}
 
 	float truck::getBodyHeight() {
@@ -115,25 +124,25 @@ namespace SummerLab {
 		return _pressure;
 	}
 	float truck::getWaterShotX() {
-		return _waterShot.x;
+		return _waterShotLine.x;
 	}
 	float truck::getWaterShotY() {
-		return _waterShot.y;
+		return _waterShotLine.y;
 	}
 	float truck::getWaterShotWidth() {
-		return _waterShot.width;
+		return _waterShotLine.width;
 	}
 
 	void truck::move() {
 		float time = GetFrameTime();
 		if (IsKeyDown(KEY_LEFT)) {
 			_body.x -= truckSpeed * time;
-			_waterShot.x -= (truckSpeed * time);
+			_waterShotLine.x -= (truckSpeed * time);
 			_trampoline.x -= (truckSpeed * time);
 		}
 		if (IsKeyDown(KEY_RIGHT)) {
 			_body.x += truckSpeed * time;
-			_waterShot.x += (truckSpeed * time);
+			_waterShotLine.x += (truckSpeed * time);
 			_trampoline.x += (truckSpeed * time);
 		}
 	}
@@ -142,15 +151,15 @@ namespace SummerLab {
 		float time = GetFrameTime();
 		if (IsKeyDown(KEY_UP) && _waterTank > 0) {
 			_pressure += pressureChargeRate * time;
-			_waterShot.y -= pressureChargeRate * time;
+			_waterShotLine.y -= pressureChargeRate * time;
 			_waterTank -= tankDrainRate * time;
 		}
 		if ((_pressure > 0 && !IsKeyDown(KEY_UP)) ||
 			(_pressure > 0 && _waterTank <= 0)) {
 			_pressure -= pressureDischargeRate * time;
-			_waterShot.y += pressureDischargeRate * time;
+			_waterShotLine.y += pressureDischargeRate * time;
 		}
-		_waterShot.height = _pressure;
+		_waterShotLine.height = _pressure;
 	}
 
 	void truck::recharge(Rectangle rec) {
@@ -160,84 +169,53 @@ namespace SummerLab {
 		}
 	}
 
-	bool truck::checkLeftBounce(Rectangle rec) {
-		if (rec.x > _trampoline.x - (rec.width) &&
-			rec.x < _trampoline.x + ((_trampoline.width / 2) - rec.width) &&
-			rec.y > _trampoline.y &&
-			rec.y < _trampoline.y + _trampoline.height &&
-			_bounceOnce == false) {
-			_bounceOnce = true;
-			return true;
+	BounceDirection truck::checkBounce(Rectangle rec) {
+		if (CheckCollisionRecs(rec, _trampoline) && (rec.x > _trampoline.x -rec.width && rec.x < _trampoline.x + trampolineXHitboxWidth)) {
+			return bLeft;
 		}
-		if (!CheckCollisionRecs(_trampoline,rec)){
-			_bounceOnce = false;
-			return false;
+		else if (CheckCollisionRecs(rec, _trampoline) && (rec.x >= _trampoline.x + trampolineXHitboxWidth && rec.x < _trampoline.x + (trampolineXHitboxWidth * 2))) {
+			return bUp;
 		}
-	}
-
-	bool truck::checkUpBounce(Rectangle rec) {
-		if (rec.x >= _trampoline.x + ((_trampoline.width / 2) + rec.width) &&
-			rec.x <= _trampoline.x + ((_trampoline.width / 2) - rec.width) &&
-			rec.y + rec.height > _trampoline.y &&
-			rec.y + rec.height < _trampoline.y + _trampoline.height &&
-			_bounceOnce == false) {
-			_bounceOnce = true;
-			return true;
+		else if (CheckCollisionRecs(rec, _trampoline) && (rec.x > _trampoline.x + (trampolineXHitboxWidth * 2))) {
+			return bRight;
 		}
-		if (!CheckCollisionRecs(_trampoline, rec)) {
-			_bounceOnce = false;
-			return false;
-		}
-	}
-
-	bool truck::checkRightBounce(Rectangle rec) {
-		if (rec.x < _trampoline.x + _trampoline.width &&
-			rec.x > _trampoline.x + (_trampoline.width / 2) + rec.width &&
-			rec.y + rec.height > _trampoline.y &&
-			rec.y + rec.height < _trampoline.y + _trampoline.height &&
-			_bounceOnce == false) {
-			_bounceOnce = true;
-			return true;
-		}
-		if (!CheckCollisionRecs(_trampoline, rec)) {
-			_bounceOnce = false;
-			return false;
+		else {
+			return bNone;
 		}
 	}
 
 	void truck::draw() {
 		DrawRectangleRec(_body,_color);
-		DrawTexture(_truck100, _body.x, _body.y, RAYWHITE);
-
-		if (_waterShot.y <= _body.y-20 &&
-			_waterShot.y > _body.y-140) {
-			DrawTexture(_waterShot1a, _waterShot.x - waterShot1XOffset, _body.y - waterShot1YOffset, RAYWHITE);
-		}
-		if (_waterShot.y <= _body.y - 140 &&
-			_waterShot.y > _body.y - 260) {
-			DrawTexture(_waterShot2a, _waterShot.x - waterShotsXOffset, _body.y - waterShot2YOffset, RAYWHITE);
-		}
-		if (_waterShot.y <= _body.y - 260 &&
-			_waterShot.y > _body.y - 330) {
-			DrawTexture(_waterShot3a, _waterShot.x - waterShotsXOffset, _body.y - waterShot3YOffset, RAYWHITE);
-		}
-		if (_waterShot.y <= _body.y - 330 &&
-			_waterShot.y > _body.y - 400) {
-			DrawTexture(_waterShot4a, _waterShot.x - waterShotsXOffset, _body.y - waterShot4YOffset, RAYWHITE);
-		}
-		if (_waterShot.y <= _body.y - 400 &&
-			_waterShot.y > _body.y - 470) {
-			DrawTexture(_waterShot5a, _waterShot.x - waterShotsXOffset, _body.y - waterShot5YOffset, RAYWHITE);
-		}
-		if (_waterShot.y <= _body.y - 470 &&
-			_waterShot.y > _body.y - 540) {
-			DrawTexture(_waterShot6a, _waterShot.x - waterShotsXOffset, _body.y - waterShot6YOffset, RAYWHITE);
-		}
-		if (_waterShot.y <= _body.y - 540 &&
-			_waterShot.y > _body.y - 630) {
-			DrawTexture(_waterShot7a, _waterShot.x - waterShotsXOffset, _body.y - waterShot7YOffset, RAYWHITE);
-		}
-		DrawRectangleRec(_waterShot, waterColor);
 		DrawRectangleRec(_trampoline, _trampColor);
+		DrawTexture(_truck100, _body.x, _body.y, RAYWHITE);
+		if (_waterShotLine.y <= _body.y-20 &&
+			_waterShotLine.y > _body.y-140) {
+			DrawTexture(_waterShot1a, _waterShotLine.x - waterShot1XOffset, _body.y - waterShot1YOffset, RAYWHITE);
+		}
+		if (_waterShotLine.y <= _body.y - 140 &&
+			_waterShotLine.y > _body.y - 260) {
+			DrawTexture(_waterShot2a, _waterShotLine.x - waterShotsXOffset, _body.y - waterShot2YOffset, RAYWHITE);
+		}
+		if (_waterShotLine.y <= _body.y - 260 &&
+			_waterShotLine.y > _body.y - 330) {
+			DrawTexture(_waterShot3a, _waterShotLine.x - waterShotsXOffset, _body.y - waterShot3YOffset, RAYWHITE);
+		}
+		if (_waterShotLine.y <= _body.y - 330 &&
+			_waterShotLine.y > _body.y - 400) {
+			DrawTexture(_waterShot4a, _waterShotLine.x - waterShotsXOffset, _body.y - waterShot4YOffset, RAYWHITE);
+		}
+		if (_waterShotLine.y <= _body.y - 400 &&
+			_waterShotLine.y > _body.y - 470) {
+			DrawTexture(_waterShot5a, _waterShotLine.x - waterShotsXOffset, _body.y - waterShot5YOffset, RAYWHITE);
+		}
+		if (_waterShotLine.y <= _body.y - 470 &&
+			_waterShotLine.y > _body.y - 540) {
+			DrawTexture(_waterShot6a, _waterShotLine.x - waterShotsXOffset, _body.y - waterShot6YOffset, RAYWHITE);
+		}
+		if (_waterShotLine.y <= _body.y - 540 &&
+			_waterShotLine.y > _body.y - 630) {
+			DrawTexture(_waterShot7a, _waterShotLine.x - waterShotsXOffset, _body.y - waterShot7YOffset, RAYWHITE);
+		}
+		DrawRectangleRec(_waterShotLine, waterColor);
 	}
 }

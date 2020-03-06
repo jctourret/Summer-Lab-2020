@@ -9,6 +9,7 @@
 namespace SummerLab {
 	
 	
+	
 	class gameplay {
 	private:
 		bool _gameplayOn;

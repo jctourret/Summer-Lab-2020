@@ -8,19 +8,19 @@ using namespace SummerLab;
 
 namespace SummerLab {
 
-	static const float buildingHeight = 700;
-	static const float buildingWidth = 500;
+	static const float buildingHeight = 700.0f;
+	static const float buildingWidth = 500.0f;
 	static const int buildingFloors = 3;
 	static const int buildingColumns = 3;
 
 	static const int maxDeadCivs = 3;
 
-	static const float truckHeight= 100;
-	static const float truckWidth = 250;
+	static const float truckHeight= 212.0f;
+	static const float truckWidth = 357.0f;
 	static const Color truckColor = RED;
 
-	static const float ambulanceHeight = 100;
-	static const float ambulanceWidth = 250;
+	static const float ambulanceHeight = 175;
+	static const float ambulanceWidth = 342;
 
 	static float gameTimer = 0.0f;
 	static const float maxGameTime = 60.0f*1;
@@ -29,11 +29,11 @@ namespace SummerLab {
 		_gameplayOn = false;
 		_toMenu = false;
 		_toCredits = false;
-		_truck = new truck(truckHeight,truckWidth, screenWidth/2, screenHeight-(screenHeight/5));
+		_truck = new truck(truckHeight,truckWidth, screenWidth/2, screenHeight-(screenHeight/9)-truckHeight);
 		_building = new building(buildingHeight,buildingWidth, screenWidth/2 -(buildingWidth/2), screenHeight/7, buildingFloors, buildingColumns );
 		_hydrant = new Hydrant(screenWidth / 3, screenHeight - (screenHeight / 4));
-		_ambulanceLeft = new Ambulance(ambulanceHeight,ambulanceWidth,screenWidth/10,screenHeight-(screenHeight/5));
-		_ambulanceRight = new Ambulance(ambulanceHeight, ambulanceWidth,screenWidth - screenWidth / 10, screenHeight - (screenHeight / 5));
+		_ambulanceLeft = new Ambulance(ambulanceHeight,ambulanceWidth, screenWidth/10, screenHeight - (screenHeight / 9) - ambulanceHeight);
+		_ambulanceRight = new Ambulance(ambulanceHeight, ambulanceWidth, screenWidth - screenWidth / 10 - ambulanceWidth, screenHeight - (screenHeight / 9) - ambulanceHeight);
 		_deadCivs = 0;
 		Image background = LoadImage("res/assets/img/FondoNivel1.jpg");
 		ImageResize(&background,1920,1080);
@@ -115,16 +115,17 @@ namespace SummerLab {
 
 	void gameplay::checkCiviliansBounce() {
 		for (int i = 0; i < (buildingColumns*buildingFloors); i++){
-			if (_truck->checkLeftBounce(_building->getCivilianBody(i))) {
-				_building->setCivBounceDirection(i, Left);
+			BounceDirection bDir = _truck->checkBounce(_building->getCivilianBody(i));
+			if (bDir == bLeft) {
+				_building->setCivBounceDirection(i, cLeft);
 				_building->resetCivBounce(i);
 			}
-			if (_truck->checkUpBounce(_building->getCivilianBody(i))) {
-				_building->setCivBounceDirection(i, Up);
+			if (bDir == bUp) {
+				_building->setCivBounceDirection(i, cUp);
 				_building->resetCivBounce(i);
 			}
-			if (_truck->checkRightBounce(_building->getCivilianBody(i))) {
-				_building->setCivBounceDirection(i, Right);
+			if (bDir == bRight) {
+				_building->setCivBounceDirection(i, cRight);
 				_building->resetCivBounce(i);
 			}
 		}

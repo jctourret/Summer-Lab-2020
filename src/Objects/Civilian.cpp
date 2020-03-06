@@ -27,7 +27,7 @@ namespace SummerLab {
 		_onRoofTimer = 0;
 		_jumpForce.x = yJumpForce;
 		_jumpForce.y = xJumpForce;
-		_bounceDirection = None;
+		_bounceDirection = cNone;
 		_bounceForce.x = xBounceForce;
 		_bounceForce.y = yBounceForce;
 		Image normalFemaleCiv1 = LoadImage("res/assets/img/civilians/normalFemale1.png");
@@ -114,8 +114,8 @@ namespace SummerLab {
 
 	void Civilian::jump() {
 		float time = GetFrameTime();
-		if (_bounceDirection == None) {
-			_body.x += _jumpForce.x * time;
+		if (_bounceDirection == cNone) {
+			//_body.x += _jumpForce.x * time;
 			_body.y -= _jumpForce.y * time;
 			_jumpForce.y -= gravity * time;
 		}
@@ -125,17 +125,17 @@ namespace SummerLab {
 		if (_isAlive  && !_isSaved) {
 			float time = GetFrameTime();
 			switch (_bounceDirection) {
-			case Left:
-				_body.x += _bounceForce.x * time;
-				_body.y -= _bounceForce.y * time;
-				_bounceForce.y -= gravity * time;
-				break;
-			case Up:
-				_body.y -= _bounceForce.y * time;
-				_bounceForce.y -= gravity * time;
-				break;
-			case Right:
+			case cLeft:
 				_body.x -= _bounceForce.x * time;
+				_body.y -= _bounceForce.y * time;
+				_bounceForce.y -= gravity * time;
+				break;
+			case cUp:
+				_body.y -= _bounceForce.y * time;
+				_bounceForce.y -= gravity * time;
+				break;
+			case cRight:
+				_body.x += _bounceForce.x * time;
 				_body.y -= _bounceForce.y * time;
 				_bounceForce.y -= gravity * time;
 				break;

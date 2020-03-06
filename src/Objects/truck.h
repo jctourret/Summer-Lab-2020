@@ -5,13 +5,21 @@
 
 namespace SummerLab {
 
+	enum BounceDirection {
+		bLeft,
+		bUp,
+		bRight,
+		bNone,
+	};
+
 	class truck {
 	private:
 		Rectangle _body;
 		Color _color;
 		float _waterTank;
 		float _pressure;
-		Rectangle _waterShot;
+		Rectangle _waterShotLine;
+		Rectangle _waterShotSpread;
 		Rectangle _trampoline;
 		Color _trampColor;
 		Texture2D _truck100;
@@ -48,9 +56,7 @@ namespace SummerLab {
 		void move();
 		void shoot();
 		void recharge(Rectangle rec);
-		bool checkLeftBounce(Rectangle rec);
-		bool checkUpBounce(Rectangle rec);
-		bool checkRightBounce(Rectangle rec);
+		BounceDirection checkBounce(Rectangle rec);
 		void draw();
 	};
 }
