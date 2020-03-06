@@ -28,15 +28,15 @@ namespace SummerLab {
 		_growTimer = 0.0f;
 		_dozeTimer = 0.0f;
 		_spreadTimer = 0.0f;
-		_smallFire1 = LoadTexture("../res/assets/img/fire/smallFire1.png");
-		_smallFire2 = LoadTexture("../res/assets/img/fire/smallFire2.png");
-		_smallFire3 = LoadTexture("../res/assets/img/fire/smallFire3.png");
-		_mediumFire1 = LoadTexture("../res/assets/img/fire/mediumFire1.png");
-		_mediumFire2 = LoadTexture("../res/assets/img/fire/mediumFire2.png");
-		_mediumFire3 = LoadTexture("../res/assets/img/fire/mediumFire3.png");
-		_largeFire1 = LoadTexture("../res/assets/img/fire/largeFire1.png");
-		_largeFire2 = LoadTexture("../res/assets/img/fire/largeFire2.png");
-		_largeFire3 = LoadTexture("../res/assets/img/fire/largeFire3.png");
+		_smallFire1 = LoadTexture("res/assets/img/fire/smallFire1.png");
+		_smallFire2 = LoadTexture("res/assets/img/fire/smallFire2.png");
+		_smallFire3 = LoadTexture("res/assets/img/fire/smallFire3.png");
+		_mediumFire1 = LoadTexture("res/assets/img/fire/mediumFire1.png");
+		_mediumFire2 = LoadTexture("res/assets/img/fire/mediumFire2.png");
+		_mediumFire3 = LoadTexture("res/assets/img/fire/mediumFire3.png");
+		_largeFire1 = LoadTexture("res/assets/img/fire/largeFire1.png");
+		_largeFire2 = LoadTexture("res/assets/img/fire/largeFire2.png");
+		_largeFire3 = LoadTexture("res/assets/img/fire/largeFire3.png");
 	}
 
 	window::~window(){

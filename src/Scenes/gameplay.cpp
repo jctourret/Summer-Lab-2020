@@ -32,7 +32,7 @@ namespace SummerLab {
 		_ambulanceLeft = new Ambulance(ambulanceHeight,ambulanceWidth,screenWidth/10,screenHeight-(screenHeight/5));
 		_ambulanceRight = new Ambulance(ambulanceHeight, ambulanceWidth,screenWidth - screenWidth / 10, screenHeight - (screenHeight / 5));
 		_deadCivs = 0;
-		Image background = LoadImage("../res/assets/img/FondoNivel1.jpg");
+		Image background = LoadImage("res/assets/img/FondoNivel1.jpg");
 		ImageResize(&background,1920,1080);
 		_background = LoadTextureFromImage(background);
 		UnloadImage(background);

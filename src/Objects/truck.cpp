@@ -38,7 +38,7 @@ namespace SummerLab {
 		_trampoline.y = posY - _trampoline.height;
 		_trampColor = trampColor;
 		_bounceOnce = false;
-		Image truck100 = LoadImage("../res/assets/img/Camion100.png");
+		Image truck100 = LoadImage("res/assets/img/truck/Camion100.png");
 		ImageResize(&truck100, width, height);
 		_truck100 = LoadTextureFromImage(truck100);
 		UnloadImage(truck100);
