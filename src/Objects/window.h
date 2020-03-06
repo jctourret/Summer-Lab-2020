@@ -41,6 +41,7 @@ namespace SummerLab {
 		float getWindowX();
 		float getWindowY();
 		bool getOnFire();
+		fire getFire();
 		void catchFire();
 		void dozeFire();
 		void growFire();

@@ -9,7 +9,8 @@ namespace SummerLab {
 	private:
 		Rectangle _body;
 		Color _color;
-
+		Texture2D _ambulanceLeft;
+		Texture2D _ambulanceRight;
 	public:
 		Ambulance(float height, float width, float x, float y);
 		~Ambulance();

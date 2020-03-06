@@ -10,7 +10,7 @@ namespace SummerLab {
 
 	const float xJumpForce = 25;
 	const float yJumpForce = 80;
-	const float xBounceForce = 10;
+	const float xBounceForce = 25;
 	const float yBounceForce = 180;
 	const float gravity = 60;
 

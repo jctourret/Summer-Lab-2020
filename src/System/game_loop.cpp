@@ -17,19 +17,14 @@ namespace SummerLab{
 		_gamestate = onMenu;
 		_gameOn = true;
 		
-		_credits = NULL;
 		_menu = NULL;
 		_gameplay = NULL;
 
-		_credits = new credits();
 		_menu = new menu();
 		_gameplay = new gameplay();
 	}
 
 	game_loop::~game_loop() {
-		if (_credits != NULL) {
-			delete _credits;
-		}
 		if (_menu != NULL) {
 			delete _menu;
 		}
@@ -47,31 +42,12 @@ namespace SummerLab{
 					_gamestate = onGameplay;
 					_menu->setToGameplay(false);
 				}
-				if (_menu->getToCredits()) {
-					_gamestate = onCredits;
-					_menu->setToCredits(false);
-				}
 				break;
 			case onGameplay:
 				_gameplay->run();
 				if (_gameplay->getToMenu()) {
 					_gamestate = onMenu;
 					_gameplay->setToMenu(false);
-				}
-				if (_gameplay->getToCredits()) {
-					_gamestate = onCredits;
-					_gameplay->setToCredits(false);
-				}
-				break;
-			case onCredits:
-				_credits->run();
-				if (_credits->getToGameplay()) {
-					_gamestate = onGameplay;
-					_credits->setToGameplay(false);
-				}
-				if (_credits->getToMenu()) {
-					_gamestate = onMenu;
-					_credits->setToMenu(false);
 				}
 				break;
 			default:

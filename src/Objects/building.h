@@ -24,10 +24,13 @@ namespace SummerLab {
 		Rectangle getCivilianBody(int i);
 		bool getCivIsAlive(int i);
 		bool getCivIsSaved(int i);
+		int getFloors();
+		int getColumns();
 		void initFire();
 		void growFireTimers();
 		void dozeFireTimers(Rectangle rec);
 		void spreadFireTimers();
+		int countLargeFires();
 		void spawnCiv();
 		void civJumpTimers();
 		void civBounce(int i);

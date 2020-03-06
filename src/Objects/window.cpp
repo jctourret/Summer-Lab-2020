@@ -68,6 +68,10 @@ namespace SummerLab {
 		return _onFire;
 	}
 
+	fire window::getFire() {
+		return _fire;
+	}
+
 	void window::catchFire() {
 		_onFire = true;
 		_fire = smallFire;

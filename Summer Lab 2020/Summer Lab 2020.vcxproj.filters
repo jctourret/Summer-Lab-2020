@@ -40,9 +40,6 @@
     <ClCompile Include="..\src\System\screen.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Scenes\credits.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Objects\truck.cpp">
       <Filter>Objects\Truck</Filter>
     </ClCompile>
@@ -74,9 +71,6 @@
     </ClInclude>
     <ClInclude Include="..\src\System\screen.h">
       <Filter>System</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Scenes\credits.h">
-      <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Objects\truck.h">
       <Filter>Objects\Truck</Filter>

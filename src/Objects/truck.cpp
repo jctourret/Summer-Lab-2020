@@ -4,10 +4,19 @@ using namespace SummerLab;
 
 namespace SummerLab {
 
-	const Color waterColor = SKYBLUE;
+	const Color waterColor = DARKBLUE;
 
 	const float maxWaterTank = 100;
 	const float waterShotWidth = 10;
+	const float waterShot1XOffset = 60;
+	const float waterShotsXOffset = 122;
+	const float waterShot1YOffset = 145;
+	const float waterShot2YOffset = 273;
+	const float waterShot3YOffset = 348;
+	const float waterShot4YOffset = 409;
+	const float waterShot5YOffset = 476;
+	const float waterShot6YOffset = 546;
+	const float waterShot7YOffset = 637;
 
 	const float pressureChargeRate = 200;
 	const float pressureDischargeRate = 180;
@@ -35,13 +44,20 @@ namespace SummerLab {
 		_trampoline.height = height / 10;
 		_trampoline.width = width / 2;
 		_trampoline.x = (posX + width) - _trampoline.width;
-		_trampoline.y = posY - _trampoline.height;
+		_trampoline.y = posY + _trampoline.height;
 		_trampColor = trampColor;
 		_bounceOnce = false;
 		Image truck100 = LoadImage("res/assets/img/truck/Camion100.png");
 		ImageResize(&truck100, width, height);
 		_truck100 = LoadTextureFromImage(truck100);
 		UnloadImage(truck100);
+		_waterShot1a = LoadTexture("res/assets/img/water/watershot1a.png");
+		_waterShot2a = LoadTexture("res/assets/img/water/watershot2a.png");
+		_waterShot3a = LoadTexture("res/assets/img/water/watershot3a.png");
+		_waterShot4a = LoadTexture("res/assets/img/water/watershot4a.png");
+		_waterShot5a = LoadTexture("res/assets/img/water/watershot5a.png");
+		_waterShot6a = LoadTexture("res/assets/img/water/watershot6a.png");
+		_waterShot7a = LoadTexture("res/assets/img/water/watershot7a.png");
 	}
 
 	truck::~truck() {
@@ -158,6 +174,7 @@ namespace SummerLab {
 			return false;
 		}
 	}
+
 	bool truck::checkUpBounce(Rectangle rec) {
 		if (rec.x >= _trampoline.x + ((_trampoline.width / 2) + rec.width) &&
 			rec.x <= _trampoline.x + ((_trampoline.width / 2) - rec.width) &&
@@ -172,6 +189,7 @@ namespace SummerLab {
 			return false;
 		}
 	}
+
 	bool truck::checkRightBounce(Rectangle rec) {
 		if (rec.x < _trampoline.x + _trampoline.width &&
 			rec.x > _trampoline.x + (_trampoline.width / 2) + rec.width &&
@@ -186,9 +204,39 @@ namespace SummerLab {
 			return false;
 		}
 	}
+
 	void truck::draw() {
 		DrawRectangleRec(_body,_color);
 		DrawTexture(_truck100, _body.x, _body.y, RAYWHITE);
+
+		if (_waterShot.y <= _body.y-20 &&
+			_waterShot.y > _body.y-140) {
+			DrawTexture(_waterShot1a, _waterShot.x - waterShot1XOffset, _body.y - waterShot1YOffset, RAYWHITE);
+		}
+		if (_waterShot.y <= _body.y - 140 &&
+			_waterShot.y > _body.y - 260) {
+			DrawTexture(_waterShot2a, _waterShot.x - waterShotsXOffset, _body.y - waterShot2YOffset, RAYWHITE);
+		}
+		if (_waterShot.y <= _body.y - 260 &&
+			_waterShot.y > _body.y - 330) {
+			DrawTexture(_waterShot3a, _waterShot.x - waterShotsXOffset, _body.y - waterShot3YOffset, RAYWHITE);
+		}
+		if (_waterShot.y <= _body.y - 330 &&
+			_waterShot.y > _body.y - 400) {
+			DrawTexture(_waterShot4a, _waterShot.x - waterShotsXOffset, _body.y - waterShot4YOffset, RAYWHITE);
+		}
+		if (_waterShot.y <= _body.y - 400 &&
+			_waterShot.y > _body.y - 470) {
+			DrawTexture(_waterShot5a, _waterShot.x - waterShotsXOffset, _body.y - waterShot5YOffset, RAYWHITE);
+		}
+		if (_waterShot.y <= _body.y - 470 &&
+			_waterShot.y > _body.y - 540) {
+			DrawTexture(_waterShot6a, _waterShot.x - waterShotsXOffset, _body.y - waterShot6YOffset, RAYWHITE);
+		}
+		if (_waterShot.y <= _body.y - 540 &&
+			_waterShot.y > _body.y - 630) {
+			DrawTexture(_waterShot7a, _waterShot.x - waterShotsXOffset, _body.y - waterShot7YOffset, RAYWHITE);
+		}
 		DrawRectangleRec(_waterShot, waterColor);
 		DrawRectangleRec(_trampoline, _trampColor);
 	}

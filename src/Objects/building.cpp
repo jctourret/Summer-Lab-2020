@@ -62,6 +62,14 @@ namespace SummerLab {
 		return _civilians[i]->getIsSaved();
 	}
 
+	int building::getFloors() {
+		return _floors;
+	}
+
+	int building::getColumns() {
+		return _columns;
+	}
+
 	void building::initFire() {
 		if (firstFire) {
 			for (int i = 0; i < _columns; i++) {
@@ -93,23 +101,23 @@ namespace SummerLab {
 	}
 
 	void building::spreadFireTimers() {
-		for (int i = 0; i < _columns; i++) {
+		for (int i = 0; i < _columns; i++) { //Recorre las ventanas del ultimo piso y verifica si las que estan abajo estan prendidas.
 			if (_windows[i + _columns]->getOnFire() && !_windows[i]->getOnFire()) {
 				_windows[i]->spreadFireTimer();
 			}
 		}
-		for (int i = 0; i < _floors; i++){
+		for (int i = 0; i < _floors; i++){//Recorre las ventanas de la primera columna desde la derecha y verifica si las que estan a la derecha estan prendidas.
 			if (_windows[(i*_columns) + 1]->getOnFire() && !_windows[i]->getOnFire()) {
 				_windows[i*_columns]->spreadFireTimer();
 			}
 		}
-		for  (int i = _columns; i < (_columns*_floors)-_columns; i++){
+		for  (int i = _columns; i < (_columns*_floors)-_floors; i++){//Recorre las ventanas entre el primer y ultimo piso y verifica si las que estan arriba o abajo estan prendidas.
 			if (_windows[i - _columns]->getOnFire() && !_windows[i]->getOnFire()||
 				_windows[i + _columns]->getOnFire() && !_windows[i]->getOnFire()) {
 				_windows[i]->spreadFireTimer();
 			}
 		}
-		for (int i = _columns + 1; i < (_columns*_floors) - 1; i) {
+		for (int i = 1; i < (_columns*_floors) - 1; i) {//Recorre las ventanas entre la primera y ultima columna y verifica si las que estan a la izquierda o derecha estan prendidas.
 			if (_windows[i - 1]->getOnFire() && !_windows[i]->getOnFire() ||
 				_windows[i + 1]->getOnFire() && !_windows[i]->getOnFire()) {
 				_windows[i]->spreadFireTimer();
@@ -119,16 +127,26 @@ namespace SummerLab {
 				i += 2;
 			}
 		}
-		for (int i = _columns-1; i < (_columns-1)*_floors; i+=_columns) {
+		for (int i = _columns-1; i < (_columns-1)*_floors; i+=_columns) {//Recorre las ventanas de la ultima columna desde la derecha y verifica si las que estan a la izquierda estan prendidas.
 			if (_windows[i - 1]->getOnFire() && !_windows[i]->getOnFire()) {
 				_windows[i]->spreadFireTimer();
 			}
 		}
-		for (int i = (_columns*_floors) - _columns; i < (_columns*_floors); i++) {
+		for (int i = (_columns*_floors) - _columns; i < (_columns*_floors); i++) { //Recorre las ventanas del primer piso y verifica si las que estan arriba estan prendidas.
 			if (_windows[i - _columns]->getOnFire() && !_windows[i]->getOnFire()) {
 				_windows[i]->spreadFireTimer();
 			}
 		}
+	}
+
+	int building::countLargeFires() {
+		int largeFires = 0;
+		for (int i = 0; i < _columns*_floors; i++){
+			if (_windows[i]->getFire() == largeFire) {
+				largeFires++;
+			}
+		}
+		return largeFires;
 	}
 
 	void building::spawnCiv() {
