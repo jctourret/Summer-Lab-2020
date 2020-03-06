@@ -1,6 +1,11 @@
 ﻿  Civilian.cpp
-c:\users\juan cruz\desktop\summer-lab-2020\src\objects\civilian.cpp(32): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-c:\users\juan cruz\desktop\summer-lab-2020\src\objects\civilian.cpp(36): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-c:\users\juan cruz\desktop\summer-lab-2020\src\objects\civilian.cpp(40): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-c:\users\juan cruz\desktop\summer-lab-2020\src\objects\civilian.cpp(164): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+c:\users\juan cruz\desktop\summer-lab-2020\src\objects\civilian.cpp(34): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+c:\users\juan cruz\desktop\summer-lab-2020\src\objects\civilian.cpp(38): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+c:\users\juan cruz\desktop\summer-lab-2020\src\objects\civilian.cpp(42): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+c:\users\juan cruz\desktop\summer-lab-2020\src\objects\civilian.cpp(174): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+  building.cpp
+  gameplay.cpp
+  game_loop.cpp
+  main.cpp
+  Generando código...
   Summer Lab 2020.vcxproj -> C:\Users\Juan Cruz\Desktop\Summer-Lab-2020\bin\Debug\Summer Lab 2020.exe

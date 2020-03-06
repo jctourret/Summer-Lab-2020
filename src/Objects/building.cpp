@@ -58,6 +58,10 @@ namespace SummerLab {
 		return _civilians[i]->getIsAlive();
 	}
 
+	bool building::getCivIsSaved(int i) {
+		return _civilians[i]->getIsSaved();
+	}
+
 	void building::initFire() {
 		if (firstFire) {
 			for (int i = 0; i < _columns; i++) {
@@ -154,6 +158,10 @@ namespace SummerLab {
 
 	void building::killCivilians(int i) {
 		_civilians[i]->die();
+	}
+
+	void building::saveCivilians(int i) {
+		_civilians[i]->saved();
 	}
 
 	void building::draw() {

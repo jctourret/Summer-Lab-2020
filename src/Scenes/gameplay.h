@@ -4,6 +4,7 @@
 #include "Objects/truck.h"
 #include "Objects/building.h"
 #include "Objects/Hydrant.h"
+#include "Objects/Ambulance.h"
 
 namespace SummerLab {
 	
@@ -16,6 +17,8 @@ namespace SummerLab {
 		truck* _truck;
 		building* _building;
 		Hydrant* _hydrant;
+		Ambulance* _ambulanceLeft;
+		Ambulance* _ambulanceRight;
 		int _deadCivs;
 		Texture2D _background;
 	public:
@@ -29,6 +32,7 @@ namespace SummerLab {
 		void update();
 		void draw();
 		void checkCiviliansBounce();
+		void checkCivilianSave();
 		void bounceCivilians();
 		void checkCivilianDeath();
 		void gameResult();

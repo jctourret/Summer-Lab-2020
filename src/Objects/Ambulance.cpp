@@ -6,16 +6,19 @@ namespace SummerLab {
 
 	const Color ambulanceColor = RAYWHITE;
 
-	Ambulance::Ambulance(float height, float width,float x, float y, Facing side) {
+	Ambulance::Ambulance(float height, float width,float x, float y) {
 		_body.height = height;
 		_body.width = width;
 		_body.x = x;
 		_body.y = y;
 		_color = ambulanceColor;
-		_facing = side;
 	}
 
 	Ambulance::~Ambulance(){
+	}
+
+	Rectangle Ambulance::getBody() {
+		return _body;
 	}
 
 	void Ambulance::draw() {

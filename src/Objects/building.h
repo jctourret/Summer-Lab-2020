@@ -23,6 +23,7 @@ namespace SummerLab {
 		void setCivBounceDirection(int i, Direction x);
 		Rectangle getCivilianBody(int i);
 		bool getCivIsAlive(int i);
+		bool getCivIsSaved(int i);
 		void initFire();
 		void growFireTimers();
 		void dozeFireTimers(Rectangle rec);
@@ -32,6 +33,7 @@ namespace SummerLab {
 		void civBounce(int i);
 		void resetCivBounce(int i);
 		void killCivilians(int i);
+		void saveCivilians(int i);
 		void draw();
 	};
 }

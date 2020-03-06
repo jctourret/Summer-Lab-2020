@@ -19,9 +19,11 @@ namespace SummerLab {
 		_body.width = width;
 		_body.x = x;
 		_body.y = y;
-		_color = civColor;
+		_isAlive = true;
+		_isSaved = false;
 		_onRoof = false;
 		_jumping = false;
+		_color = civColor;
 		_onRoofTimer = 0;
 		_jumpForce.x = yJumpForce;
 		_jumpForce.y = xJumpForce;
@@ -94,6 +96,10 @@ namespace SummerLab {
 		return _isAlive;
 	}
 
+	bool Civilian::getIsSaved() {
+		return _isSaved;
+	}
+
 	bool Civilian::getOnRoof() {
 		return _onRoof;
 	}
@@ -116,7 +122,7 @@ namespace SummerLab {
 	}
 
 	void Civilian::bounce() {
-		if (_isAlive) {
+		if (_isAlive  && !_isSaved) {
 			float time = GetFrameTime();
 			switch (_bounceDirection) {
 			case Left:
@@ -158,8 +164,12 @@ namespace SummerLab {
 		}
 	}
 
+	void Civilian::saved() {
+		_isSaved = true;
+	}
+
 	void Civilian::draw() {
-		if ((getOnRoof() || getJumping()) && _isAlive) {
+		if ((getOnRoof() || getJumping()) && _isAlive && !_isSaved) {
 			DrawRectangleRec(_body, _color);
 			DrawTexture(_normalFemaleCiv1, _body.x, _body.y, RAYWHITE);
 		}

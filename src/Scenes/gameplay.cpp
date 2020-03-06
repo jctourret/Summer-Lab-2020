@@ -19,6 +19,9 @@ namespace SummerLab {
 	static const float truckWidth = 250;
 	static const Color truckColor = RED;
 
+	static const float ambulanceHeight = 100;
+	static const float ambulanceWidth = 250;
+
 	gameplay::gameplay() {
 		_gameplayOn = false;
 		_toMenu = false;
@@ -26,6 +29,8 @@ namespace SummerLab {
 		_truck = new truck(truckHeight,truckWidth, screenWidth/2, screenHeight-(screenHeight/5));
 		_building = new building(buildingHeight,buildingWidth, screenWidth/2 -(buildingWidth/2), screenHeight/7, buildingFloors, buildingColumns );
 		_hydrant = new Hydrant(screenWidth / 5, screenHeight - (screenHeight / 4));
+		_ambulanceLeft = new Ambulance(ambulanceHeight,ambulanceWidth,screenWidth/10,screenHeight-(screenHeight/5));
+		_ambulanceRight = new Ambulance(ambulanceHeight, ambulanceWidth,screenWidth - screenWidth / 10, screenHeight - (screenHeight / 5));
 		_deadCivs = 0;
 		Image background = LoadImage("../res/assets/img/FondoNivel1.jpg");
 		ImageResize(&background,1920,1080);
@@ -88,6 +93,8 @@ namespace SummerLab {
 		_building->draw();
 		_truck->draw();
 		_hydrant->draw();
+		_ambulanceLeft->draw();
+		_ambulanceRight->draw();
 		EndDrawing();
 	}
 
@@ -104,6 +111,16 @@ namespace SummerLab {
 			if (_truck->checkRightBounce(_building->getCivilianBody(i))) {
 				_building->setCivBounceDirection(i, Right);
 				_building->resetCivBounce(i);
+			}
+		}
+	}
+
+	void gameplay::checkCivilianSave() {
+		for (int i = 0; i < (buildingColumns*buildingFloors); i++){
+			if (CheckCollisionRecs(_ambulanceLeft->getBody(),_building->getCivilianBody(i))) {
+				if (!_building->getCivIsSaved(i)) {
+					_building->saveCivilians(i);
+				};
 			}
 		}
 	}

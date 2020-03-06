@@ -16,10 +16,11 @@ namespace SummerLab {
 	private:
 		Rectangle _body;
 		bool _isAlive;
-		Color _color;
+		bool _isSaved;
+		bool _jumping;
 		bool _onRoof;
 		float _onRoofTimer;
-		bool _jumping;
+		Color _color;
 		Vector2 _jumpForce;
 		Direction _bounceDirection;
 		Vector2 _bounceForce;
@@ -48,6 +49,7 @@ namespace SummerLab {
 		void setJumping(bool jumping);
 		void setBounceDirection(Direction x);
 		bool getIsAlive();
+		bool getIsSaved();
 		bool getOnRoof();
 		bool getJumping();
 		Rectangle getBody();
@@ -56,6 +58,7 @@ namespace SummerLab {
 		void bounce();
 		void resetBounceForce();
 		void die();
+		void saved();
 		void draw();
 	};
 
