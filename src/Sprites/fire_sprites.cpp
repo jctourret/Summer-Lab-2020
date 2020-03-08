@@ -6,9 +6,13 @@ namespace SummerLab {
 
 	static const int maxSprites = 3;
 
-	Texture2D smallFireSprite[3];
-	Texture2D mediumFireSprite[3];
-	Texture2D largeFireSprite[3];
+	Texture2D smallFireSprite[maxSprites];
+	Texture2D mediumFireSprite[maxSprites];
+	Texture2D largeFireSprite[maxSprites];
+
+	static const int largeFireWidth = 109;
+	static const int largeFireHeight = 133;
+	static Image largeFireImage[maxSprites];
 
 	void loadFireSprites() {
 		smallFireSprite[0] = LoadTexture("res/assets/img/fire/smallFire1.png");
@@ -19,9 +23,22 @@ namespace SummerLab {
 		mediumFireSprite[1] = LoadTexture("res/assets/img/fire/mediumFire2.png");
 		mediumFireSprite[2] = LoadTexture("res/assets/img/fire/mediumFire3.png");
 
-		largeFireSprite[0] = LoadTexture("res/assets/img/fire/largeFire1.png");
-		largeFireSprite[1] = LoadTexture("res/assets/img/fire/largeFire2.png");
-		largeFireSprite[2] = LoadTexture("res/assets/img/fire/largeFire3.png");
+		largeFireImage[0] = LoadImage("res/assets/img/fire/largeFire1.png");
+		largeFireImage[1] = LoadImage("res/assets/img/fire/largeFire2.png");
+		largeFireImage[2] = LoadImage("res/assets/img/fire/largeFire3.png");
+
+		for (int i = 0; i < maxSprites; i++) {
+			ImageResize(&largeFireImage[i], largeFireWidth, largeFireHeight);
+		}
+
+		for (int i = 0; i < maxSprites; i++) {
+			largeFireSprite[i] = LoadTextureFromImage(largeFireImage[i]);
+		}
+
+		for (int i = 0; i < maxSprites; i++) {
+			UnloadImage(largeFireImage[i]);
+		}
+
 	}
 
 	void unloadFireSprites() {

@@ -10,10 +10,14 @@ namespace SummerLab {
 	const Color largeFireColor = RED;
 
 	const float largeFireXOffset = 15;
-	const float largeFireYOffset = 77;
+	const float largeFireYOffset = 59;// 77;
 
 	const float fireOffset = 10;
 	static const int fireMaxSprites = 3;
+
+	static const float smallFireTime = 0.16f;
+	static const float mediumFireTime = 0.13f;
+	static const float largeFireTime = 0.1f;
 
 	window::window(float height, float width, float x, float y){
 		_body.height = height;
@@ -30,6 +34,8 @@ namespace SummerLab {
 		_growTimer = 0.0f;
 		_dozeTimer = 0.0f;
 		_spreadTimer = 0.0f;
+		_timerFrame = 0.0f;
+		_numFrame = 0;
 
 		for (int i = 0; i < fireMaxSprites; i++) {
 			_smallFire[i] = smallFireSprite[i];
@@ -125,17 +131,40 @@ namespace SummerLab {
 
 	void window::draw() {
 		//DrawRectangleRec(_body, _color);
+
+		_timerFrame += GetFrameTime();
+
 		if (_fire == smallFire) {
 			//DrawRectangleRec(_fireBody, smallFireColor);
-			DrawTexture(_smallFire[0], _body.x, _body.y, RAYWHITE);
+			if (_timerFrame >= smallFireTime) {
+				_timerFrame = 0;
+				_numFrame++;
+				if (_numFrame >= fireMaxSprites)
+					_numFrame = 0;
+			}
+
+			DrawTexture(_smallFire[_numFrame], _body.x, _body.y, RAYWHITE);
 		}
-		if (_fire == mediumFire) {
+		else if (_fire == mediumFire) {
 			//DrawRectangleRec(_fireBody, mediumFireColor);
-			DrawTexture(_mediumFire[0], _body.x, _body.y, RAYWHITE);
+			if (_timerFrame >= mediumFireTime) {
+				_timerFrame = 0;
+				_numFrame++;
+				if (_numFrame >= fireMaxSprites)
+					_numFrame = 0;
+			}
+			DrawTexture(_mediumFire[_numFrame], _body.x, _body.y, RAYWHITE);
 		}
-		if (_fire == largeFire) {
+		else if (_fire == largeFire) {
 			//DrawRectangleRec(_fireBody, largeFireColor);
-			DrawTexture(_largeFire[0], _body.x - largeFireXOffset, _body.y - largeFireYOffset, RAYWHITE);
+			if (_timerFrame >= largeFireTime) {
+				_timerFrame = 0;
+				_numFrame++;
+				if (_numFrame >= fireMaxSprites)
+					_numFrame = 0;
+			}
+			DrawTexture(_largeFire[_numFrame], _body.x - largeFireXOffset, _body.y - largeFireYOffset, RAYWHITE);
 		}
+
 	}
 }

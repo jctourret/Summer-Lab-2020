@@ -25,6 +25,8 @@ namespace SummerLab {
 		Texture2D _smallFire[3];
 		Texture2D _mediumFire[3];
 		Texture2D _largeFire[3];
+		float _timerFrame;
+		int _numFrame;
 	public:
 		window(float height, float width, float x, float y);
 		~window();
