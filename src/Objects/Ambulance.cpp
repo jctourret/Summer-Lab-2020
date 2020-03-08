@@ -1,6 +1,7 @@
 #include "Ambulance.h"
 
 #include "System/screen.h"
+#include "Sprites/ambulance_sprites.h"
 
 using namespace SummerLab;
 
@@ -14,17 +15,13 @@ namespace SummerLab {
 		_body.x = x;
 		_body.y = y;
 		_color = ambulanceColor;
-		Image ambulanceLeft = LoadImage("res/assets/img/ambulance/ambulanceLeft.png");
-		ImageResize(&ambulanceLeft, _body.width, _body.height);
-		_ambulanceLeft = LoadTextureFromImage(ambulanceLeft);
-		UnloadImage(ambulanceLeft);
-		Image ambulanceRight = LoadImage("res/assets/img/ambulance/ambulanceRight.png");
-		ImageResize(&ambulanceRight, _body.width, _body.height);
-		_ambulanceRight = LoadTextureFromImage(ambulanceRight);
-		UnloadImage(ambulanceRight);
+		_ambulanceRight = ambulanceRightSprite;
+		_ambulanceLeft = ambulanceLeftSprite;
 	}
 
 	Ambulance::~Ambulance(){
+		UnloadTexture(_ambulanceRight);
+		UnloadTexture(_ambulanceLeft);
 	}
 
 	Rectangle Ambulance::getBody() {

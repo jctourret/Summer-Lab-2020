@@ -2,17 +2,19 @@
 
 #include "raylib.h"
 
-
+#include "Sprites/sprites_general.h"
 
 using namespace SummerLab;
 
 namespace SummerLab{
 
 	game_loop::game_loop(){
+		_screen = NULL;
 		_screen = new screen();
 		InitWindow(_screen->getScreenWidth(), _screen->getScreenHeight(), "Summerlab");
 		SetExitKey(KEY_ESCAPE);
 		//ToggleFullscreen();
+		loadAllSprites();
 
 		_gamestate = onMenu;
 		_gameOn = true;
@@ -31,6 +33,10 @@ namespace SummerLab{
 		if (_gameplay != NULL) {
 			delete _gameplay;
 		}
+		if (_screen != NULL) {
+			delete _screen;
+		}
+		unloadAllSprites();
 	}
 
 	void game_loop::gameLoop() {

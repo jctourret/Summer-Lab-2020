@@ -25,6 +25,9 @@
     <Filter Include="Objects\Ambulance">
       <UniqueIdentifier>{b067180e-bb52-46df-9394-3706301d4e08}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sprites">
+      <UniqueIdentifier>{05c9fdfd-c422-4763-a043-135c9f5e6706}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp" />
@@ -58,6 +61,24 @@
     <ClCompile Include="..\src\Objects\Ambulance.cpp">
       <Filter>Objects\Ambulance</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Sprites\ambulance_sprites.cpp">
+      <Filter>Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Sprites\civilians_sprites.cpp">
+      <Filter>Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Sprites\fire_sprites.cpp">
+      <Filter>Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Sprites\truck_sprites.cpp">
+      <Filter>Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Sprites\water_sprites.cpp">
+      <Filter>Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Sprites\sprites_general.cpp">
+      <Filter>Sprites</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Scenes\gameplay.h">
@@ -89,6 +110,24 @@
     </ClInclude>
     <ClInclude Include="..\src\Objects\Ambulance.h">
       <Filter>Objects\Ambulance</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Sprites\ambulance_sprites.h">
+      <Filter>Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Sprites\civilians_sprites.h">
+      <Filter>Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Sprites\fire_sprites.h">
+      <Filter>Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Sprites\truck_sprites.h">
+      <Filter>Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Sprites\water_sprites.h">
+      <Filter>Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Sprites\sprites_general.h">
+      <Filter>Sprites</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

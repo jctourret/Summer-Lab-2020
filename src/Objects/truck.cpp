@@ -1,6 +1,8 @@
 #include "truck.h"
-#include <iostream>
-using namespace std;
+
+#include "Sprites/truck_sprites.h"
+#include "Sprites/water_sprites.h"
+
 using namespace SummerLab;
 
 namespace SummerLab {
@@ -56,17 +58,20 @@ namespace SummerLab {
 		_trampoline.y = posY + trampYOffset;
 		_trampColor = trampColor;
 		_bounceOnce = false;
-		Image truck100 = LoadImage("res/assets/img/truck/Camion100.png");
-		ImageResize(&truck100, width, height);
-		_truck100 = LoadTextureFromImage(truck100);
-		UnloadImage(truck100);
-		_waterShot1a = LoadTexture("res/assets/img/water/watershot1a.png");
-		_waterShot2a = LoadTexture("res/assets/img/water/watershot2a.png");
-		_waterShot3a = LoadTexture("res/assets/img/water/watershot3a.png");
-		_waterShot4a = LoadTexture("res/assets/img/water/watershot4a.png");
-		_waterShot5a = LoadTexture("res/assets/img/water/watershot5a.png");
-		_waterShot6a = LoadTexture("res/assets/img/water/watershot6a.png");
-		_waterShot7a = LoadTexture("res/assets/img/water/watershot7a.png");
+		
+		for (int i = 0; i < 5; i++) {
+			_truckSprites[i] = truckSprite[i];
+		}
+
+		for (int i = 0; i < 3; i++) {
+			_waterShot1[i] = waterShot1Sprite[i];
+			_waterShot2[i] = waterShot2Sprite[i];
+			_waterShot3[i] = waterShot3Sprite[i];
+			_waterShot4[i] = waterShot4Sprite[i];
+			_waterShot5[i] = waterShot5Sprite[i];
+			_waterShot6[i] = waterShot6Sprite[i];
+			_waterShot7[i] = waterShot7Sprite[i];
+		}
 	}
 
 	truck::~truck() {
@@ -187,34 +192,45 @@ namespace SummerLab {
 	void truck::draw() {
 		DrawRectangleRec(_body,_color);
 		DrawRectangleRec(_trampoline, _trampColor);
-		DrawTexture(_truck100, _body.x, _body.y, RAYWHITE);
+	
+		if (_waterTank <= 25)
+			DrawTexture(_truckSprites[0], _body.x, _body.y, RAYWHITE);
+		else if (_waterTank > 25 && _waterTank <= 50)
+			DrawTexture(_truckSprites[1], _body.x, _body.y, RAYWHITE);
+		else if (_waterTank > 50 && _waterTank <= 75)
+			DrawTexture(_truckSprites[2], _body.x, _body.y, RAYWHITE);
+		else if (_waterTank > 75 && _waterTank < 100)
+			DrawTexture(_truckSprites[3], _body.x, _body.y, RAYWHITE);
+		else
+			DrawTexture(_truckSprites[4], _body.x, _body.y, RAYWHITE);
+
 		if (_waterShotLine.y <= _body.y-20 &&
 			_waterShotLine.y > _body.y-140) {
-			DrawTexture(_waterShot1a, _waterShotLine.x - waterShot1XOffset, _body.y - waterShot1YOffset, RAYWHITE);
+			DrawTexture(_waterShot1[0], _waterShotLine.x - waterShot1XOffset, _body.y - waterShot1YOffset, RAYWHITE);
 		}
 		if (_waterShotLine.y <= _body.y - 140 &&
 			_waterShotLine.y > _body.y - 260) {
-			DrawTexture(_waterShot2a, _waterShotLine.x - waterShotsXOffset, _body.y - waterShot2YOffset, RAYWHITE);
+			DrawTexture(_waterShot2[0], _waterShotLine.x - waterShotsXOffset, _body.y - waterShot2YOffset, RAYWHITE);
 		}
 		if (_waterShotLine.y <= _body.y - 260 &&
 			_waterShotLine.y > _body.y - 330) {
-			DrawTexture(_waterShot3a, _waterShotLine.x - waterShotsXOffset, _body.y - waterShot3YOffset, RAYWHITE);
+			DrawTexture(_waterShot3[0], _waterShotLine.x - waterShotsXOffset, _body.y - waterShot3YOffset, RAYWHITE);
 		}
 		if (_waterShotLine.y <= _body.y - 330 &&
 			_waterShotLine.y > _body.y - 400) {
-			DrawTexture(_waterShot4a, _waterShotLine.x - waterShotsXOffset, _body.y - waterShot4YOffset, RAYWHITE);
+			DrawTexture(_waterShot4[0], _waterShotLine.x - waterShotsXOffset, _body.y - waterShot4YOffset, RAYWHITE);
 		}
 		if (_waterShotLine.y <= _body.y - 400 &&
 			_waterShotLine.y > _body.y - 470) {
-			DrawTexture(_waterShot5a, _waterShotLine.x - waterShotsXOffset, _body.y - waterShot5YOffset, RAYWHITE);
+			DrawTexture(_waterShot5[0], _waterShotLine.x - waterShotsXOffset, _body.y - waterShot5YOffset, RAYWHITE);
 		}
 		if (_waterShotLine.y <= _body.y - 470 &&
 			_waterShotLine.y > _body.y - 540) {
-			DrawTexture(_waterShot6a, _waterShotLine.x - waterShotsXOffset, _body.y - waterShot6YOffset, RAYWHITE);
+			DrawTexture(_waterShot6[0], _waterShotLine.x - waterShotsXOffset, _body.y - waterShot6YOffset, RAYWHITE);
 		}
 		if (_waterShotLine.y <= _body.y - 540 &&
 			_waterShotLine.y > _body.y - 630) {
-			DrawTexture(_waterShot7a, _waterShotLine.x - waterShotsXOffset, _body.y - waterShot7YOffset, RAYWHITE);
+			DrawTexture(_waterShot7[0], _waterShotLine.x - waterShotsXOffset, _body.y - waterShot7YOffset, RAYWHITE);
 		}
 		DrawRectangleRec(_waterShotLine, waterColor);
 	}

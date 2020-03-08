@@ -1,6 +1,7 @@
 #include "Civilian.h"
 
 #include "System/screen.h"
+#include "Sprites/civilians_sprites.h"
 
 using namespace SummerLab;
 
@@ -13,6 +14,11 @@ namespace SummerLab {
 	const float xBounceForce = 25;
 	const float yBounceForce = 180;
 	const float gravity = 60;
+
+	static const int minNumSprites = 0;
+	static const int maxNumSprites = 5;
+
+	static const int maxSpritesVariants = 3;
 
 	Civilian::Civilian(float height, float width,float x, float y){
 		_body.height = height;
@@ -30,54 +36,36 @@ namespace SummerLab {
 		_bounceDirection = cNone;
 		_bounceForce.x = xBounceForce;
 		_bounceForce.y = yBounceForce;
-		Image normalFemaleCiv1 = LoadImage("res/assets/img/civilians/normalFemale1.png");
-		ImageResize(&normalFemaleCiv1, width, height);
-		_normalFemaleCiv1 = LoadTextureFromImage(normalFemaleCiv1);
-		UnloadImage(normalFemaleCiv1);
-		Image normalFemaleCiv2 = LoadImage("res/assets/img/civilians/normalFemale2.png");
-		ImageResize(&normalFemaleCiv2, width, height);
-		_normalFemaleCiv2 = LoadTextureFromImage(normalFemaleCiv2);
-		UnloadImage(normalFemaleCiv2);
-		Image normalFemaleCiv3 = LoadImage("res/assets/img/civilians/normalFemale3.png");
-		ImageResize(&normalFemaleCiv3, width, height);
-		_normalFemaleCiv3 = LoadTextureFromImage(normalFemaleCiv3);
-		UnloadImage(normalFemaleCiv3);
-		_normalMaleCiv1 = LoadTexture("res/assets/img/civilians/normalMale1.png");;
-		_normalMaleCiv2 = LoadTexture("res/assets/img/civilians/normalMale2.png");;
-		_normalMaleCiv3 = LoadTexture("res/assets/img/civilians/normalMale3.png");;
-		_workingFemaleCiv1 = LoadTexture("res/assets/img/civilians/workingFemale1.png");;
-		_workingFemaleCiv2 = LoadTexture("res/assets/img/civilians/workingFemale2.png");;
-		_workingFemaleCiv3 = LoadTexture("res/assets/img/civilians/workingFemale3.png");;
-		_workingMaleCiv1 = LoadTexture("res/assets/img/civilians/workingMale1.png");;
-		_workingMaleCiv2 = LoadTexture("res/assets/img/civilians/workingMale2.png");;
-		_workingMaleCiv3 = LoadTexture("res/assets/img/civilians/workingMale3.png");;
-		_partyFemaleCiv1 = LoadTexture("res/assets/img/civilians/partyFemale1.png");;
-		_partyFemaleCiv2 = LoadTexture("res/assets/img/civilians/partyFemale2.png");;
-		_partyFemaleCiv3 = LoadTexture("res/assets/img/civilians/partyFemale3.png");;
-		_partyMaleCiv1 = LoadTexture("res/assets/img/civilians/partyMale1.png");;
-		_partyMaleCiv2 = LoadTexture("res/assets/img/civilians/partyMale2.png");;
-		_partyMaleCiv3 = LoadTexture("res/assets/img/civilians/partyMale3.png");;
+		_class = GetRandomValue(minNumSprites, maxNumSprites);
+
+		for (int i = 0; i < maxSpritesVariants; i++) {
+			switch (_class) {
+			case NormalFemaleSprite:
+				_sprites[i] = normalFemale[i];
+				break;
+			case NormalMaleSprite:
+				_sprites[i] = normalMale[i];
+				break;
+			case PartyFemaleSprite:
+				_sprites[i] = partyFemale[i];
+				break;
+			case PartyMaleSprite:
+				_sprites[i] = partyMale[i];
+				break;
+			case WoringFemaleSprite:
+				_sprites[i] = workingFemale[i];
+				break;
+			case WorkingMaleSprite:
+				_sprites[i] = workingMale[i];
+				break;
+			}
+		}
 	}
 
 	Civilian::~Civilian(){
-		UnloadTexture(_normalFemaleCiv1);
-		UnloadTexture(_normalFemaleCiv2);
-		UnloadTexture(_normalFemaleCiv3);
-		UnloadTexture(_normalMaleCiv1);
-		UnloadTexture(_normalMaleCiv2);
-		UnloadTexture(_normalMaleCiv3);
-		UnloadTexture(_workingFemaleCiv1);
-		UnloadTexture(_workingFemaleCiv2);
-		UnloadTexture(_workingFemaleCiv3);
-		UnloadTexture(_workingMaleCiv1);
-		UnloadTexture(_workingMaleCiv2);
-		UnloadTexture(_workingMaleCiv3);
-		UnloadTexture(_partyFemaleCiv1);
-		UnloadTexture(_partyFemaleCiv2);
-		UnloadTexture(_partyFemaleCiv3);
-		UnloadTexture(_partyMaleCiv1);
-		UnloadTexture(_partyMaleCiv2);
-		UnloadTexture(_partyMaleCiv3);
+		for (int i = 0; i < maxSpritesVariants; i++) {
+			UnloadTexture(_sprites[i]);
+		}
 	}
 
 	void Civilian::setOnRoof(bool onRoof) {
@@ -171,7 +159,7 @@ namespace SummerLab {
 	void Civilian::draw() {
 		if ((getOnRoof() || getJumping()) && _isAlive && !_isSaved) {
 			DrawRectangleRec(_body, _color);
-			DrawTexture(_normalFemaleCiv1, _body.x, _body.y, RAYWHITE);
+			DrawTexture(_sprites[0], _body.x, _body.y, RAYWHITE);
 		}
 	}
 }

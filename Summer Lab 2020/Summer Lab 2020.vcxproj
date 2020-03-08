@@ -28,6 +28,12 @@
     <ClCompile Include="..\src\Objects\window.cpp" />
     <ClCompile Include="..\src\Scenes\gameplay.cpp" />
     <ClCompile Include="..\src\Scenes\menu.cpp" />
+    <ClCompile Include="..\src\Sprites\ambulance_sprites.cpp" />
+    <ClCompile Include="..\src\Sprites\civilians_sprites.cpp" />
+    <ClCompile Include="..\src\Sprites\fire_sprites.cpp" />
+    <ClCompile Include="..\src\Sprites\sprites_general.cpp" />
+    <ClCompile Include="..\src\Sprites\truck_sprites.cpp" />
+    <ClCompile Include="..\src\Sprites\water_sprites.cpp" />
     <ClCompile Include="..\src\System\game_loop.cpp" />
     <ClCompile Include="..\src\System\screen.cpp" />
   </ItemGroup>
@@ -40,6 +46,12 @@
     <ClInclude Include="..\src\Objects\window.h" />
     <ClInclude Include="..\src\Scenes\gameplay.h" />
     <ClInclude Include="..\src\Scenes\menu.h" />
+    <ClInclude Include="..\src\Sprites\ambulance_sprites.h" />
+    <ClInclude Include="..\src\Sprites\civilians_sprites.h" />
+    <ClInclude Include="..\src\Sprites\fire_sprites.h" />
+    <ClInclude Include="..\src\Sprites\sprites_general.h" />
+    <ClInclude Include="..\src\Sprites\truck_sprites.h" />
+    <ClInclude Include="..\src\Sprites\water_sprites.h" />
     <ClInclude Include="..\src\System\game_loop.h" />
     <ClInclude Include="..\src\System\screen.h" />
   </ItemGroup>
