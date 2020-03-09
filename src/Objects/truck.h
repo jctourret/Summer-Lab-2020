@@ -30,6 +30,8 @@ namespace SummerLab {
 		Texture2D _waterShot5[3];
 		Texture2D _waterShot6[3];
 		Texture2D _waterShot7[3];
+		float _timerFrame;
+		int _numFrame;
 		bool _bounceOnce;
 	public:
 		truck(float width, float height, float posX, float posY);
