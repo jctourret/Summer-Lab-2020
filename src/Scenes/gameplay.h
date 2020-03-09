@@ -23,6 +23,10 @@ namespace SummerLab {
 		Ambulance* _ambulanceRight;
 		int _deadCivs;
 		Texture2D _background;
+		Texture2D _barricade;
+		Texture2D _gameOverBurn;
+		Texture2D _gameOverDead;
+		Texture2D _gameOverWin;
 	public:
 		gameplay();
 		~gameplay();

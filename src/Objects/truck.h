@@ -19,7 +19,6 @@ namespace SummerLab {
 		float _waterTank;
 		float _pressure;
 		Rectangle _waterShotLine;
-		Rectangle _waterShotSpread;
 		Rectangle _trampoline;
 		Color _trampColor;
 		Texture2D _truckSprites[5];

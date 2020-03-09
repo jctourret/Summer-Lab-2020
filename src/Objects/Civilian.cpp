@@ -11,7 +11,7 @@ namespace SummerLab {
 
 	const float xJumpForce = 25;
 	const float yJumpForce = 80;
-	const float xBounceForce = 25;
+	const float xBounceForce = 30;
 	const float yBounceForce = 180;
 	const float gravity = 60;
 
@@ -31,6 +31,7 @@ namespace SummerLab {
 		_jumping = false;
 		_color = civColor;
 		_onRoofTimer = 0;
+		_animTimer = 0;
 		_jumpForce.x = yJumpForce;
 		_jumpForce.y = xJumpForce;
 		_bounceDirection = cNone;
@@ -104,8 +105,12 @@ namespace SummerLab {
 		float time = GetFrameTime();
 		if (_bounceDirection == cNone) {
 			//_body.x += _jumpForce.x * time;
-			_body.y -= _jumpForce.y * time;
-			_jumpForce.y -= gravity * time;
+			_body.y -= _jumpForce.y * time * 2;
+			_jumpForce.y -= gravity * time * 2;
+		}
+		if (_jumpForce.y < 0) {
+			_body.width = 121.5f;
+			_body.height = 92.0f;
 		}
 	}
 
@@ -114,18 +119,18 @@ namespace SummerLab {
 			float time = GetFrameTime();
 			switch (_bounceDirection) {
 			case cLeft:
-				_body.x -= _bounceForce.x * time;
-				_body.y -= _bounceForce.y * time;
-				_bounceForce.y -= gravity * time;
+				_body.x -= _bounceForce.x * time * 3;
+				_body.y -= _bounceForce.y * time * 2;
+				_bounceForce.y -= gravity * time * 2;
 				break;
 			case cUp:
-				_body.y -= _bounceForce.y * time;
-				_bounceForce.y -= gravity * time;
+				_body.y -= _bounceForce.y * time * 2;
+				_bounceForce.y -= gravity * time * 2;
 				break;
 			case cRight:
-				_body.x += _bounceForce.x * time;
-				_body.y -= _bounceForce.y * time;
-				_bounceForce.y -= gravity * time;
+				_body.x += _bounceForce.x * time *3;
+				_body.y -= _bounceForce.y * time *2;
+				_bounceForce.y -= gravity * time *2;
 				break;
 			}
 		}
@@ -157,9 +162,26 @@ namespace SummerLab {
 	}
 
 	void Civilian::draw() {
+		animTimer();
 		if ((getOnRoof() || getJumping()) && _isAlive && !_isSaved) {
-			DrawRectangleRec(_body, _color);
-			DrawTexture(_sprites[0], _body.x, _body.y, RAYWHITE);
+			if (_body.width < 100){
+				if (_animTimer <= 0.5f) {
+					DrawTexture(_sprites[0], _body.x, _body.y, RAYWHITE);
+				}
+				if (_animTimer > 0.5f && _animTimer <= 1.0f){
+					DrawTexture(_sprites[1], _body.x, _body.y, RAYWHITE);
+				}
+				if (_animTimer>1.0f) {
+					_animTimer = 0.0f;
+				}
+			}
+			else {
+				DrawTexture(_sprites[2], _body.x, _body.y, RAYWHITE);
+			}
 		}
+	}
+
+	void Civilian::animTimer() {
+		_animTimer += GetFrameTime();
 	}
 }

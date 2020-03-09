@@ -29,6 +29,7 @@ namespace SummerLab {
 		bool _jumping;
 		bool _onRoof;
 		float _onRoofTimer;
+		float _animTimer;
 		Color _color;
 		Vector2 _jumpForce;
 		Direction _bounceDirection;
@@ -48,6 +49,7 @@ namespace SummerLab {
 		Rectangle getBody();
 		void jump();
 		void jumpTimer();
+		void animTimer();
 		void bounce();
 		void resetBounceForce();
 		void die();
