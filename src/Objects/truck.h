@@ -29,6 +29,12 @@ namespace SummerLab {
 		Texture2D _waterShot5[3];
 		Texture2D _waterShot6[3];
 		Texture2D _waterShot7[3];
+		Sound _truckSiren;
+		Sound _motorOn;
+		Sound _motorOff;
+		Sound _motorLoop;
+		Sound _waterShot;
+		Sound _truckSiren;
 		float _timerFrame;
 		int _numFrame;
 		bool _bounceOnce;

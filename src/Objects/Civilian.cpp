@@ -2,6 +2,7 @@
 
 #include "System/screen.h"
 #include "Sprites/civilians_sprites.h"
+#include "Music/civilians_sfx.h"
 
 using namespace SummerLab;
 
@@ -43,21 +44,27 @@ namespace SummerLab {
 			switch (_class) {
 			case NormalFemaleSprite:
 				_sprites[i] = normalFemale[i];
+				_helpScream = helpFemale;
 				break;
 			case NormalMaleSprite:
 				_sprites[i] = normalMale[i];
+				_helpScream = helpMale;
 				break;
 			case PartyFemaleSprite:
 				_sprites[i] = partyFemale[i];
+				_helpScream = helpFemale;
 				break;
 			case PartyMaleSprite:
 				_sprites[i] = partyMale[i];
+				_helpScream = helpMale;
 				break;
 			case WoringFemaleSprite:
 				_sprites[i] = workingFemale[i];
+				_helpScream = helpFemale;
 				break;
 			case WorkingMaleSprite:
 				_sprites[i] = workingMale[i];
+				_helpScream = helpMale;
 				break;
 			}
 		}
@@ -170,6 +177,7 @@ namespace SummerLab {
 				}
 				if (_animTimer > 0.5f && _animTimer <= 1.0f){
 					DrawTexture(_sprites[1], _body.x, _body.y, RAYWHITE);
+					PlaySound(_helpScream);
 				}
 				if (_animTimer>1.0f) {
 					_animTimer = 0.0f;

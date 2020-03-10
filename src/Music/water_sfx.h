@@ -3,11 +3,9 @@
 
 
 namespace SummerLab {
-	class water_sfx{
-	private:
-	public:
-		water_sfx();
-		~water_sfx();
-	};
+	extern Sound;
+	extern Sound;
+	extern Sound;
+	extern Sound;
 }
 #endif

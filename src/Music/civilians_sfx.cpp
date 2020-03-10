@@ -3,12 +3,17 @@
 using namespace SummerLab;
 
 namespace SummerLab {
-	civilians_sfx::civilians_sfx(){
 	
+	Sound helpMale;
+	Sound helpFemale;
+
+	void loadScreams() {
+		helpMale = LoadSound("res/assets/snd/civilians/helpMale");
+		helpFemale = LoadSound("res/assets/snd/civilians/helpFemale");
 	}
 
-
-	civilians_sfx::~civilians_sfx(){
-
+	void unloadScreams() {
+		UnloadSound(helpMale);
+		UnloadSound(helpFemale);
 	}
 }

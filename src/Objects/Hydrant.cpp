@@ -25,6 +25,6 @@ namespace SummerLab {
 	}
 
 	void Hydrant::draw() {
-		DrawRectangleRec(_body, _color);
+		//DrawRectangleRec(_body, _color);
 	}
 }

@@ -35,6 +35,7 @@ namespace SummerLab {
 		Direction _bounceDirection;
 		Vector2 _bounceForce;
 		Texture2D _sprites[3];
+		Sound _helpScream;
 		int _class;
 	public:
 		Civilian(float height, float width, float x, float y);

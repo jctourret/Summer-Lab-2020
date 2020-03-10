@@ -29,7 +29,7 @@ namespace SummerLab {
 	}
 
 	void Ambulance::draw() {
-		DrawRectangleRec(_body, _color);
+		//DrawRectangleRec(_body, _color);
 		if (_body.x > screenWidth / 2) {
 			DrawTexture(_ambulanceRight, _body.x, _body.y, RAYWHITE);
 		}

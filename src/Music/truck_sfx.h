@@ -1,13 +1,17 @@
 #ifndef TRUCK_SFX_H
 #define TRUCK_SFX_H
 
+#include "raylib.h"
 
 namespace SummerLab {
-	class truck_sfx{
-	private:
-	public:
-		truck_sfx();
-		~truck_sfx();
-	};
+	extern Sound truckSiren;
+	extern Sound motorOn;
+	extern Sound motorOff;
+	extern Sound motorLoop;
+	extern Sound waterShot;
+	extern Sound truckSiren;
+
+	void loadTruckSounds();
+	void unloadTruckSounds();
 }
 #endif
