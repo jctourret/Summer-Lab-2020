@@ -30,7 +30,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\System\game_loop.cpp">
       <Filter>System</Filter>
     </ClCompile>
@@ -78,6 +77,21 @@
     </ClCompile>
     <ClCompile Include="..\src\Sprites\sprites_general.cpp">
       <Filter>Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Music\civilians_sfx.cpp">
+      <Filter>Music</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Music\fire_sfx.cpp">
+      <Filter>Music</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Music\music.cpp">
+      <Filter>Music</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Music\truck_sfx.cpp">
+      <Filter>Music</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Music\water_sfx.cpp">
+      <Filter>Music</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +142,21 @@
     </ClInclude>
     <ClInclude Include="..\src\Sprites\sprites_general.h">
       <Filter>Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Music\civilians_sfx.h">
+      <Filter>Music</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Music\fire_sfx.h">
+      <Filter>Music</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Music\music.h">
+      <Filter>Music</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Music\truck_sfx.h">
+      <Filter>Music</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Music\water_sfx.h">
+      <Filter>Music</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

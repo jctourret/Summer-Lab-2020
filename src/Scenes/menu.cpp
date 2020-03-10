@@ -1,10 +1,20 @@
 #include "menu.h"
 
 #include "raylib.h"
+#include "System/screen.h"
 
 using namespace SummerLab;
 
 namespace SummerLab {
+	static const int titlePosX = screenWidth / 2;
+	static const int titlePosY = screenHeight/6;
+	static const int titleFontSize = 50;
+	static const int textFontSize = 20;
+	static const int playPosX = screenWidth / 2;
+	static const int playPosY = screenHeight - screenHeight/6;
+
+
+	static const Color textColor = MAROON;
 
 	menu::menu(){
 		_menuOn = true;
@@ -50,7 +60,8 @@ namespace SummerLab {
 	void menu::draw() {
 		BeginDrawing();
 		ClearBackground(BLACK);
-		DrawText("Fire out!", 500, 500, 20, YELLOW);
+		DrawText("FIRE OUT!", titlePosX-(TextLength("FIRE OUT!")/2), titlePosY, titleFontSize, textColor);
+		DrawText("Press ENTER to SAVE THE DAY!", playPosX - (TextLength("Press ENTER to SAVE THE DAY!")/2), playPosY, textFontSize, textColor);
 		EndDrawing();
 	}
 }
