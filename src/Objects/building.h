@@ -17,6 +17,8 @@ namespace SummerLab {
 		window* _windows[numberOfWindows];
 		Civilian* _civilians[numberOfWindows];
 		Color _color;
+		float _civSpawnTimer;
+		bool _firstFire;
 	public:
 		building(float height, float width, float x, float y, int floors, int columns);
 		~building();

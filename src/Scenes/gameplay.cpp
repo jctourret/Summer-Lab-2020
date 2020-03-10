@@ -3,6 +3,7 @@
 #include "raylib.h"
 
 #include "System/screen.h"
+#include "Sprites/bakcground_sprites.h"
 
 using namespace SummerLab;
 
@@ -36,30 +37,26 @@ namespace SummerLab {
 		_ambulanceLeft = new Ambulance(ambulanceHeight,ambulanceWidth, screenWidth/15, screenHeight - (screenHeight / 9) - ambulanceHeight);
 		_ambulanceRight = new Ambulance(ambulanceHeight, ambulanceWidth, screenWidth - screenWidth / 15 - ambulanceWidth, screenHeight - (screenHeight / 9) - ambulanceHeight);
 		_deadCivs = 0;
-		Image background = LoadImage("res/assets/img/FondoNivel1.jpg");
-		ImageResize(&background,1920,1080);
-		_background = LoadTextureFromImage(background);
-		UnloadImage(background);
-		Image barricade = LoadImage("res/assets/img/barricade.png");
-		ImageResize(&barricade, 1920, 1080);
-		_barricade = LoadTextureFromImage(barricade);
-		UnloadImage(barricade);
-		Image gameOverBurn = LoadImage("res/assets/img/gameOver/gameOverBurn.png");
-		ImageResize(&gameOverBurn, 1920, 1080);
-		_gameOverBurn = LoadTextureFromImage(gameOverBurn);
-		UnloadImage(gameOverBurn);
-		Image gameOverDead = LoadImage("res/assets/img/gameOver/gameOverDead.png");
-		ImageResize(&gameOverDead, 1920, 1080);
-		_gameOverDead = LoadTextureFromImage(gameOverDead);
-		UnloadImage(gameOverDead);
-		Image gameOverWin = LoadImage("res/assets/img/gameOver/gameOverWin.png");
-		ImageResize(&gameOverWin, 1920, 1080);
-		_gameOverWin = LoadTextureFromImage(gameOverWin);
-		UnloadImage(gameOverWin);
+		
+		_background = backgroundSprite;
+		_barricade = barricadeSprite;
+		_gameOverBurn = gameOverBurnSprite;
+		_gameOverDead = gameOverDeadSprite;
+		_gameOverWin = gameOverWinSprite;
 	}
 
-	gameplay::~gameplay() {
-
+	gameplay::~gameplay() {/*
+		delete _truck;
+		delete _building;
+		delete _hydrant;
+		delete _ambulanceLeft;
+		delete _ambulanceRight;
+		
+		UnloadTexture(_background);
+		UnloadTexture(_barricade);
+		UnloadTexture(_gameOverBurn);
+		UnloadTexture(_gameOverDead);
+		UnloadTexture(_gameOverWin);*/
 	}
 
 	void gameplay::setToMenu(bool toMenu) {

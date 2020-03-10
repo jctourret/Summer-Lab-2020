@@ -1,13 +1,15 @@
 #include "fire_sfx.h"
 
 
-using namespace SummmerLab;
+using namespace SummerLab;
 
 namespace SummerLab {
 	fireSfx::fireSfx(){
+
 	}
 
 
 	fireSfx::~fireSfx(){
+
 	}
 }

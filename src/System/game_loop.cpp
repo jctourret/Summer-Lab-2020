@@ -23,7 +23,7 @@ namespace SummerLab{
 		_gameplay = NULL;
 
 		_menu = new menu();
-		_gameplay = new gameplay();
+		//_gameplay = new gameplay();
 	}
 
 	game_loop::~game_loop() {
@@ -43,17 +43,28 @@ namespace SummerLab{
 		while (_gameOn && !WindowShouldClose()) {
 			switch (_gamestate) {
 			case onMenu:
-				_menu->run();
-				if (_menu->getToGameplay()) {
-					_gamestate = onGameplay;
-					_menu->setToGameplay(false);
+				if (_gameplay != NULL) {
+					delete _gameplay;
+					_gameplay = NULL;
+				}
+				if (_menu != NULL) {
+					_menu->run();
+					if (_menu->getToGameplay()) {
+						_gamestate = onGameplay;
+						_menu->setToGameplay(false);
+					}
 				}
 				break;
 			case onGameplay:
-				_gameplay->run();
-				if (_gameplay->getToMenu()) {
-					_gamestate = onMenu;
-					_gameplay->setToMenu(false);
+				if (_gameplay == NULL) {
+					_gameplay = new gameplay();
+				}
+				else if (_gameplay != NULL) {
+					_gameplay->run();
+					if (_gameplay->getToMenu()) {
+						_gamestate = onMenu;
+						_gameplay->setToMenu(false);
+					}
 				}
 				break;
 			default:

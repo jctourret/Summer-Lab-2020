@@ -2,7 +2,7 @@
 #define CIVILIANS_SFX_H
 
 
-namespace SummmerLab {
+namespace SummerLab {
 	class civilians_sfx {
 	private:
 	public:

@@ -60,11 +60,11 @@ namespace SummerLab {
 
 		for (int i = 0; i < maxSprites; i++) {
 			normalFemale[i] = LoadTextureFromImage(normalFemaleImage[i]);
-			normalMale[i] = LoadTextureFromImage(normalFemaleImage[i]);
-			partyFemale[i] = LoadTextureFromImage(normalFemaleImage[i]);
-			partyMale[i] = LoadTextureFromImage(normalFemaleImage[i]);
-			workingFemale[i] = LoadTextureFromImage(normalFemaleImage[i]);
-			workingMale[i] = LoadTextureFromImage(normalFemaleImage[i]);
+			normalMale[i] = LoadTextureFromImage(normalMaleImage[i]);
+			partyFemale[i] = LoadTextureFromImage(partyFemaleImage[i]);
+			partyMale[i] = LoadTextureFromImage(partyMaleImage[i]);
+			workingFemale[i] = LoadTextureFromImage(workingFemaleImage[i]);
+			workingMale[i] = LoadTextureFromImage(workingMaleImage[i]);
 		}
 
 		for (int i = 0; i < maxSprites; i++) {

@@ -14,10 +14,6 @@ namespace SummerLab {
 	const float civHeight = 106;
 	const float civWidth = 91;
 
-	float civSpawnTimer = 0.0f;
-
-	bool firstFire = true;
-
 	building::building(float height, float width, float x, float y, int floors, int columns) {
 		_body.height = height;
 		_body.width = width;
@@ -40,10 +36,13 @@ namespace SummerLab {
 			}
 		}
 		_color = buildingColor;
+			
+		_civSpawnTimer = 0.0f;
+		_firstFire = true;
 	}
 
 	building::~building() {
-
+		
 	}
 	
 	void building::setCivBounceDirection(int i, Direction x) {
@@ -71,11 +70,11 @@ namespace SummerLab {
 	}
 
 	void building::initFire() {
-		if (firstFire) {
+		if (_firstFire) {
 			for (int i = 0; i < _columns; i++) {
 				_windows[i]->catchFire();
 			}
-			firstFire = false;
+			_firstFire = false;
 		}
 	}
 
@@ -150,11 +149,11 @@ namespace SummerLab {
 	}
 
 	void building::spawnCiv() {
-		civSpawnTimer += GetFrameTime();
-		if (civSpawnTimer >= 5.0f) {
+		_civSpawnTimer += GetFrameTime();
+		if (_civSpawnTimer >= 5.0f) {
 			int random = GetRandomValue(0, (_columns*_floors) - 1);
 			_civilians[random]->setOnRoof(true);
-			civSpawnTimer = 0.0f;
+			_civSpawnTimer = 0.0f;
 		}
 	}
 

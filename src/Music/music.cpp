@@ -1,7 +1,7 @@
 #include "music.h"
 
 
-using namespace SummmerLab;
+using namespace SummerLab;
 
 namespace SummerLab {
 	music::music()

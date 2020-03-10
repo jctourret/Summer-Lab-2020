@@ -69,7 +69,9 @@ namespace SummerLab {
 	}
 
 	truck::~truck() {
-
+		/*for (int i = 0; i < 5; i++) {
+			UnloadTexture(_truckSprites[i]);
+		}*/
 	}
 
 	void truck::setBodyHeight(float height) {

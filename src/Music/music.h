@@ -2,7 +2,7 @@
 #define MUSIC_H
 
 
-namespace SummmerLab {
+namespace SummerLab {
 	class music{
 	private:
 	public:

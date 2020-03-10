@@ -2,7 +2,7 @@
 #define TRUCK_SFX_H
 
 
-namespace SummmerLab {
+namespace SummerLab {
 	class truck_sfx{
 	private:
 	public:

@@ -2,7 +2,7 @@
 #define WATER_SFX_H
 
 
-namespace SummmerLab {
+namespace SummerLab {
 	class water_sfx{
 	private:
 	public:

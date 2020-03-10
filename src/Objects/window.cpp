@@ -46,11 +46,11 @@ namespace SummerLab {
 	}
 
 	window::~window(){
-		for (int i = 0; i < fireMaxSprites; i++) {
+		/*for (int i = 0; i < fireMaxSprites; i++) {
 			UnloadTexture(_smallFire[i]);
 			UnloadTexture(_mediumFire[i]);
 			UnloadTexture(_largeFire[i]);
-		}
+		}*/
 	}
 
 	float window::getWindowWidth() {

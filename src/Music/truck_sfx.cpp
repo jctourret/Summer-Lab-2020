@@ -1,7 +1,7 @@
 #include "truck_sfx.h"
 
 
-using namespace SummmerLab;
+using namespace SummerLab;
 
 namespace SummerLab {
 	truck_sfx::truck_sfx()

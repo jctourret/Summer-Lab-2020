@@ -1,6 +1,6 @@
 #include "civilians_sfx.h"
 
-using namespace SummmerLab;
+using namespace SummerLab;
 
 namespace SummerLab {
 	civilians_sfx::civilians_sfx(){

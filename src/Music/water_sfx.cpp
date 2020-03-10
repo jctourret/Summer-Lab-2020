@@ -1,7 +1,7 @@
 #include "water_sfx.h"
 
 
-using namespace SummmerLab;
+using namespace SummerLab;
 
 namespace SummerLab {
 	water_sfx::water_sfx()

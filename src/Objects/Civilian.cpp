@@ -64,9 +64,9 @@ namespace SummerLab {
 	}
 
 	Civilian::~Civilian(){
-		for (int i = 0; i < maxSpritesVariants; i++) {
+		/*for (int i = 0; i < maxSpritesVariants; i++) {
 			UnloadTexture(_sprites[i]);
-		}
+		}*/
 	}
 
 	void Civilian::setOnRoof(bool onRoof) {

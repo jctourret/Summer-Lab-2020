@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Music\civilians_sfx.cpp" />
     <ClCompile Include="..\src\Music\fire_sfx.cpp" />
     <ClCompile Include="..\src\Music\music.cpp" />
@@ -33,6 +34,7 @@
     <ClCompile Include="..\src\Scenes\gameplay.cpp" />
     <ClCompile Include="..\src\Scenes\menu.cpp" />
     <ClCompile Include="..\src\Sprites\ambulance_sprites.cpp" />
+    <ClCompile Include="..\src\Sprites\bakcground_sprites.cpp" />
     <ClCompile Include="..\src\Sprites\civilians_sprites.cpp" />
     <ClCompile Include="..\src\Sprites\fire_sprites.cpp" />
     <ClCompile Include="..\src\Sprites\sprites_general.cpp" />
@@ -56,6 +58,7 @@
     <ClInclude Include="..\src\Scenes\gameplay.h" />
     <ClInclude Include="..\src\Scenes\menu.h" />
     <ClInclude Include="..\src\Sprites\ambulance_sprites.h" />
+    <ClInclude Include="..\src\Sprites\bakcground_sprites.h" />
     <ClInclude Include="..\src\Sprites\civilians_sprites.h" />
     <ClInclude Include="..\src\Sprites\fire_sprites.h" />
     <ClInclude Include="..\src\Sprites\sprites_general.h" />

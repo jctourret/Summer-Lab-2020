@@ -2,7 +2,7 @@
 #define FIRE_SFX_H
 
 
-namespace SummmerLab {
+namespace SummerLab {
 	class fireSfx{
 	private:
 
