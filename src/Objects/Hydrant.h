@@ -13,7 +13,6 @@ namespace SummerLab {
 		Hydrant(float x, float y);
 		~Hydrant();
 		Rectangle getBody();
-		void draw();
 	};
 }
 

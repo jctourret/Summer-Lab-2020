@@ -6,6 +6,7 @@
 namespace SummerLab {
 
 	extern Texture2D truckSprite[5];
+	extern Texture2D sirenSprite;
 
 	void loadTruckSprites();
 	void unloadTruckSprites();

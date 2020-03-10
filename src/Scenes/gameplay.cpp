@@ -38,8 +38,13 @@ namespace SummerLab {
 		_ambulanceRight = new Ambulance(ambulanceHeight, ambulanceWidth, screenWidth - screenWidth / 15 - ambulanceWidth, screenHeight - (screenHeight / 9) - ambulanceHeight);
 		_deadCivs = 0;
 		
-		_background = backgroundSprite;
-		_barricade = barricadeSprite;
+		for (int i = 0; i < 6; i++) {
+			_background[i] = backgroundSprites[i];
+		}
+		
+		for (int i = 0; i < 6; i++) {
+			_skiesSprites[i] = skiesSprites[i];
+		}
 		_gameOverBurn = gameOverBurnSprite;
 		_gameOverDead = gameOverDeadSprite;
 		_gameOverWin = gameOverWinSprite;
@@ -114,11 +119,18 @@ namespace SummerLab {
 	void gameplay::draw() {
 		BeginDrawing();
 		ClearBackground(BLACK);
-		DrawTexture(_background, 0, 0, RAYWHITE);
-		_hydrant->draw();
+		DrawTexture(_skiesSprites[day], 0, 0, RAYWHITE);
+		DrawTexture(_skiesSprites[sun], 0, 0, RAYWHITE);
+		DrawTexture(_skiesSprites[sunlights], 0, 0, RAYWHITE);
+		DrawTexture(_skiesSprites[clouds], 0, 0, RAYWHITE);
+		DrawTexture(_background[buldingsBG], 0, 0, RAYWHITE);
+		DrawTexture(_background[buildingP], 0, 0, RAYWHITE);
+		DrawTexture(_background[street], 0, 0, RAYWHITE);
+		DrawTexture(_background[hydrant], 0, 0, RAYWHITE);
+		DrawTexture(_background[crowd], 0, 0, RAYWHITE);
 		_ambulanceLeft->draw();
 		_ambulanceRight->draw();
-		DrawTexture(_barricade, 0, 0, RAYWHITE);
+		DrawTexture(_background[barricade], 0, 0, RAYWHITE);
 		_building->draw();
 		_truck->draw();
 		if (_gameWon && !_gameplayOn) {

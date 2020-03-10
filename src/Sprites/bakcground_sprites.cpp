@@ -4,50 +4,40 @@ using namespace SummerLab;
 
 namespace SummerLab {
 
-	static const int gameWidth = 1920;
-	static const int gameHeight = 1080;
-
-	Texture2D backgroundSprite;
-	Texture2D barricadeSprite;
+	Texture2D backgroundSprites[6];
+	Texture2D skiesSprites[6];
 	Texture2D gameOverBurnSprite;
 	Texture2D gameOverDeadSprite;
 	Texture2D gameOverWinSprite;
 
-	static Image backgroundImage;
-	static Image barricadeImage;
-	static Image gameOverBurnImage;
-	static Image gameOverDeadImage;
-	static Image gameOverWinImage;
-
 	void loadBackGroundSprites() {
-		backgroundImage = LoadImage("res/assets/img/background/FondoNivel1.jpg");
-		barricadeImage = LoadImage("res/assets/img/background/barricade.png");
-		gameOverBurnImage = LoadImage("res/assets/img/gameOver/gameOverBurn.png");
-		gameOverDeadImage = LoadImage("res/assets/img/gameOver/gameOverDead.png");
-		gameOverWinImage = LoadImage("res/assets/img/gameOver/gameOverWin.png");
+		backgroundSprites[buildingP] = LoadTexture("res/assets/img/background/building.png");
+		backgroundSprites[barricade] = LoadTexture("res/assets/img/background/barricade.png");
+		backgroundSprites[buldingsBG] = LoadTexture("res/assets/img/background/buildingsBG.png");
+		backgroundSprites[crowd] = LoadTexture("res/assets/img/background/crowd.png");
+		backgroundSprites[hydrant] = LoadTexture("res/assets/img/background/hydrant.png");
+		backgroundSprites[street] = LoadTexture("res/assets/img/background/street.png");
 
-		ImageResize(&backgroundImage, gameWidth, gameHeight);
-		ImageResize(&barricadeImage, gameWidth, gameHeight);
-		ImageResize(&gameOverBurnImage, gameWidth, gameHeight);
-		ImageResize(&gameOverDeadImage, gameWidth, gameHeight);
-		ImageResize(&gameOverWinImage, gameWidth, gameHeight);
+		skiesSprites[day] = LoadTexture("res/assets/img/background/skyday.png");
+		skiesSprites[afternoon] = LoadTexture("res/assets/img/background/skyafternoon.png");
+		skiesSprites[night] = LoadTexture("res/assets/img/background/skynight.png");
+		skiesSprites[clouds] = LoadTexture("res/assets/img/background/clouds.png");
+		skiesSprites[sun] = LoadTexture("res/assets/img/background/sun.png");
+		skiesSprites[sunlights] = LoadTexture("res/assets/img/background/sunlights.png");
 
-		backgroundSprite = LoadTextureFromImage(backgroundImage);
-		barricadeSprite = LoadTextureFromImage(barricadeImage);
-		gameOverBurnSprite = LoadTextureFromImage(gameOverBurnImage);
-		gameOverDeadSprite = LoadTextureFromImage(gameOverDeadImage);
-		gameOverWinSprite = LoadTextureFromImage(gameOverWinImage);
-
-		UnloadImage(backgroundImage);
-		UnloadImage(barricadeImage);
-		UnloadImage(gameOverBurnImage);
-		UnloadImage(gameOverDeadImage);
-		UnloadImage(gameOverWinImage);
+		gameOverBurnSprite = LoadTexture("res/assets/img/gameOver/gameOverBurn.png");
+		gameOverDeadSprite = LoadTexture("res/assets/img/gameOver/gameOverDead.png");
+		gameOverWinSprite = LoadTexture("res/assets/img/gameOver/gameOverWin.png");
 	}
 
 	void unloadBackGroundSprites() {
-		UnloadTexture(backgroundSprite);
-		UnloadTexture(barricadeSprite);
+		for (int i = 0; i < 6; i++) {
+			UnloadTexture(backgroundSprites[i]);
+		}
+		for (int i = 0; i < 6; i++) {
+			UnloadTexture(skiesSprites[i]);
+		}
+
 		UnloadTexture(gameOverBurnSprite);
 		UnloadTexture(gameOverDeadSprite);
 		UnloadTexture(gameOverWinSprite);

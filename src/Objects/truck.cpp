@@ -31,6 +31,9 @@ namespace SummerLab {
 	static const float maxTimerFrame = 0.2f;
 	static const int maxFramesWater = 3;
 
+	static const float maxTimerSiren = 0.15f;
+	static bool sirenShining = false;
+
 	truck::truck(float height, float width, float posX, float posY) {
 		_body.height = height;
 		_body.width = width;
@@ -52,11 +55,12 @@ namespace SummerLab {
 		_bounceOnce = false;
 		_timerFrame = 0.0f;
 		_numFrame = 0;
+		_timerSiren = 0;
 
+		for (int i = 0; i < 5; i++) {
+			_truckSprites[i] = truckSprite[i];
+		}		_sirenSprite = sirenSprite;
 
-		for (int i = 0; i < 5; i++) {
-			_truckSprites[i] = truckSprite[i];
-		}
 		for (int i = 0; i < maxFramesWater; i++) {
 			_waterShot1[i] = waterShot1Sprite[i];
 			_waterShot2[i] = waterShot2Sprite[i];
@@ -189,9 +193,6 @@ namespace SummerLab {
 	}
 
 	void truck::draw() {
-		DrawRectangleRec(_body, _color);
-		DrawRectangleRec(_trampoline, _trampColor);
-
 		if (_waterTank <= 25) {
 			DrawTexture(_truckSprites[0], _body.x, _body.y, RAYWHITE);		}
 		else if (_waterTank > 25 && _waterTank <= 50) {
@@ -203,6 +204,20 @@ namespace SummerLab {
 		else{
 			DrawTexture(_truckSprites[4], _body.x, _body.y, RAYWHITE);
 		}
+
+		_timerSiren += GetFrameTime();
+		if (_timerSiren >= maxTimerSiren) {
+			_timerSiren = 0;
+			if (sirenShining == true)
+				sirenShining = false;
+			else if (sirenShining == false)
+				sirenShining = true;
+		}
+
+		if (sirenShining == true) {
+			DrawTexture(_sirenSprite, _body.x, _body.y, RAYWHITE);
+		}
+
 		_timerFrame += GetFrameTime();
 		if (_timerFrame >= maxTimerFrame) {
 			_timerFrame = 0;
@@ -240,6 +255,5 @@ namespace SummerLab {
 			_waterShotLine.y > _body.y - 630) {
 			DrawTexture(_waterShot7[_numFrame], _waterShotLine.x - waterShotsXOffset, _body.y - waterShotsYOffset, RAYWHITE);
 		}
-		DrawRectangleRec(_waterShotLine, waterColor);
 	}
 }

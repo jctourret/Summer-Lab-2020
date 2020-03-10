@@ -22,6 +22,7 @@ namespace SummerLab {
 		Rectangle _trampoline;
 		Color _trampColor;
 		Texture2D _truckSprites[5];
+		Texture2D _sirenSprite;
 		Texture2D _waterShot1[3];
 		Texture2D _waterShot2[3];
 		Texture2D _waterShot3[3];
@@ -29,6 +30,7 @@ namespace SummerLab {
 		Texture2D _waterShot5[3];
 		Texture2D _waterShot6[3];
 		Texture2D _waterShot7[3];
+		float _timerSiren;
 		float _timerFrame;
 		int _numFrame;
 		bool _bounceOnce;
