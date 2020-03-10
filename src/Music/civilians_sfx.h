@@ -1,13 +1,13 @@
 #ifndef CIVILIANS_SFX_H
 #define CIVILIANS_SFX_H
 
+#include "raylib.h"
 
 namespace SummerLab {
-	class civilians_sfx {
-	private:
-	public:
-		civilians_sfx();
-		~civilians_sfx();
-	};
+	extern Sound helpMale;
+	extern Sound helpFemale;
+
+	void loadScreams();
+	void unloadScreams();
 }
 #endif

@@ -24,7 +24,6 @@
     <ClCompile Include="..\src\Music\fire_sfx.cpp" />
     <ClCompile Include="..\src\Music\music.cpp" />
     <ClCompile Include="..\src\Music\truck_sfx.cpp" />
-    <ClCompile Include="..\src\Music\water_sfx.cpp" />
     <ClCompile Include="..\src\Objects\Ambulance.cpp" />
     <ClCompile Include="..\src\Objects\building.cpp" />
     <ClCompile Include="..\src\Objects\Civilian.cpp" />
@@ -48,7 +47,6 @@
     <ClInclude Include="..\src\Music\fire_sfx.h" />
     <ClInclude Include="..\src\Music\music.h" />
     <ClInclude Include="..\src\Music\truck_sfx.h" />
-    <ClInclude Include="..\src\Music\water_sfx.h" />
     <ClInclude Include="..\src\Objects\Ambulance.h" />
     <ClInclude Include="..\src\Objects\building.h" />
     <ClInclude Include="..\src\Objects\Civilian.h" />

@@ -4,12 +4,21 @@
 using namespace SummerLab;
 
 namespace SummerLab {
-	fireSfx::fireSfx(){
+	Sound initFire;
+	Sound dozeFire;
+	Sound ambientFire;
+	Sound buildingCollapse;
 
+	void loadFireSounds() {
+		initFire = LoadSound("res/assets/snd/s/helpMale");
+		dozeFire = LoadSound("res/assets/snd/s/helpMale");
+		ambientFire = LoadSound("res/assets/snd/s/helpMale");
+		buildingCollapse = LoadSound("res/assets/snd/s/helpMale");
 	}
-
-
-	fireSfx::~fireSfx(){
-
+	void unloadFireSounds() {
+		UnloadSound(initFire);
+		UnloadSound(dozeFire);
+		UnloadSound(ambientFire);
+		UnloadSound(buildingCollapse);
 	}
 }

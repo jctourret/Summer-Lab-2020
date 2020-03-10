@@ -3,6 +3,7 @@
 #include "Sprites/truck_sprites.h"
 #include "Sprites/water_sprites.h"
 #include "System/screen.h"
+#include "Music/truck_sfx.h"
 
 using namespace SummerLab;
 
@@ -70,6 +71,11 @@ namespace SummerLab {
 			_waterShot6[i] = waterShot6Sprite[i];
 			_waterShot7[i] = waterShot7Sprite[i];
 		}
+		_motorOn = motorOn;
+		_motorOff = motorOff;
+		_motorLoop = motorLoop;
+		_waterShot = waterShot;
+		_truckSiren = truckSiren;
 	}
 
 	truck::~truck() {
@@ -141,10 +147,10 @@ namespace SummerLab {
 	void truck::move() {
 		float time = GetFrameTime();
 		if (IsKeyDown(KEY_LEFT) && _body.x > screenWidth/4) {
-
 			_body.x -= truckSpeed * time;
 			_waterShotLine.x -= (truckSpeed * time);
 			_trampoline.x -= (truckSpeed * time);
+			
 		}
 		if (IsKeyDown(KEY_RIGHT) && _body.x +_body.width <screenWidth - screenWidth / 4) {
 			_body.x += truckSpeed * time;
@@ -159,6 +165,9 @@ namespace SummerLab {
 			if (_waterShotLine.y > _body.y - 630) {
 				_pressure += pressureChargeRate * time;
 				_waterShotLine.y -= pressureChargeRate * time;
+				if (!IsSoundPlaying(waterShot)){
+					PlaySound(waterShot);
+				}
 			}
 			_waterTank -= tankDrainRate * time;
 		}

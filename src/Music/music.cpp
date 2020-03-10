@@ -4,12 +4,16 @@
 using namespace SummerLab;
 
 namespace SummerLab {
-	music::music()
-	{
+	Sound mainTheme;
+	Sound menuTheme;
+
+	void loadThemes() {
+		mainTheme = LoadSound("res/assets/snd/s/helpMale");
+		menuTheme = LoadSound("res/assets/snd/music/helpFemale");
 	}
 
-
-	music::~music()
-	{
+	void unloadThemes() {
+		UnloadSound(mainTheme);
+		UnloadSound(menuTheme);
 	}
 }
