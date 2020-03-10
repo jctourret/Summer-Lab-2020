@@ -11,15 +11,8 @@ namespace SummerLab {
 	const Color waterColor = DARKBLUE;
 	const float maxWaterTank = 100;
 	const float waterShotWidth = 20;
-	const float waterShot1XOffset = 60;
-	const float waterShotsXOffset = 122;
-	const float waterShot1YOffset = 145;
-	const float waterShot2YOffset = 273;
-	const float waterShot3YOffset = 348;
-	const float waterShot4YOffset = 409;
-	const float waterShot5YOffset = 476;
-	const float waterShot6YOffset = 546;
-	const float waterShot7YOffset = 637;
+	const float waterShotsXOffset = 89;
+	const float waterShotsYOffset = 613;	static const float maxWaterY = 165;
 	const float pressureChargeRate = 200;
 	const float pressureDischargeRate = 180;
 	const float tankDrainRate = 5;
@@ -48,7 +41,7 @@ namespace SummerLab {
 		_pressure = 0;
 		_waterShotLine.height = 0;
 		_waterShotLine.width = waterShotWidth;
-		_waterShotLine.x = posX + (width / 3);
+		_waterShotLine.x = posX + (width / 3) - 7;
 		_waterShotLine.y = posY;
 		_trampoline.height = height / 10;
 		_trampoline.width = width / 2;
@@ -59,6 +52,7 @@ namespace SummerLab {
 		_bounceOnce = false;
 		_timerFrame = 0.0f;
 		_numFrame = 0;
+
 
 		for (int i = 0; i < 5; i++) {
 			_truckSprites[i] = truckSprite[i];
@@ -155,7 +149,7 @@ namespace SummerLab {
 
 	void truck::shoot() {
 		float time = GetFrameTime();
-		if (IsKeyDown(KEY_UP) && _waterTank > 0 && _waterShotLine.y > waterShot1YOffset) {
+		if (IsKeyDown(KEY_UP) && _waterTank > 0 && _waterShotLine.y > maxWaterY) {
 			if (_waterShotLine.y > _body.y - 630) {
 				_pressure += pressureChargeRate * time;
 				_waterShotLine.y -= pressureChargeRate * time;
@@ -218,31 +212,31 @@ namespace SummerLab {
 
 		if (_waterShotLine.y <= _body.y-20 &&
 			_waterShotLine.y > _body.y-140) {
-			DrawTexture(_waterShot1[_numFrame], _waterShotLine.x - waterShot1XOffset, _body.y - waterShot1YOffset, RAYWHITE);
+			DrawTexture(_waterShot1[_numFrame], _waterShotLine.x - waterShotsXOffset, _body.y - waterShotsYOffset, RAYWHITE);
 		}
 		if (_waterShotLine.y <= _body.y - 140 &&
 			_waterShotLine.y > _body.y - 260) {
-			DrawTexture(_waterShot2[_numFrame], _waterShotLine.x - waterShotsXOffset, _body.y - waterShot2YOffset, RAYWHITE);
+			DrawTexture(_waterShot2[_numFrame], _waterShotLine.x - waterShotsXOffset, _body.y - waterShotsYOffset, RAYWHITE);
 		}
 		if (_waterShotLine.y <= _body.y - 260 &&
 			_waterShotLine.y > _body.y - 300) {
-			DrawTexture(_waterShot3[_numFrame], _waterShotLine.x - waterShotsXOffset, _body.y - waterShot3YOffset, RAYWHITE);
+			DrawTexture(_waterShot3[_numFrame], _waterShotLine.x - waterShotsXOffset, _body.y - waterShotsYOffset, RAYWHITE);
 		}
 		if (_waterShotLine.y <= _body.y - 300 &&
 			_waterShotLine.y > _body.y - 400) {
-			DrawTexture(_waterShot4[_numFrame], _waterShotLine.x - waterShotsXOffset, _body.y - waterShot4YOffset, RAYWHITE);
+			DrawTexture(_waterShot4[_numFrame], _waterShotLine.x - waterShotsXOffset, _body.y - waterShotsYOffset, RAYWHITE);
 		}
 		if (_waterShotLine.y <= _body.y - 400 &&
 			_waterShotLine.y > _body.y - 450) {
-			DrawTexture(_waterShot5[_numFrame], _waterShotLine.x - waterShotsXOffset, _body.y - waterShot5YOffset, RAYWHITE);
+			DrawTexture(_waterShot5[_numFrame], _waterShotLine.x - waterShotsXOffset, _body.y - waterShotsYOffset, RAYWHITE);
 		}
 		if (_waterShotLine.y <= _body.y - 450 &&
 			_waterShotLine.y > _body.y - 520) {
-			DrawTexture(_waterShot6[_numFrame], _waterShotLine.x - waterShotsXOffset, _body.y - waterShot6YOffset, RAYWHITE);
+			DrawTexture(_waterShot6[_numFrame], _waterShotLine.x - waterShotsXOffset, _body.y - waterShotsYOffset, RAYWHITE);
 		}
 		if (_waterShotLine.y <= _body.y - 520 &&
 			_waterShotLine.y > _body.y - 630) {
-			DrawTexture(_waterShot7[_numFrame], _waterShotLine.x - waterShotsXOffset, _body.y - waterShot7YOffset, RAYWHITE);
+			DrawTexture(_waterShot7[_numFrame], _waterShotLine.x - waterShotsXOffset, _body.y - waterShotsYOffset, RAYWHITE);
 		}
 		DrawRectangleRec(_waterShotLine, waterColor);
 	}
