@@ -33,7 +33,7 @@
     <ClCompile Include="..\src\Scenes\gameplay.cpp" />
     <ClCompile Include="..\src\Scenes\menu.cpp" />
     <ClCompile Include="..\src\Sprites\ambulance_sprites.cpp" />
-    <ClCompile Include="..\src\Sprites\bakcground_sprites.cpp" />
+    <ClCompile Include="..\src\Sprites\background_sprites.cpp" />
     <ClCompile Include="..\src\Sprites\civilians_sprites.cpp" />
     <ClCompile Include="..\src\Sprites\fire_sprites.cpp" />
     <ClCompile Include="..\src\Sprites\sprites_general.cpp" />
@@ -56,7 +56,7 @@
     <ClInclude Include="..\src\Scenes\gameplay.h" />
     <ClInclude Include="..\src\Scenes\menu.h" />
     <ClInclude Include="..\src\Sprites\ambulance_sprites.h" />
-    <ClInclude Include="..\src\Sprites\bakcground_sprites.h" />
+    <ClInclude Include="..\src\Sprites\background_sprites.h" />
     <ClInclude Include="..\src\Sprites\civilians_sprites.h" />
     <ClInclude Include="..\src\Sprites\fire_sprites.h" />
     <ClInclude Include="..\src\Sprites\sprites_general.h" />
@@ -136,7 +136,7 @@ PLATFORM_DESKTOP
 ;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\raylib-2.6.0-Win32-msvc15\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\raylib-2.6.0-Win32-msvc15\lib\DebugRaylib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>raylib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
@@ -170,7 +170,7 @@ PLATFORM_DESKTOP
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\raylib-2.6.0-Win32-msvc15\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\raylib-2.6.0-Win32-msvc15\lib\ReleaseRaylib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>raylib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>

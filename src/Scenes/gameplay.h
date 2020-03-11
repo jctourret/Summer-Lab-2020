@@ -8,14 +8,13 @@
 
 namespace SummerLab {
 	
-	
-	
 	class gameplay {
 	private:
 		bool _gameplayOn;
 		bool _toMenu;
 		bool _toCredits;
 		bool _gameWon;
+		bool _gameLost;
 		truck* _truck;
 		building* _building;
 		Hydrant* _hydrant;

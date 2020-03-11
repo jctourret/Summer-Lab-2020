@@ -9,22 +9,20 @@ namespace SummerLab {
 	Sound motorOff;
 	Sound motorLoop;
 	Sound waterShot;
-	Sound truckSiren;
 
 	void loadTruckSounds() {
-		truckSiren = LoadSound("res/assets/snd/s/helpMale");
+		/*truckSiren = LoadSound("res/assets/snd/helpMale");
 		motorOn = LoadSound("res/assets/snd/music/helpFemale");
 		motorOff = LoadSound("res/assets/snd/music/helpFemale");
 		motorLoop = LoadSound("res/assets/snd/music/helpFemale");
-		waterShot = LoadSound("res/assets/snd/music/helpFemale");
-		truckSiren = LoadSound("res/assets/snd/music/helpFemale");
+		waterShot = LoadSound("res/assets/snd/music/helpFemale");*/
 	}
 	void unloadTruckSounds() {
-		UnloadSound(truckSiren);
+	/*	UnloadSound(truckSiren);
 		UnloadSound(motorOn);
 		UnloadSound(motorOff);
 		UnloadSound(motorLoop);
 		UnloadSound(waterShot);
-		UnloadSound(truckSiren);
+		UnloadSound(truckSiren);*/
 	}
 }

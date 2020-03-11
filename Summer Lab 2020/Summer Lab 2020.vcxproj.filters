@@ -91,6 +91,9 @@
       <Filter>Music</Filter>
     </ClCompile>
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Sprites\background_sprites.cpp">
+      <Filter>Sprites</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Scenes\gameplay.h">
@@ -152,6 +155,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Music\truck_sfx.h">
       <Filter>Music</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Sprites\background_sprites.h">
+      <Filter>Sprites</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

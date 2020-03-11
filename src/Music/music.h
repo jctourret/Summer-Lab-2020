@@ -4,10 +4,11 @@
 #include "raylib.h"
 
 namespace SummerLab {
-	extern Sound _mainTheme;
-	extern Sound _menuTheme;
+	extern Sound mainTheme;
+	extern Sound menuTheme;
 
 	void loadThemes();
 	void unloadThemes();
 }
+
 #endif

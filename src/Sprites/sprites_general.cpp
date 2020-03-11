@@ -5,7 +5,7 @@
 #include "Sprites/fire_sprites.h" 
 #include "Sprites/truck_sprites.h" 
 #include "Sprites/water_sprites.h" 
-#include "Sprites/bakcground_sprites.h"
+#include "Sprites/background_sprites.h"
 
 using namespace SummerLab;
 

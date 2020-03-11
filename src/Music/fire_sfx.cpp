@@ -10,15 +10,15 @@ namespace SummerLab {
 	Sound buildingCollapse;
 
 	void loadFireSounds() {
-		initFire = LoadSound("res/assets/snd/s/helpMale");
+	/*	initFire = LoadSound("res/assets/snd/s/helpMale");
 		dozeFire = LoadSound("res/assets/snd/s/helpMale");
 		ambientFire = LoadSound("res/assets/snd/s/helpMale");
-		buildingCollapse = LoadSound("res/assets/snd/s/helpMale");
+		buildingCollapse = LoadSound("res/assets/snd/s/helpMale");*/
 	}
 	void unloadFireSounds() {
-		UnloadSound(initFire);
+		/*UnloadSound(initFire);
 		UnloadSound(dozeFire);
 		UnloadSound(ambientFire);
-		UnloadSound(buildingCollapse);
+		UnloadSound(buildingCollapse);*/
 	}
 }

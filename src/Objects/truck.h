@@ -36,7 +36,6 @@ namespace SummerLab {
 		Sound _motorOff;
 		Sound _motorLoop;
 		Sound _waterShot;
-		Sound _truckSiren;
 		float _timerFrame;
 		int _numFrame;
 		bool _bounceOnce;

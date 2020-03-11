@@ -3,7 +3,7 @@
 #include "raylib.h"
 
 #include "System/screen.h"
-#include "Sprites/bakcground_sprites.h"
+#include "Sprites/background_sprites.h"
 
 using namespace SummerLab;
 
@@ -26,18 +26,24 @@ namespace SummerLab {
 	static float gameTimer = 0.0f;
 	static const float maxGameTime = 60.0f*1;
 
+	static float timerBackMenu = 0.0f;
+	static const float maxTimeBackMenu = 10.0f;
+
 	gameplay::gameplay() {
-		_gameplayOn = false;
+		_gameplayOn = true;
 		_toMenu = false;
 		_toCredits = false;
 		_gameWon = false;
+		_gameLost = false;
 		_truck = new truck(truckHeight,truckWidth, screenWidth/2, screenHeight-(screenHeight/9)-truckHeight);
 		_building = new building(buildingHeight,buildingWidth, screenWidth/2 -(buildingWidth/2), screenHeight/7, buildingFloors, buildingColumns );
 		_hydrant = new Hydrant(screenWidth / 3-70, screenHeight - (screenHeight / 4)-15);
 		_ambulanceLeft = new Ambulance(ambulanceHeight,ambulanceWidth, screenWidth/15, screenHeight - (screenHeight / 9) - ambulanceHeight);
 		_ambulanceRight = new Ambulance(ambulanceHeight, ambulanceWidth, screenWidth - screenWidth / 15 - ambulanceWidth, screenHeight - (screenHeight / 9) - ambulanceHeight);
 		_deadCivs = 0;
-		
+		gameTimer = 0.0f;
+		timerBackMenu = 0.0f;
+
 		for (int i = 0; i < 6; i++) {
 			_background[i] = backgroundSprites[i];
 		}
@@ -45,6 +51,7 @@ namespace SummerLab {
 		for (int i = 0; i < 6; i++) {
 			_skiesSprites[i] = skiesSprites[i];
 		}
+
 		_gameOverBurn = gameOverBurnSprite;
 		_gameOverDead = gameOverDeadSprite;
 		_gameOverWin = gameOverWinSprite;
@@ -85,7 +92,6 @@ namespace SummerLab {
 	}
 
 	void gameplay::run() {
-		_gameplayOn = true;
 		while (_gameplayOn && !WindowShouldClose()) {
 			update();
 			draw();
@@ -97,7 +103,8 @@ namespace SummerLab {
 			_gameplayOn = false;
 			_toMenu = true;
 		}
-		if (_gameplayOn && !_gameWon) {
+		
+		if (_gameWon == false && _gameLost == false) {
 			_building->initFire();
 			_building->growFireTimers();
 			_building->dozeFireTimers(_truck->getWaterShot());
@@ -112,6 +119,14 @@ namespace SummerLab {
 			checkCivilianDeath();
 			checkCivilianSaved();
 			runGameTimer(gameTimer);
+		}
+		else if (_gameWon == true || _gameLost == true) {
+			timerBackMenu += GetFrameTime();
+			if (timerBackMenu >= maxTimeBackMenu) {
+				timerBackMenu = 0;
+				_gameplayOn = false;
+				_toMenu = true;
+			}
 		}
 		gameResult();
 	}
@@ -133,13 +148,13 @@ namespace SummerLab {
 		DrawTexture(_background[barricade], 0, 0, RAYWHITE);
 		_building->draw();
 		_truck->draw();
-		if (_gameWon && !_gameplayOn) {
+		if (_gameWon == true && _gameLost == false) {
 			DrawTexture(_gameOverWin, 0, 0, RAYWHITE);
 		}
-		if (!_gameWon && !_gameplayOn && _building->countLargeFires() == _building->getColumns()*_building->getFloors()) {
+		else if (_gameWon == false && _gameLost == true && _building->countLargeFires() == _building->getColumns()*_building->getFloors()) {
 			DrawTexture(_gameOverBurn, 0, 0, RAYWHITE);
 		}
-		if (!_gameWon && !_gameplayOn && _deadCivs > maxDeadCivs) {
+		else if (_gameWon == false && _gameLost == true && _deadCivs >= maxDeadCivs) {
 			DrawTexture(_gameOverDead, 0, 0, RAYWHITE);
 		}
 		EndDrawing();
@@ -198,16 +213,19 @@ namespace SummerLab {
 	void gameplay::runGameTimer(float timer) {
 		timer += GetFrameTime();
 		if (timer >= maxGameTime) {
-			_gameplayOn = false;
 			_gameWon = true;
+			_gameLost = false;
 		}
 	}
 
 	void gameplay::gameResult() {
 		if (_deadCivs >= maxDeadCivs || _building->countLargeFires() == _building->getColumns()*_building->getFloors()) {
-			_gameplayOn = false;
 			_gameWon = false;
+			_gameLost = true;
 		}
+
+		int a = 0;
+		int b = 1;
 	}
 
 }

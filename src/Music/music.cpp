@@ -8,12 +8,12 @@ namespace SummerLab {
 	Sound menuTheme;
 
 	void loadThemes() {
-		mainTheme = LoadSound("res/assets/snd/s/helpMale");
-		menuTheme = LoadSound("res/assets/snd/music/helpFemale");
+		//mainTheme = LoadSound("res/assets/snd/s/helpMale");
+		//menuTheme = LoadSound("res/assets/snd/music/helpFemale");
 	}
 
 	void unloadThemes() {
-		UnloadSound(mainTheme);
-		UnloadSound(menuTheme);
+		//UnloadSound(mainTheme);
+		//UnloadSound(menuTheme);
 	}
 }

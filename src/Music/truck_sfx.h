@@ -9,7 +9,6 @@ namespace SummerLab {
 	extern Sound motorOff;
 	extern Sound motorLoop;
 	extern Sound waterShot;
-	extern Sound truckSiren;
 
 	void loadTruckSounds();
 	void unloadTruckSounds();
