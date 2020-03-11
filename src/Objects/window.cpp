@@ -1,6 +1,7 @@
 #include "window.h"
 
 #include "Sprites/fire_sprites.h"
+#include "Music/fire_sfx.h"
 
 namespace SummerLab {
 	
@@ -77,27 +78,45 @@ namespace SummerLab {
 	void window::catchFire() {
 		_onFire = true;
 		_fire = smallFire;
+		if (!IsSoundPlaying(initFire)) {
+			PlaySound(initFire);
+		}
 	}
 
 	void window::dozeFire() {
 		if (_fire == smallFire) {
 			_onFire = false;
 			_fire = noFire;
+			if (!IsSoundPlaying(extinguishFire)) {
+				PlaySound(extinguishFire);
+			}
 		}
 		if (_fire == mediumFire) {
 			_fire = smallFire;
+			if (!IsSoundPlaying(extinguishFire)) {
+				PlaySound(extinguishFire);
+			}
 		}
 		if (_fire == largeFire) {
 			_fire = mediumFire;
+			if (!IsSoundPlaying(extinguishFire)) {
+				PlaySound(extinguishFire);
+			}
 		}
 	}
 
 	void window::growFire() {
 		if (_fire == mediumFire) {
 			_fire = largeFire;
+			if (!IsSoundPlaying(initFire)) {
+				PlaySound(initFire);
+			}
 		}
 		if (_fire == smallFire){
 			_fire = mediumFire;
+			if (!IsSoundPlaying(initFire)) {
+				PlaySound(initFire);
+			}
 		}
 	}
 

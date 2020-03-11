@@ -4,6 +4,7 @@
 
 #include "System/screen.h"
 #include "Sprites/background_sprites.h"
+#include "Music/fire_sfx.h"
 
 using namespace SummerLab;
 
@@ -111,6 +112,7 @@ namespace SummerLab {
 			_building->spreadFireTimers();
 			_building->spawnCiv();
 			_building->civJumpTimers();
+			if (!IsSoundPlaying(ambientFire)) { PlaySound(ambientFire); }
 			_truck->move();
 			_truck->recharge(_hydrant->getBody());
 			_truck->shoot();

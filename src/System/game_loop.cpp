@@ -3,6 +3,7 @@
 #include "raylib.h"
 
 #include "Sprites/sprites_general.h"
+#include "Music/sound_general.h"
 
 using namespace SummerLab;
 
@@ -16,6 +17,7 @@ namespace SummerLab{
 		//ToggleFullscreen();
 		InitAudioDevice();
 		loadAllSprites();
+		loadAllSounds();
 
 		_gamestate = onMenu;
 		_gameOn = true;
@@ -38,6 +40,7 @@ namespace SummerLab{
 			delete _screen;
 		}
 		unloadAllSprites();
+		unloadAllSounds();
 	}
 
 	void game_loop::gameLoop() {

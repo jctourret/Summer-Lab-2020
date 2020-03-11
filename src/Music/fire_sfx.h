@@ -5,7 +5,7 @@
 
 namespace SummerLab {
 	extern Sound initFire;
-	extern Sound dozeFire;
+	extern Sound extinguishFire;
 	extern Sound ambientFire;
 	extern Sound buildingCollapse;
 
