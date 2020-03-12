@@ -8,6 +8,12 @@
 
 namespace SummerLab {
 	
+	enum Time {
+		day,
+		afternoon,
+		night
+	};
+
 	class gameplay {
 	private:
 		bool _gameplayOn;
@@ -21,11 +27,12 @@ namespace SummerLab {
 		Ambulance* _ambulanceLeft;
 		Ambulance* _ambulanceRight;
 		int _deadCivs;
-		Texture2D _background[6];
-		Texture2D _skiesSprites[6];
+		Texture2D _background[8];
+		Texture2D _skiesSprites[5];
 		Texture2D _gameOverBurn;
 		Texture2D _gameOverDead;
 		Texture2D _gameOverWin;
+		Time time;
 	public:
 		gameplay();
 		~gameplay();

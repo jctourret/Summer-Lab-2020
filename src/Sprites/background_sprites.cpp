@@ -4,8 +4,8 @@ using namespace SummerLab;
 
 namespace SummerLab {
 
-	Texture2D backgroundSprites[6];
-	Texture2D skiesSprites[6];
+	Texture2D backgroundSprites[8];
+	Texture2D skiesSprites[5];
 	Texture2D gameOverBurnSprite;
 	Texture2D gameOverDeadSprite;
 	Texture2D gameOverWinSprite;
@@ -13,15 +13,16 @@ namespace SummerLab {
 	void loadBackGroundSprites() {
 		backgroundSprites[buildingP] = LoadTexture("res/assets/img/background/building.png");
 		backgroundSprites[barricade] = LoadTexture("res/assets/img/background/barricade.png");
-		backgroundSprites[buldingsBG] = LoadTexture("res/assets/img/background/buildingsBG.png");
+		backgroundSprites[buldingsBGDay] = LoadTexture("res/assets/img/background/buildingsBGDay.png");
+		backgroundSprites[buildingsBGAfternoon] = LoadTexture("res/assets/img/background/buildingsBGAfternoon.png");
+		backgroundSprites[buildingsBGNight] = LoadTexture("res/assets/img/background/buildingsBGNight.png");
 		backgroundSprites[crowd] = LoadTexture("res/assets/img/background/crowd.png");
 		backgroundSprites[hydrant] = LoadTexture("res/assets/img/background/hydrant.png");
 		backgroundSprites[street] = LoadTexture("res/assets/img/background/street.png");
 
-		skiesSprites[day] = LoadTexture("res/assets/img/background/skyday.png");
-		skiesSprites[afternoon] = LoadTexture("res/assets/img/background/skyafternoon.png");
-		skiesSprites[night] = LoadTexture("res/assets/img/background/skynight.png");
-		skiesSprites[clouds] = LoadTexture("res/assets/img/background/clouds.png");
+		skiesSprites[sky1] = LoadTexture("res/assets/img/background/skies1.png");
+		skiesSprites[clouds1] = LoadTexture("res/assets/img/background/clouds1.png");
+		skiesSprites[clouds2] = LoadTexture("res/assets/img/background/clouds2.png");
 		skiesSprites[sun] = LoadTexture("res/assets/img/background/sun.png");
 		skiesSprites[sunlights] = LoadTexture("res/assets/img/background/sunlights.png");
 
@@ -31,10 +32,10 @@ namespace SummerLab {
 	}
 
 	void unloadBackGroundSprites() {
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 8; i++) {
 			UnloadTexture(backgroundSprites[i]);
 		}
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 5; i++) {
 			UnloadTexture(skiesSprites[i]);
 		}
 

@@ -17,7 +17,7 @@ namespace SummerLab {
 
 	static const int maxDeadCivs = 3;
 
-	static const float truckHeight= 212.0f;
+	static const float truckHeight = 212.0f;
 	static const float truckWidth = 357.0f;
 	static const Color truckColor = RED;
 
@@ -25,10 +25,25 @@ namespace SummerLab {
 	static const float ambulanceWidth = 342;
 
 	static float gameTimer = 0.0f;
-	static const float maxGameTime = 60.0f*1;
+	static const float maxGameTime = 60.0f * 1;
 
 	static float timerBackMenu = 0.0f;
 	static const float maxTimeBackMenu = 10.0f;
+
+	static const float skyTime = 2800.0f;
+	static const float maxSkyPosition = 7670;
+	static float sky1PositionX = 0;
+	static float sky2PositionX = maxSkyPosition;
+
+	static const float resetSunX = 1500;
+	static float sunPositionX = 0;
+	static float clouds1Position = 0;
+	static float clouds2Position = 2050;
+	static const float maxCloudPosition = 2880;
+
+	static const float skySpeed = 105.0f;
+	static const float cloudsSpeed = 90.0f;
+	static const float sunSpeed = 37.5f;
 
 	gameplay::gameplay() {
 		_gameplayOn = true;
@@ -36,20 +51,28 @@ namespace SummerLab {
 		_toCredits = false;
 		_gameWon = false;
 		_gameLost = false;
-		_truck = new truck(truckHeight,truckWidth, screenWidth/2, screenHeight-(screenHeight/9)-truckHeight);
-		_building = new building(buildingHeight,buildingWidth, screenWidth/2 -(buildingWidth/2), screenHeight/7, buildingFloors, buildingColumns );
-		_hydrant = new Hydrant(screenWidth / 3-70, screenHeight - (screenHeight / 4)-15);
-		_ambulanceLeft = new Ambulance(ambulanceHeight,ambulanceWidth, screenWidth/15, screenHeight - (screenHeight / 9) - ambulanceHeight);
+		_truck = new truck(truckHeight, truckWidth, screenWidth / 2, screenHeight - (screenHeight / 9) - truckHeight);
+		_building = new building(buildingHeight, buildingWidth, screenWidth / 2 - (buildingWidth / 2), screenHeight / 7, buildingFloors, buildingColumns);
+		_hydrant = new Hydrant(screenWidth / 3 - 70, screenHeight - (screenHeight / 4) - 15);
+		_ambulanceLeft = new Ambulance(ambulanceHeight, ambulanceWidth, screenWidth / 15, screenHeight - (screenHeight / 9) - ambulanceHeight);
 		_ambulanceRight = new Ambulance(ambulanceHeight, ambulanceWidth, screenWidth - screenWidth / 15 - ambulanceWidth, screenHeight - (screenHeight / 9) - ambulanceHeight);
 		_deadCivs = 0;
 		gameTimer = 0.0f;
 		timerBackMenu = 0.0f;
 
-		for (int i = 0; i < 6; i++) {
+		sunPositionX = 0;
+		sky1PositionX = 0;
+		clouds1Position = 0;
+		clouds2Position = 2050;
+		sky2PositionX = maxSkyPosition;
+
+		Time time = day;
+
+		for (int i = 0; i < 8; i++) {
 			_background[i] = backgroundSprites[i];
 		}
-		
-		for (int i = 0; i < 6; i++) {
+
+		for (int i = 0; i < 5; i++) {
 			_skiesSprites[i] = skiesSprites[i];
 		}
 
@@ -64,7 +87,7 @@ namespace SummerLab {
 		delete _hydrant;
 		delete _ambulanceLeft;
 		delete _ambulanceRight;
-		
+
 		UnloadTexture(_background);
 		UnloadTexture(_barricade);
 		UnloadTexture(_gameOverBurn);
@@ -104,7 +127,7 @@ namespace SummerLab {
 			_gameplayOn = false;
 			_toMenu = true;
 		}
-		
+
 		if (_gameWon == false && _gameLost == false) {
 			_building->initFire();
 			_building->growFireTimers();
@@ -136,11 +159,50 @@ namespace SummerLab {
 	void gameplay::draw() {
 		BeginDrawing();
 		ClearBackground(BLACK);
-		DrawTexture(_skiesSprites[day], 0, 0, RAYWHITE);
-		DrawTexture(_skiesSprites[sun], 0, 0, RAYWHITE);
-		DrawTexture(_skiesSprites[sunlights], 0, 0, RAYWHITE);
-		DrawTexture(_skiesSprites[clouds], 0, 0, RAYWHITE);
-		DrawTexture(_background[buldingsBG], 0, 0, RAYWHITE);
+
+		if (time != night) {
+			sky1PositionX -= skySpeed * GetFrameTime();
+		}
+
+		if (time == day || time == afternoon) {
+			sunPositionX -= sunSpeed * GetFrameTime();
+		}
+
+
+		if (sky1PositionX >= -skyTime) {
+			time = day;
+		}
+		else if (sky1PositionX <= -skyTime && sky1PositionX > -skyTime * 2) {
+			time = afternoon;
+		}
+		else if (sky1PositionX <= -skyTime * 2 && sky1PositionX > -maxSkyPosition) {
+			time = night;
+		}
+
+		if (time == night) {
+			sunPositionX = resetSunX;
+		}
+
+		DrawTexture(_skiesSprites[sky1], sky1PositionX, 0, RAYWHITE);
+		if (time == day || time == afternoon) {
+			DrawTexture(_skiesSprites[sun], sunPositionX, 0, RAYWHITE);
+			DrawTexture(_skiesSprites[sunlights], sunPositionX, 0, RAYWHITE);
+		}
+
+		if (clouds1Position >= -maxCloudPosition || clouds2Position >= -maxCloudPosition) {
+			clouds1Position -= cloudsSpeed * GetFrameTime();
+			clouds2Position -= cloudsSpeed * GetFrameTime();
+			DrawTexture(_skiesSprites[clouds1], clouds1Position, 0, RAYWHITE);
+			DrawTexture(_skiesSprites[clouds2], clouds2Position, 0, RAYWHITE);
+		}
+
+		if (time == day)
+			DrawTexture(_background[buldingsBGDay], 0, 0, RAYWHITE);
+		else if (time == afternoon)
+			DrawTexture(_background[buildingsBGAfternoon], 0, 0, RAYWHITE);
+		else if (time == night)
+			DrawTexture(_background[buildingsBGNight], 0, 0, RAYWHITE);
+
 		DrawTexture(_background[buildingP], 0, 0, RAYWHITE);
 		DrawTexture(_background[street], 0, 0, RAYWHITE);
 		DrawTexture(_background[hydrant], 0, 0, RAYWHITE);
@@ -163,7 +225,7 @@ namespace SummerLab {
 	}
 
 	void gameplay::checkCiviliansBounce() {
-		for (int i = 0; i < (buildingColumns*buildingFloors); i++){
+		for (int i = 0; i < (buildingColumns*buildingFloors); i++) {
 			BounceDirection bDir = _truck->checkBounce(_building->getCivilianBody(i));
 			if (bDir == bLeft) {
 				_building->setCivBounceDirection(i, cLeft);
@@ -181,8 +243,8 @@ namespace SummerLab {
 	}
 
 	void gameplay::checkCivilianSaved() {
-		for (int i = 0; i < (buildingColumns*buildingFloors); i++){
-			if (CheckCollisionRecs(_ambulanceLeft->getBody(),_building->getCivilianBody(i))) {
+		for (int i = 0; i < (buildingColumns*buildingFloors); i++) {
+			if (CheckCollisionRecs(_ambulanceLeft->getBody(), _building->getCivilianBody(i))) {
 				if (!_building->getCivIsSaved(i)) {
 					_building->saveCivilians(i);
 				};
@@ -196,16 +258,16 @@ namespace SummerLab {
 	}
 
 	void gameplay::bounceCivilians() {
-		for (int i = 0; i < (buildingColumns*buildingFloors); i++){
+		for (int i = 0; i < (buildingColumns*buildingFloors); i++) {
 			_building->civBounce(i);
 		}
 	}
 
 	void gameplay::checkCivilianDeath() {
-		for (int i = 0; i < buildingColumns * buildingFloors; i++){
-			if (_building->getCivIsAlive(i)){
+		for (int i = 0; i < buildingColumns * buildingFloors; i++) {
+			if (_building->getCivIsAlive(i)) {
 				_building->killCivilians(i);
-				if (!_building->getCivIsAlive(i)){
+				if (!_building->getCivIsAlive(i)) {
 					_deadCivs++;
 				}
 			}
