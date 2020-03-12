@@ -21,6 +21,9 @@ namespace SummerLab {
 		bool _toCredits;
 		bool _gameWon;
 		bool _gameLost;
+		bool _playCollapseOnce;
+		bool _playMotorOnOnce;
+		bool _playMotorOffOnce;
 		truck* _truck;
 		building* _building;
 		Hydrant* _hydrant;
@@ -50,6 +53,7 @@ namespace SummerLab {
 		void checkCivilianDeath();
 		void runGameTimer(float timer);
 		void gameResult();
+		void playMainTheme();
 	};
 }
 #endif

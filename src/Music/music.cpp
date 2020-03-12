@@ -8,8 +8,8 @@ namespace SummerLab {
 	Sound menuTheme;
 
 	void loadThemes() {
-		mainTheme = LoadSound("res/assets/snd/music/mainTheme.wav");
-		menuTheme = LoadSound("res/assets/snd/music/menuTheme.wav");
+		mainTheme = LoadSound("res/assets/snd/music/mainTheme.ogg");
+		menuTheme = LoadSound("res/assets/snd/music/menuTheme.ogg");
 	}
 
 	void unloadThemes() {

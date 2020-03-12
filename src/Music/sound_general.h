@@ -10,6 +10,5 @@
 namespace SummerLab {
 	void loadAllSounds();
 	void unloadAllSounds();
-
 }
 #endif 

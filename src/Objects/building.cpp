@@ -1,5 +1,7 @@
 #include "building.h"
 
+#include "Music/fire_sfx.h"
+
 using namespace SummerLab;
 
 namespace SummerLab {
@@ -67,6 +69,20 @@ namespace SummerLab {
 
 	int building::getColumns() {
 		return _columns;
+	}
+
+	void building::playFire() {
+		int fireCount = 0;
+		for (int i = 0; i < numberOfWindows; i++){
+			if (_windows[i]->getFire) {
+				fireCount++;
+			}
+		}
+		if (fireCount>=1){
+			if (!IsSoundPlaying(ambientFire)) {
+				PlaySound(ambientFire);
+			}
+		}
 	}
 
 	void building::initFire() {

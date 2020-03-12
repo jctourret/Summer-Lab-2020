@@ -157,6 +157,9 @@ namespace SummerLab {
 			_waterShotLine.x += (truckSpeed * time);
 			_trampoline.x += (truckSpeed * time);
 		}
+		if (!IsSoundPlaying(motorLoop)) {
+			PlaySound(motorLoop);
+		}
 	}
 
 	void truck::shoot() {
@@ -187,14 +190,24 @@ namespace SummerLab {
 	}
 
 	BounceDirection truck::checkBounce(Rectangle rec) {
+		int random = GetRandomValue(0, 3);
 		if (CheckCollisionRecs(rec, _trampoline) && (rec.x + rec.width/2 > _trampoline.x - rec.width/2 && rec.x + rec.width/2 < _trampoline.x + trampolineXHitboxWidth)) {
 			return bLeft;
+			if (!IsSoundPlaying(trampolineSound[random])){
+				PlaySound(trampolineSound[random]);
+			}
 		}
 		else if (CheckCollisionRecs(rec, _trampoline) && (rec.x+ rec.width/2 >= _trampoline.x + trampolineXHitboxWidth && rec.x + rec.width / 2 <= _trampoline.x + (trampolineXHitboxWidth *2))) {
 			return bUp;
+			if (!IsSoundPlaying(trampolineSound[random])) {
+				PlaySound(trampolineSound[random]);
+			}
 		}
 		else if (CheckCollisionRecs(rec, _trampoline) && (rec.x + rec.width / 2 > _trampoline.x + (trampolineXHitboxWidth * 2) && rec.x + rec.width / 2 <= _trampoline.x+_trampoline.width+ rec.width/2)) {
 			return bRight;
+			if (!IsSoundPlaying(trampolineSound[random])) {
+				PlaySound(trampolineSound[random]);
+			}
 		}
 		else {
 			return bNone;
@@ -225,6 +238,9 @@ namespace SummerLab {
 
 		if (sirenShining == true) {
 			DrawTexture(_sirenSprite, _body.x, _body.y, RAYWHITE);
+			if (!IsSoundPlaying(truckSiren)) {
+				PlaySound(truckSiren);
+			}
 		}
 
 		_timerFrame += GetFrameTime();

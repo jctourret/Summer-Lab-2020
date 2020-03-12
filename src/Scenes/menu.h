@@ -18,6 +18,7 @@ namespace SummerLab {
 		void run();
 		void update();
 		void draw();
+		void playMenuTheme();
 	};
 }
 #endif

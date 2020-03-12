@@ -2,6 +2,7 @@
 
 #include "raylib.h"
 #include "System/screen.h"
+#include "Music/music.h"
 
 using namespace SummerLab;
 
@@ -63,5 +64,11 @@ namespace SummerLab {
 		DrawText("FIRE OUT!", titlePosX-(TextLength("FIRE OUT!")/2), titlePosY, titleFontSize, textColor);
 		DrawText("Press ENTER to SAVE THE DAY!", playPosX - (TextLength("Press ENTER to SAVE THE DAY!")/2), playPosY, textFontSize, textColor);
 		EndDrawing();
+	}
+
+	void menu::playMenuTheme() {
+		if (!IsSoundPlaying(menuTheme)) {
+			PlaySound(menuTheme);
+		}
 	}
 }

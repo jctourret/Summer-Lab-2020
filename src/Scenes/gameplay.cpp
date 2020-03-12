@@ -5,6 +5,8 @@
 #include "System/screen.h"
 #include "Sprites/background_sprites.h"
 #include "Music/fire_sfx.h"
+#include "Music/music.h"
+#include "Music/truck_sfx.h"
 
 using namespace SummerLab;
 
@@ -30,6 +32,8 @@ namespace SummerLab {
 	static float timerBackMenu = 0.0f;
 	static const float maxTimeBackMenu = 10.0f;
 
+	static bool playCollapseOnce = true;
+
 	static const float skyTime = 2800.0f;
 	static const float maxSkyPosition = 7670;
 	static float sky1PositionX = 0;
@@ -51,6 +55,9 @@ namespace SummerLab {
 		_toCredits = false;
 		_gameWon = false;
 		_gameLost = false;
+		_playMotorOffOnce = true;
+		_playMotorOnOnce = true;
+		_playCollapseOnce = true;
 		_truck = new truck(truckHeight, truckWidth, screenWidth / 2, screenHeight - (screenHeight / 9) - truckHeight);
 		_building = new building(buildingHeight, buildingWidth, screenWidth / 2 - (buildingWidth / 2), screenHeight / 7, buildingFloors, buildingColumns);
 		_hydrant = new Hydrant(screenWidth / 3 - 70, screenHeight - (screenHeight / 4) - 15);
@@ -129,13 +136,17 @@ namespace SummerLab {
 		}
 
 		if (_gameWon == false && _gameLost == false) {
+			if (!IsSoundPlaying(motorOn) && _playMotorOnOnce) {
+				PlaySound(motorOn);
+				_playMotorOnOnce = false;
+			}
 			_building->initFire();
 			_building->growFireTimers();
 			_building->dozeFireTimers(_truck->getWaterShot());
 			_building->spreadFireTimers();
+			_building->playFire();
 			_building->spawnCiv();
 			_building->civJumpTimers();
-			if (!IsSoundPlaying(ambientFire)) { PlaySound(ambientFire); }
 			_truck->move();
 			_truck->recharge(_hydrant->getBody());
 			_truck->shoot();
@@ -151,8 +162,13 @@ namespace SummerLab {
 				timerBackMenu = 0;
 				_gameplayOn = false;
 				_toMenu = true;
+				if (!IsSoundPlaying && _playMotorOffOnce) {
+					PlaySound(motorOff);
+					_playMotorOffOnce = false;
+				}
 			}
 		}
+		playMainTheme();
 		gameResult();
 	}
 
@@ -286,10 +302,18 @@ namespace SummerLab {
 		if (_deadCivs >= maxDeadCivs || _building->countLargeFires() == _building->getColumns()*_building->getFloors()) {
 			_gameWon = false;
 			_gameLost = true;
+			if (_playCollapseOnce && _building->countLargeFires() == _building->getColumns()*_building->getFloors()){
+				if (!IsSoundPlaying(buildingCollapse)) {
+					PlaySound(buildingCollapse);
+				}
+				_playCollapseOnce = false;
+			}
 		}
-
-		int a = 0;
-		int b = 1;
 	}
 
+	void gameplay::playMainTheme() {
+		if (!IsSoundPlaying(mainTheme)) {
+			PlaySound(mainTheme);
+		}
+	}
 }

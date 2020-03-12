@@ -136,7 +136,9 @@ namespace SummerLab {
 			_dozeTimer = 0.0f;
 			_growTimer = 0.0f;
 			_spreadTimer = 0.0f;
+
 		}
+
 	}
 
 	void window::spreadFireTimer() {

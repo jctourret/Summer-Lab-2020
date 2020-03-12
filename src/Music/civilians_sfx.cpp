@@ -8,8 +8,8 @@ namespace SummerLab {
 	Sound helpFemale;
 
 	void loadScreams() {
-		helpMale = LoadSound("res/assets/snd/civilians/helpMale.wav");
-		helpFemale = LoadSound("res/assets/snd/civilians/helpFemale.wav");
+		helpMale = LoadSound("res/assets/snd/civilians/helpMale.ogg");
+		helpFemale = LoadSound("res/assets/snd/civilians/helpFemale.ogg");
 	}
 
 	void unloadScreams() {

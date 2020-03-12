@@ -28,6 +28,7 @@ namespace SummerLab {
 		bool getCivIsSaved(int i);
 		int getFloors();
 		int getColumns();
+		void playFire();
 		void initFire();
 		void growFireTimers();
 		void dozeFireTimers(Rectangle rec);
