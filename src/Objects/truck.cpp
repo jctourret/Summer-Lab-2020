@@ -238,8 +238,13 @@ namespace SummerLab {
 
 	void truck::recharge(Rectangle rec) {
 		float time = GetFrameTime();
-		if (CheckCollisionRecs(_body, rec) && IsKeyDown(KEY_DOWN)) {
-			_waterTank += tankRechargeRate * time;
+		if (CheckCollisionRecs(_body, rec) && IsKeyDown(KEY_DOWN) && IsGamepadAvailable(GAMEPAD_PLAYER1) == false) {
+			if (_waterTank <= maxWaterTank)
+				_waterTank += tankRechargeRate * time;
+		}
+		else if (CheckCollisionRecs(_body, rec) && IsGamepadAvailable(GAMEPAD_PLAYER1) == true) {
+			if (_waterTank <= maxWaterTank)
+				_waterTank += tankRechargeRate * time;
 		}
 	}
 
