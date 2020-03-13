@@ -11,8 +11,8 @@ namespace SummerLab {
 	Texture2D gameOverDeadSprite[3];
 	Texture2D gameOverDeadExtraSprite[3];
 	Texture2D gameOverWinSprite[3];
-	Texture2D buildingCracks[4];
-	Texture2D buildingCollapsing[15];
+	Texture2D buildingCracks[5];
+	Texture2D buildingCollapsing[16];
 
 	void loadBackGroundSprites() {
 		backgroundSprites[buildingP] = LoadTexture("res/assets/img/background/building.png");

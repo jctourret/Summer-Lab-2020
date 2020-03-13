@@ -36,8 +36,8 @@ namespace SummerLab {
 		Texture2D _gameOverDeadExtra[3];
 		Texture2D _gameOverWin[3];
 		Texture2D _killCount[2];
-		Texture2D _buildingCracks[4];
-		Texture2D _buildingCollapsing[15];
+		Texture2D _buildingCracks[5];
+		Texture2D _buildingCollapsing[16];
 	public:
 		gameplay();
 		~gameplay();

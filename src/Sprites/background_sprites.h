@@ -47,8 +47,8 @@ namespace SummerLab {
 	extern Texture2D gameOverDeadExtraSprite[3];
 	extern Texture2D gameOverWinSprite[3];
 	extern Texture2D killCountSprites[2];
-	extern Texture2D buildingCracks[4];
-	extern Texture2D buildingCollapsing[15];
+	extern Texture2D buildingCracks[5];
+	extern Texture2D buildingCollapsing[16];
 
 	void loadBackGroundSprites();
 	void unloadBackGroundSprites();

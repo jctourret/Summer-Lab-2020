@@ -21,7 +21,6 @@ namespace SummerLab {
 		trampolineSound[1] = LoadSound("res/assets/snd/trampoline/trampoline1.ogg");
 		trampolineSound[2] = LoadSound("res/assets/snd/trampoline/trampoline2.ogg");
 		trampolineSound[3] = LoadSound("res/assets/snd/trampoline/trampoline3.ogg");
-
 	}
 	void unloadTruckSounds() {
 		UnloadSound(truckSiren);

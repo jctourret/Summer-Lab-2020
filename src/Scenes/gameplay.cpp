@@ -33,7 +33,9 @@ namespace SummerLab {
 	static const float maxTimeBackMenu = 10.0f;
 
 	static float collapseTimer = 0.0f;
-	static const float collapseFrameTime = 0.25f;
+	static const float collapseFrameTime = 0.075f;
+	static int actualCollapseFrame = 0;
+	static const int maxCollapseFrame = 16;
 
 	static bool playCollapseOnce = true;
 
@@ -86,12 +88,13 @@ namespace SummerLab {
 		_deadCivs = 0;
 		gameTimer = 0.0f;
 		timerBackMenu = 0.0f;
+		collapseTimer = 0.0f;
+		actualCollapseFrame = 0;
 		sunPositionX = 0;
 		sky1PositionX = 0;
 		clouds1Position = 0;
 		clouds2Position = 2050;
 		sky2PositionX = maxSkyPosition;
-
 		time = day;
 		timeDay = 0.0f;
 		timeAfternoon = 0.0f;
@@ -113,9 +116,14 @@ namespace SummerLab {
 			_gameOverWin[i] = gameOverWinSprite[i];
 		}
 
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 3; i++) {
 			_killCount[i] = killCountSprites[i];
 		}
+
+		for (int i = 0; i < 5; i++) {
+			_buildingCracks[i] = buildingCracks[i];
+		}
+
 		for (int i = 0; i < 16; i++) {
 			_buildingCollapsing[i] = buildingCollapsing[i];
 		}
@@ -277,7 +285,7 @@ namespace SummerLab {
 			DrawTexture(_background[buildingsBGAfternoon], 0, 0, RAYWHITE);
 		else if (time == night)
 			DrawTexture(_background[buildingsBGNight], 0, 0, RAYWHITE);
-	
+
 		if (_deadCivs == 1) {
 			DrawTexture(_killCount[0], 0, 10, RAYWHITE);
 		}
@@ -288,45 +296,47 @@ namespace SummerLab {
 			DrawTexture(_killCount[2], 0, 10, RAYWHITE);
 		}
 
-		DrawTexture(_background[buildingP], 0, 0, RAYWHITE);
+		if (_gameWon == false && _gameLost == false) {
+			DrawTexture(_background[buildingP], 0, 0, RAYWHITE);
 
-		if ((_building->countSmallFires() >= 3 ||
-			_building->countMediumFires() >= 2 ||
-			_building->countLargeFires() >= 1) ||
-			_buildingLittlyDamaged == true) {
-			DrawTexture(_buildingCracks[0], 0, 0, RAYWHITE);
-			_buildingLittlyDamaged = true;
-		}
-		if ((_building->countSmallFires() >= 6 ||
-			_building->countMediumFires() >= 4 ||
-			_building->countLargeFires() >= 2) ||
-			_buildingModeratelyDamaged == true) {
-			DrawTexture(_buildingCracks[1], 0, 0, RAYWHITE);
-			_buildingModeratelyDamaged = true;
-		}
-		if ((_building->countSmallFires() >= 9 ||
-			_building->countMediumFires() >= 6 ||
-			_building->countLargeFires() >= 3) ||
-			_buildingDamaged == true) {
-			DrawTexture(_buildingCracks[2], 0, 0, RAYWHITE);
-			_buildingDamaged = true;
-		}
-		if ((_building->countSmallFires() >= 7 &&
-			_building->countMediumFires() >= 2 ||
-			_building->countMediumFires() >= 8 ||
-			_building->countLargeFires() >= 4) ||
-			_buildingVeryDamaged == true) {
-			DrawTexture(_buildingCracks[3], 0, 0, RAYWHITE);
-			_buildingVeryDamaged = true;
-		}
-		if ((_building->countSmallFires() >= 5 &&
-			_building->countMediumFires() >= 4 ||
-			_building->countMediumFires() >= 8 &&
-			_building->countLargeFires() >= 1 ||
-			_building->countLargeFires() >= 5)||
-			_buildingSeverelyDamaged == true) {
-			DrawTexture(_buildingCracks[4], 0, 0, RAYWHITE);
-			_buildingSeverelyDamaged = true;
+			if ((_building->countSmallFires() >= 3 ||
+				_building->countMediumFires() >= 2 ||
+				_building->countLargeFires() >= 1) ||
+				_buildingLittlyDamaged == true) {
+				DrawTexture(_buildingCracks[0], 0, 0, RAYWHITE);
+				_buildingLittlyDamaged = true;
+			}
+			if ((_building->countSmallFires() >= 6 ||
+				_building->countMediumFires() >= 4 ||
+				_building->countLargeFires() >= 2) ||
+				_buildingModeratelyDamaged == true) {
+				DrawTexture(_buildingCracks[1], 0, 0, RAYWHITE);
+				_buildingModeratelyDamaged = true;
+			}
+			if ((_building->countSmallFires() >= 9 ||
+				_building->countMediumFires() >= 6 ||
+				_building->countLargeFires() >= 3) ||
+				_buildingDamaged == true) {
+				DrawTexture(_buildingCracks[2], 0, 0, RAYWHITE);
+				_buildingDamaged = true;
+			}
+			if ((_building->countSmallFires() >= 7 &&
+				_building->countMediumFires() >= 2 ||
+				_building->countMediumFires() >= 8 ||
+				_building->countLargeFires() >= 4) ||
+				_buildingVeryDamaged == true) {
+				DrawTexture(_buildingCracks[3], 0, 0, RAYWHITE);
+				_buildingVeryDamaged = true;
+			}
+			if ((_building->countSmallFires() >= 5 &&
+				_building->countMediumFires() >= 4 ||
+				_building->countMediumFires() >= 8 &&
+				_building->countLargeFires() >= 1 ||
+				_building->countLargeFires() >= 5) ||
+				_buildingSeverelyDamaged == true) {
+				DrawTexture(_buildingCracks[4], 0, 0, RAYWHITE);
+				_buildingSeverelyDamaged = true;
+			}
 		}
 
 		DrawTexture(_background[street], 0, 0, RAYWHITE);
@@ -335,8 +345,10 @@ namespace SummerLab {
 		_ambulanceLeft->draw();
 		_ambulanceRight->draw();
 		DrawTexture(_background[barricade], 0, 0, RAYWHITE);
-		_building->draw();
-		_truck->draw();
+		if (_gameWon == false && _gameLost == false) {
+			_building->draw();
+			_truck->draw();
+		}
 
 		if (_gameWon == true && _gameLost == false) {
 			if (time == day)
@@ -347,20 +359,19 @@ namespace SummerLab {
 				DrawTexture(_gameOverWin[night], 0, 0, RAYWHITE);
 		}
 		else if (_gameWon == false && _gameLost == true && _building->countLargeFires() == _building->getColumns()*_building->getFloors()) {
+			DrawTexture(_buildingCollapsing[actualCollapseFrame], 0, 0, RAYWHITE);
 			if (time == day)
 				DrawTexture(_gameOverBurn[day], 0, 0, RAYWHITE);
 			else if (time == afternoon)
 				DrawTexture(_gameOverBurn[afternoon], 0, 0, RAYWHITE);
 			else if (time == night)
 				DrawTexture(_gameOverBurn[night], 0, 0, RAYWHITE);
+			
 			collapseTimer += GetFrameTime();
-			for (int i = 0; i < 16; i++) {
-				if (collapseTimer >= collapseFrameTime * (i) &&
-					collapseTimer < collapseFrameTime* (i + 1)) {
-					DrawTexture(_buildingCollapsing[i], 0, 0, RAYWHITE);
-				}
+			if (collapseTimer >= collapseFrameTime && actualCollapseFrame < maxCollapseFrame) {
+				collapseTimer = 0.0f;
+				actualCollapseFrame++;
 			}
-			collapseTimer = 0.0f;
 		}
 		else if (_gameWon == false && _gameLost == true && _deadCivs >= maxDeadCivs) {
 			if (time == day) {
