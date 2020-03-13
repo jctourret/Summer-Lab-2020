@@ -106,6 +106,27 @@ namespace SummerLab {
 		timeNight = 0.0f;
 		dayToNight = true;
 
+		_deadCivs = 0;
+		gameTimer = 0.0f;
+		timerBackMenu = 0.0f;
+		collapseTimer = 0.0f;
+		actualCollapseFrame = 0;
+		destroyBuilding = false;
+		playCollapseOnce = true;
+		sky1PositionX = 0;
+		sky2PositionX = maxSkyPosition;
+		sunPositionX = 0;
+		clouds1Position = 0;
+		clouds2Position = 2050;
+		time = day;
+		deadExtraMessage = false;
+		timeDay = 0.0f;
+		timeAfternoon = 0.0f;
+		timeNight = 0.0f;
+		dayToNight = true;
+		firstRotation = true;
+
+
 		for (int i = 0; i < 8; i++) {
 			_background[i] = backgroundSprites[i];
 		}
@@ -235,35 +256,35 @@ namespace SummerLab {
 				sunPositionX -= sunSpeed * GetFrameTime();
 				//sunPositionX -= (screenWdith / maxGameTimer) * GetFrameTime();
 			}
-		}
 
-		if (time == day) {
-			timeDay += GetFrameTime();
-			if (timeDay >= maxTimeDay) {
-				if (dayToNight == true)
-					time = afternoon;
-				timeDay = 0;
-				dayToNight = true;
+			if (time == day) {
+				timeDay += GetFrameTime();
+				if (timeDay >= maxTimeDay) {
+					if (dayToNight == true)
+						time = afternoon;
+					timeDay = 0;
+					dayToNight = true;
+				}
 			}
-		}
-		else if (time == afternoon) {
-			timeAfternoon += GetFrameTime();
-			if (timeAfternoon >= maxTimeAfertnoon) {
-				if (dayToNight == true)
-					time = night;
-				else if (dayToNight == false)
-					time = day;
+			else if (time == afternoon) {
+				timeAfternoon += GetFrameTime();
+				if (timeAfternoon >= maxTimeAfertnoon) {
+					if (dayToNight == true)
+						time = night;
+					else if (dayToNight == false)
+						time = day;
 
-				timeAfternoon = 0;
+					timeAfternoon = 0;
+				}
 			}
-		}
-		else if (time == night) {
-			timeNight += GetFrameTime();
-			if (timeNight >= maxTimeNight) {
-				if (dayToNight == false)
-					time = afternoon;
-				timeNight = 0;
-				dayToNight = false;
+			else if (time == night) {
+				timeNight += GetFrameTime();
+				if (timeNight >= maxTimeNight) {
+					if (dayToNight == false)
+						time = afternoon;
+					timeNight = 0;
+					dayToNight = false;
+				}
 			}
 		}
 
@@ -296,7 +317,7 @@ namespace SummerLab {
 		if (destroyBuilding == false) {
 			DrawTexture(_background[buildingP], 0, 0, RAYWHITE);
 
-			if ((_building->countSmallFires() >= 3 ||
+			if ((_building->countSmallFires() >= 4 ||
 				_building->countMediumFires() >= 2 ||
 				_building->countLargeFires() >= 1) ||
 				_buildingLittlyDamaged == true) {
@@ -338,15 +359,12 @@ namespace SummerLab {
 
 		if (_deadCivs == oneDead) {
 			DrawTexture(_killCount[oneDead], 0, 10, RAYWHITE);
-			cout << "un morido" << endl;
 		}
 		else if (_deadCivs == twoDead) {
-			DrawTexture(_killCount[twoDead], 0, 10, RAYWHITE);
-			cout << "dos moridos" << endl;
+			DrawTexture(_killCount[twoDead], 0, 10, RAYWHITE);;
 		}
 		else if (_deadCivs == threeDead) {
 			DrawTexture(_killCount[threeDead], 0, 10, RAYWHITE);
-			cout << "tres moridos" << endl;
 		}
 
 		DrawTexture(_background[street], 0, 0, RAYWHITE);
@@ -480,16 +498,15 @@ namespace SummerLab {
 				deadExtraMessage = GetRandomValue(false, true);
 			}
 		}
-
-		if (_building->countSmallFires() == 0 && _building->countMediumFires() == 0 && _building->countLargeFires() == 0) {
+		else if (_building->countSmallFires() == 0 && _building->countMediumFires() == 0 && _building->countLargeFires() == 0) {
+			_gameWon = true;
+			_gameLost = false;
+		}
+		else if (gameTimer >= maxGameTime) {
 			_gameWon = true;
 			_gameLost = false;
 		}
 		gameTimer += GetFrameTime();
-		if (gameTimer >= maxGameTime) {
-			_gameWon = true;
-			_gameLost = false;
-		}
 	}
 
 	void gameplay::playMainTheme() {
