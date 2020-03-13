@@ -78,7 +78,6 @@ namespace SummerLab {
 		_deadCivs = 0;
 		gameTimer = 0.0f;
 		timerBackMenu = 0.0f;
-		SetMasterVolume(0.0f);
 		sunPositionX = 0;
 		sky1PositionX = 0;
 		clouds1Position = 0;
