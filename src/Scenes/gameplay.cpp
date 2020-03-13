@@ -10,6 +10,9 @@
 
 using namespace SummerLab;
 
+#include <iostream>
+using namespace std;
+
 namespace SummerLab {
 
 	static const float buildingHeight = 700.0f;
@@ -27,7 +30,7 @@ namespace SummerLab {
 	static const float ambulanceWidth = 342;
 
 	static float gameTimer = 0.0f;
-	static const float maxGameTime = 60.0f * 2.0f;
+	static const float maxGameTime = 120.0f;
 
 	static float timerBackMenu = 0.0f;
 	static const float maxTimeBackMenu = 10.0f;
@@ -36,6 +39,7 @@ namespace SummerLab {
 	static const float collapseFrameTime = 0.075f;
 	static int actualCollapseFrame = 0;
 	static const int maxCollapseFrame = 15;
+	static bool destroyBuilding = false;
 
 	static bool playCollapseOnce = true;
 
@@ -90,6 +94,7 @@ namespace SummerLab {
 		timerBackMenu = 0.0f;
 		collapseTimer = 0.0f;
 		actualCollapseFrame = 0;
+		destroyBuilding = false;
 		sunPositionX = 0;
 		sky1PositionX = 0;
 		clouds1Position = 0;
@@ -228,6 +233,7 @@ namespace SummerLab {
 
 			if (time == day || time == afternoon) {
 				sunPositionX -= sunSpeed * GetFrameTime();
+				//sunPositionX -= (screenWdith / maxGameTimer) * GetFrameTime();
 			}
 		}
 
@@ -286,17 +292,8 @@ namespace SummerLab {
 		else if (time == night)
 			DrawTexture(_background[buildingsBGNight], 0, 0, RAYWHITE);
 
-		if (_deadCivs == 1) {
-			DrawTexture(_killCount[0], 0, 10, RAYWHITE);
-		}
-		else if (_deadCivs == 2) {
-			DrawTexture(_killCount[1], 0, 10, RAYWHITE);
-		}
-		else if (_deadCivs == 3) {
-			DrawTexture(_killCount[2], 0, 10, RAYWHITE);
-		}
 
-		if (_gameWon == false && _gameLost == false) {
+		if (destroyBuilding == false) {
 			DrawTexture(_background[buildingP], 0, 0, RAYWHITE);
 
 			if ((_building->countSmallFires() >= 3 ||
@@ -337,6 +334,19 @@ namespace SummerLab {
 				DrawTexture(_buildingCracks[4], 0, 0, RAYWHITE);
 				_buildingSeverelyDamaged = true;
 			}
+		}
+
+		if (_deadCivs == oneDead) {
+			DrawTexture(_killCount[oneDead], 0, 10, RAYWHITE);
+			cout << "un morido" << endl;
+		}
+		else if (_deadCivs == twoDead) {
+			DrawTexture(_killCount[twoDead], 0, 10, RAYWHITE);
+			cout << "dos moridos" << endl;
+		}
+		else if (_deadCivs == threeDead) {
+			DrawTexture(_killCount[threeDead], 0, 10, RAYWHITE);
+			cout << "tres moridos" << endl;
 		}
 
 		DrawTexture(_background[street], 0, 0, RAYWHITE);
@@ -464,6 +474,7 @@ namespace SummerLab {
 					PlaySound(buildingCollapse);
 				}
 				_playCollapseOnce = false;
+				destroyBuilding = true;
 			}
 			if (_deadCivs >= maxDeadCivs) {
 				deadExtraMessage = GetRandomValue(false, true);
@@ -471,6 +482,11 @@ namespace SummerLab {
 		}
 
 		if (_building->countSmallFires() == 0 && _building->countMediumFires() == 0 && _building->countLargeFires() == 0) {
+			_gameWon = true;
+			_gameLost = false;
+		}
+		gameTimer += GetFrameTime();
+		if (gameTimer >= maxGameTime) {
 			_gameWon = true;
 			_gameLost = false;
 		}

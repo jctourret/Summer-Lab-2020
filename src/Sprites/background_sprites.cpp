@@ -5,7 +5,7 @@ using namespace SummerLab;
 namespace SummerLab {
 
 	Texture2D backgroundSprites[8];
-	Texture2D killCountSprites[2];
+	Texture2D killCountSprites[3];
 	Texture2D skiesSprites[6];
 	Texture2D gameOverBurnSprite[3];
 	Texture2D gameOverDeadSprite[3];
@@ -25,7 +25,7 @@ namespace SummerLab {
 		backgroundSprites[street] = LoadTexture("res/assets/img/background/street.png");
 
 		killCountSprites[oneDead] = LoadTexture("res/assets/img/livesCounter/oneKill.png");
-		killCountSprites[twoDead] = LoadTexture("res/assets/img/livesCounter/twoKill.png");
+		killCountSprites[twoDead] = LoadTexture("res/assets/img/livesCounter/twoKills.png");
 		killCountSprites[threeDead] = LoadTexture("res/assets/img/livesCounter/game_over.png");
 
 		skiesSprites[sky1] = LoadTexture("res/assets/img/background/skies1.png");

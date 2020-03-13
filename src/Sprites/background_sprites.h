@@ -18,6 +18,7 @@ namespace SummerLab {
 	};
 
 	enum KillCount {
+		noDead,
 		oneDead,
 		twoDead,
 		threeDead,
@@ -46,7 +47,7 @@ namespace SummerLab {
 	extern Texture2D gameOverDeadSprite[3];
 	extern Texture2D gameOverDeadExtraSprite[3];
 	extern Texture2D gameOverWinSprite[3];
-	extern Texture2D killCountSprites[2];
+	extern Texture2D killCountSprites[3];
 	extern Texture2D buildingCracks[5];
 	extern Texture2D buildingCollapsing[16];
 
