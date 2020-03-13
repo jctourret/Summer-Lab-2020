@@ -23,6 +23,8 @@ namespace SummerLab {
 		Color _trampColor;
 		Texture2D _truckSprites[5];
 		Texture2D _sirenSprite;
+		Texture2D _menuTruckSprites[5];
+		Texture2D _menuSirenSprite;
 		Texture2D _waterShot1[3];
 		Texture2D _waterShot2[3];
 		Texture2D _waterShot3[3];

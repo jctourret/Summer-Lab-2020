@@ -177,9 +177,9 @@ namespace SummerLab {
 				}
 				if (_animTimer > 0.5f && _animTimer <= 1.0f) {
 					DrawTexture(_sprites[1], _body.x, _body.y, RAYWHITE);
-					if (IsSoundPlaying(_helpScream)){
+					if (!IsSoundPlaying(_helpScream)){
 					PlaySound(_helpScream);
-				}
+					}
 				}
 				if (_animTimer>1.0f) {
 					_animTimer = 0.0f;

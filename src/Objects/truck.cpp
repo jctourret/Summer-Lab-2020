@@ -63,6 +63,10 @@ namespace SummerLab {
 			_truckSprites[i] = truckSprite[i];
 		}		_sirenSprite = sirenSprite;
 
+		for (int i = 0; i < 5; i++) {
+			_menuTruckSprites[i] = truckSprite[i];
+		}		_menuSirenSprite = menuSirenSprite;
+
 		for (int i = 0; i < maxFramesWater; i++) {
 			_waterShot1[i] = waterShot1Sprite[i];
 			_waterShot2[i] = waterShot2Sprite[i];
@@ -189,7 +193,9 @@ namespace SummerLab {
 				}
 			}
 			_waterTank -= tankDrainRate * time;
-		}
+		}		if (IsGamepadButtonPressed(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN) && _waterTank > 0 && _waterShotLine.y > maxWaterY) {
+
+		}
 		if ((_pressure > 0 && !IsKeyDown(KEY_UP)) ||
 			(_pressure > 0 && _waterTank <= 0)) {
 			_pressure -= pressureDischargeRate * time;
