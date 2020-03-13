@@ -217,6 +217,8 @@ namespace SummerLab {
 			_truck->move();
 			_truck->recharge(_hydrant->getBody());
 			_truck->shoot();
+			_ambulanceLeft->takeCivAway();
+			_ambulanceRight->takeCivAway();
 			checkCiviliansBounce();
 			bounceCivilians();
 			checkCivilianDeath();
@@ -448,11 +450,14 @@ namespace SummerLab {
 			if (CheckCollisionRecs(_ambulanceLeft->getBody(), _building->getCivilianBody(i))) {
 				if (!_building->getCivIsSaved(i)) {
 					_building->saveCivilians(i);
+					_ambulanceLeft->setWaitingCiv(true);
+
 				};
 			}
 			if (CheckCollisionRecs(_ambulanceRight->getBody(), _building->getCivilianBody(i))) {
 				if (!_building->getCivIsSaved(i)) {
 					_building->saveCivilians(i);
+					_ambulanceRight->setWaitingCiv(true);
 				};
 			}
 		}
