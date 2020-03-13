@@ -48,6 +48,18 @@ namespace SummerLab {
 	static const float skySpeed = 105.0f;
 	static const float cloudsSpeed = 90.0f;
 	static const float sunSpeed = 37.5f;
+	static Time time = day;
+	static bool deadExtraMessage = false;
+
+	static float timeDay = 0.0f;
+	static float timeAfternoon = 0.0f;
+	static float timeNight = 0.0f;
+
+	static const float maxTimeDay = 24.5f;
+	static const float maxTimeAfertnoon = 24.5f;
+	static const float maxTimeNight = 21.5f;
+	static bool dayToNight = true;
+	static bool firstRotation = true;
 
 	gameplay::gameplay() {
 		_gameplayOn = true;
@@ -66,26 +78,34 @@ namespace SummerLab {
 		_deadCivs = 0;
 		gameTimer = 0.0f;
 		timerBackMenu = 0.0f;
-
+		SetMasterVolume(0.0f);
 		sunPositionX = 0;
 		sky1PositionX = 0;
 		clouds1Position = 0;
 		clouds2Position = 2050;
 		sky2PositionX = maxSkyPosition;
 
-		Time time = day;
+		time = day;
+		timeDay = 0.0f;
+		timeAfternoon = 0.0f;
+		timeNight = 0.0f;
+		dayToNight = true;
 
 		for (int i = 0; i < 8; i++) {
 			_background[i] = backgroundSprites[i];
 		}
 
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 6; i++) {
 			_skiesSprites[i] = skiesSprites[i];
 		}
 
-		_gameOverBurn = gameOverBurnSprite;
-		_gameOverDead = gameOverDeadSprite;
-		_gameOverWin = gameOverWinSprite;
+		for (int i = 0; i < 3; i++) {
+			_gameOverBurn[i] = gameOverBurnSprite[i];
+			_gameOverDead[i] = gameOverDeadSprite[i];
+			_gameOverDeadExtra[i] = gameOverDeadExtraSprite[i];
+			_gameOverWin[i] = gameOverWinSprite[i];
+		}
+
 	}
 
 	gameplay::~gameplay() {/*
@@ -155,6 +175,7 @@ namespace SummerLab {
 			checkCivilianDeath();
 			checkCivilianSaved();
 			runGameTimer(gameTimer);
+			gameResult();
 		}
 		else if (_gameWon == true || _gameLost == true) {
 			timerBackMenu += GetFrameTime();
@@ -169,30 +190,54 @@ namespace SummerLab {
 			}
 		}
 		playMainTheme();
-		gameResult();
 	}
 
 	void gameplay::draw() {
 		BeginDrawing();
 		ClearBackground(BLACK);
 
-		if (time != night) {
+		if (_gameWon == false && _gameLost == false) {
 			sky1PositionX -= skySpeed * GetFrameTime();
+			if (sky1PositionX <= -maxSkyPosition)
+				sky1PositionX = maxSkyPosition;
+
+			sky2PositionX -= skySpeed * GetFrameTime();
+			if (sky2PositionX <= -maxSkyPosition)
+				sky2PositionX = maxSkyPosition;
+
+			if (time == day || time == afternoon) {
+				sunPositionX -= sunSpeed * GetFrameTime();
+			}
 		}
 
-		if (time == day || time == afternoon) {
-			sunPositionX -= sunSpeed * GetFrameTime();
+		if (time == day) {
+			timeDay += GetFrameTime();
+			if (timeDay >= maxTimeDay) {
+				if (dayToNight == true)
+					time = afternoon;
+				timeDay = 0;
+				dayToNight = true;
+			}
 		}
+		else if (time == afternoon) {
+			timeAfternoon += GetFrameTime();
+			if (timeAfternoon >= maxTimeAfertnoon) {
+				if (dayToNight == true)
+					time = night;
+				else if (dayToNight == false)
+					time = day;
 
-
-		if (sky1PositionX >= -skyTime) {
-			time = day;
+				timeAfternoon = 0;
+			}
 		}
-		else if (sky1PositionX <= -skyTime && sky1PositionX > -skyTime * 2) {
-			time = afternoon;
-		}
-		else if (sky1PositionX <= -skyTime * 2 && sky1PositionX > -maxSkyPosition) {
-			time = night;
+		else if (time == night) {
+			timeNight += GetFrameTime();
+			if (timeNight >= maxTimeNight) {
+				if (dayToNight == false)
+					time = afternoon;
+				timeNight = 0;
+				dayToNight = false;
+			}
 		}
 
 		if (time == night) {
@@ -200,6 +245,7 @@ namespace SummerLab {
 		}
 
 		DrawTexture(_skiesSprites[sky1], sky1PositionX, 0, RAYWHITE);
+		DrawTexture(_skiesSprites[sky2], sky2PositionX, 0, RAYWHITE);
 		if (time == day || time == afternoon) {
 			DrawTexture(_skiesSprites[sun], sunPositionX, 0, RAYWHITE);
 			DrawTexture(_skiesSprites[sunlights], sunPositionX, 0, RAYWHITE);
@@ -228,15 +274,45 @@ namespace SummerLab {
 		DrawTexture(_background[barricade], 0, 0, RAYWHITE);
 		_building->draw();
 		_truck->draw();
+
 		if (_gameWon == true && _gameLost == false) {
-			DrawTexture(_gameOverWin, 0, 0, RAYWHITE);
+			if (time == day)
+				DrawTexture(_gameOverWin[day], 0, 0, RAYWHITE);
+			else if (time == afternoon)
+				DrawTexture(_gameOverWin[afternoon], 0, 0, RAYWHITE);
+			else if (time == night)
+				DrawTexture(_gameOverWin[night], 0, 0, RAYWHITE);
 		}
 		else if (_gameWon == false && _gameLost == true && _building->countLargeFires() == _building->getColumns()*_building->getFloors()) {
-			DrawTexture(_gameOverBurn, 0, 0, RAYWHITE);
+			if (time == day)
+				DrawTexture(_gameOverBurn[day], 0, 0, RAYWHITE);
+			else if (time == afternoon)
+				DrawTexture(_gameOverBurn[afternoon], 0, 0, RAYWHITE);
+			else if (time == night)
+				DrawTexture(_gameOverBurn[night], 0, 0, RAYWHITE);
+
 		}
 		else if (_gameWon == false && _gameLost == true && _deadCivs >= maxDeadCivs) {
-			DrawTexture(_gameOverDead, 0, 0, RAYWHITE);
+			if (time == day) {
+				if (deadExtraMessage == false)
+					DrawTexture(_gameOverDead[day], 0, 0, RAYWHITE);
+				else if (deadExtraMessage == true)
+					DrawTexture(_gameOverDeadExtra[day], 0, 0, RAYWHITE);
+			}
+			else if (time == afternoon) {
+				if (deadExtraMessage == false)
+					DrawTexture(_gameOverDead[afternoon], 0, 0, RAYWHITE);
+				else if (deadExtraMessage == true)
+					DrawTexture(_gameOverDeadExtra[afternoon], 0, 0, RAYWHITE);
+			}
+			else if (time == night) {
+				if (deadExtraMessage == false)
+					DrawTexture(_gameOverDead[night], 0, 0, RAYWHITE);
+				else if (deadExtraMessage == true)
+					DrawTexture(_gameOverDeadExtra[night], 0, 0, RAYWHITE);
+			}
 		}
+
 		EndDrawing();
 	}
 
@@ -302,12 +378,20 @@ namespace SummerLab {
 		if (_deadCivs >= maxDeadCivs || _building->countLargeFires() == _building->getColumns()*_building->getFloors()) {
 			_gameWon = false;
 			_gameLost = true;
-			if (_playCollapseOnce && _building->countLargeFires() == _building->getColumns()*_building->getFloors()){
+			if (_playCollapseOnce && _building->countLargeFires() == _building->getColumns()*_building->getFloors()) {
 				if (!IsSoundPlaying(buildingCollapse)) {
 					PlaySound(buildingCollapse);
 				}
 				_playCollapseOnce = false;
 			}
+			if (_deadCivs >= maxDeadCivs) {
+				deadExtraMessage = GetRandomValue(false, true);
+			}
+		}
+
+		if (_building->countSmallFires() == 0 && _building->countMediumFires() == 0 && _building->countLargeFires() == 0) {
+			_gameWon = true;
+			_gameLost = false;
 		}
 	}
 

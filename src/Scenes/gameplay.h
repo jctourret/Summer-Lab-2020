@@ -7,12 +7,6 @@
 #include "Objects/Ambulance.h"
 
 namespace SummerLab {
-	
-	enum Time {
-		day,
-		afternoon,
-		night
-	};
 
 	class gameplay {
 	private:
@@ -31,11 +25,11 @@ namespace SummerLab {
 		Ambulance* _ambulanceRight;
 		int _deadCivs;
 		Texture2D _background[8];
-		Texture2D _skiesSprites[5];
-		Texture2D _gameOverBurn;
-		Texture2D _gameOverDead;
-		Texture2D _gameOverWin;
-		Time time;
+		Texture2D _skiesSprites[6];
+		Texture2D _gameOverBurn[3];
+		Texture2D _gameOverDead[3];
+		Texture2D _gameOverDeadExtra[3];
+		Texture2D _gameOverWin[3];
 	public:
 		gameplay();
 		~gameplay();

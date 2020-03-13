@@ -18,17 +18,25 @@ namespace SummerLab {
 
 	enum SkiesList {
 		sky1,
+		sky2,
 		clouds1,
 		clouds2,
 		sun,
 		sunlights
 	};
 
+	enum Time {
+		day,
+		afternoon,
+		night
+	};
+
 	extern Texture2D backgroundSprites[8];
-	extern Texture2D skiesSprites[5];
-	extern Texture2D gameOverBurnSprite;
-	extern Texture2D gameOverDeadSprite;
-	extern Texture2D gameOverWinSprite;
+	extern Texture2D skiesSprites[6];
+	extern Texture2D gameOverBurnSprite[3];
+	extern Texture2D gameOverDeadSprite[3];
+	extern Texture2D gameOverDeadExtraSprite[3];
+	extern Texture2D gameOverWinSprite[3];
 
 	void loadBackGroundSprites();
 	void unloadBackGroundSprites();

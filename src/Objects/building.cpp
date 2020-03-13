@@ -74,7 +74,7 @@ namespace SummerLab {
 	void building::playFire() {
 		int fireCount = 0;
 		for (int i = 0; i < numberOfWindows; i++){
-			if (_windows[i]->getFire) {
+			if (_windows[i]->getFire()) {
 				fireCount++;
 			}
 		}
@@ -152,6 +152,26 @@ namespace SummerLab {
 				_windows[i]->spreadFireTimer();
 			}
 		}
+	}
+
+	int building::countSmallFires() {
+		int smallFires = 0;
+		for (int i = 0; i < _columns*_floors; i++) {
+			if (_windows[i]->getFire() == smallFire) {
+				smallFires++;
+			}
+		}
+		return smallFires;
+	}
+
+	int building::countMediumFires() {
+		int mediumFires = 0;
+		for (int i = 0; i < _columns*_floors; i++) {
+			if (_windows[i]->getFire() == mediumFire) {
+				mediumFires++;
+			}
+		}
+		return mediumFires;
 	}
 
 	int building::countLargeFires() {

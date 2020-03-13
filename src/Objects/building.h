@@ -33,6 +33,8 @@ namespace SummerLab {
 		void growFireTimers();
 		void dozeFireTimers(Rectangle rec);
 		void spreadFireTimers();
+		int countSmallFires();
+		int countMediumFires();
 		int countLargeFires();
 		void spawnCiv();
 		void civJumpTimers();

@@ -5,10 +5,11 @@ using namespace SummerLab;
 namespace SummerLab {
 
 	Texture2D backgroundSprites[8];
-	Texture2D skiesSprites[5];
-	Texture2D gameOverBurnSprite;
-	Texture2D gameOverDeadSprite;
-	Texture2D gameOverWinSprite;
+	Texture2D skiesSprites[6];
+	Texture2D gameOverBurnSprite[3];
+	Texture2D gameOverDeadSprite[3];
+	Texture2D gameOverDeadExtraSprite[3];
+	Texture2D gameOverWinSprite[3];
 
 	void loadBackGroundSprites() {
 		backgroundSprites[buildingP] = LoadTexture("res/assets/img/background/building.png");
@@ -21,27 +22,44 @@ namespace SummerLab {
 		backgroundSprites[street] = LoadTexture("res/assets/img/background/street.png");
 
 		skiesSprites[sky1] = LoadTexture("res/assets/img/background/skies1.png");
+		skiesSprites[sky2] = LoadTexture("res/assets/img/background/skies2.png");
 		skiesSprites[clouds1] = LoadTexture("res/assets/img/background/clouds1.png");
 		skiesSprites[clouds2] = LoadTexture("res/assets/img/background/clouds2.png");
 		skiesSprites[sun] = LoadTexture("res/assets/img/background/sun.png");
 		skiesSprites[sunlights] = LoadTexture("res/assets/img/background/sunlights.png");
 
-		gameOverBurnSprite = LoadTexture("res/assets/img/gameOver/gameOverBurn.png");
-		gameOverDeadSprite = LoadTexture("res/assets/img/gameOver/gameOverDead.png");
-		gameOverWinSprite = LoadTexture("res/assets/img/gameOver/gameOverWin.png");
+		gameOverBurnSprite[day] = LoadTexture("res/assets/img/gameOver/GameOverBurnDay.png");
+		gameOverBurnSprite[afternoon] = LoadTexture("res/assets/img/gameOver/GameOverBurnAfternoon.png");
+		gameOverBurnSprite[night] = LoadTexture("res/assets/img/gameOver/GameOverBurnNight.png");
+
+		gameOverDeadSprite[day] = LoadTexture("res/assets/img/gameOver/GameOverDeadDay.png");
+		gameOverDeadSprite[afternoon] = LoadTexture("res/assets/img/gameOver/GameOverDeadAfternoon.png");
+		gameOverDeadSprite[night] = LoadTexture("res/assets/img/gameOver/GameOverDeadNight.png");
+
+		gameOverDeadSprite[day] = LoadTexture("res/assets/img/gameOver/GameOverDeadExtraDay.png");
+		gameOverDeadSprite[afternoon] = LoadTexture("res/assets/img/gameOver/GameOverDeadExtraAfternoon.png");
+		gameOverDeadSprite[night] = LoadTexture("res/assets/img/gameOver/GameOverDeadExtraNight.png");
+
+		gameOverWinSprite[day] = LoadTexture("res/assets/img/gameOver/gameOverWinDay.png");
+		gameOverWinSprite[afternoon] = LoadTexture("res/assets/img/gameOver/gameOverWinAfternoon.png");
+		gameOverWinSprite[night] = LoadTexture("res/assets/img/gameOver/gameOverWinNight.png");
 	}
 
 	void unloadBackGroundSprites() {
 		for (int i = 0; i < 8; i++) {
 			UnloadTexture(backgroundSprites[i]);
 		}
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 6; i++) {
 			UnloadTexture(skiesSprites[i]);
 		}
 
-		UnloadTexture(gameOverBurnSprite);
-		UnloadTexture(gameOverDeadSprite);
-		UnloadTexture(gameOverWinSprite);
+		for (int i = 0; i < 3; i++) {
+			UnloadTexture(gameOverBurnSprite[i]);
+			UnloadTexture(gameOverDeadSprite[i]);
+			UnloadTexture(gameOverDeadExtraSprite[i]);
+			UnloadTexture(gameOverWinSprite[i]);
+		}
+
 	}
 
 }
