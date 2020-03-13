@@ -35,7 +35,7 @@ namespace SummerLab {
 	static float collapseTimer = 0.0f;
 	static const float collapseFrameTime = 0.075f;
 	static int actualCollapseFrame = 0;
-	static const int maxCollapseFrame = 16;
+	static const int maxCollapseFrame = 15;
 
 	static bool playCollapseOnce = true;
 
@@ -360,6 +360,7 @@ namespace SummerLab {
 		}
 		else if (_gameWon == false && _gameLost == true && _building->countLargeFires() == _building->getColumns()*_building->getFloors()) {
 			DrawTexture(_buildingCollapsing[actualCollapseFrame], 0, 0, RAYWHITE);
+			DrawTexture(_background[crowd], 0, 0, RAYWHITE);
 			if (time == day)
 				DrawTexture(_gameOverBurn[day], 0, 0, RAYWHITE);
 			else if (time == afternoon)
