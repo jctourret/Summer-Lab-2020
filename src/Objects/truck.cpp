@@ -20,7 +20,8 @@ namespace SummerLab {
 	const float tankRechargeRate = 20;
 
 	const float truckSpeed = 500;
-
+	const float gamepadTruckSpeed = 2000;
+	
 	const Color truckColor = RED;
 
 	static const float trampYOffset = 50;
@@ -155,13 +156,13 @@ namespace SummerLab {
 
 	void truck::move() {
 		float time = GetFrameTime();
-		if (!_isOnMenu && IsKeyDown(KEY_LEFT) && _body.x > screenWidth/4) {
+		if (!_isOnMenu && IsKeyDown(KEY_LEFT) && _body.x > screenWidth / 4) {
 			_body.x -= truckSpeed * time;
 			_waterShotLine.x -= (truckSpeed * time);
 			_trampoline.x -= (truckSpeed * time);
-			
+
 		}
-		if (!_isOnMenu && IsKeyDown(KEY_RIGHT) && _body.x +_body.width <screenWidth - screenWidth / 4) {
+		if (!_isOnMenu && IsKeyDown(KEY_RIGHT) && _body.x + _body.width < screenWidth - screenWidth / 4) {
 			_body.x += truckSpeed * time;
 			_waterShotLine.x += (truckSpeed * time);
 			_trampoline.x += (truckSpeed * time);
@@ -172,11 +173,35 @@ namespace SummerLab {
 			_trampoline.x -= (truckSpeed * time);
 
 		}
-		if (_isOnMenu && IsKeyDown(KEY_RIGHT) && _body.x + _body.width < screenWidth + _body.width/2) {
+		if (_isOnMenu && IsKeyDown(KEY_RIGHT) && _body.x + _body.width < screenWidth + _body.width / 2) {
 			_body.x += truckSpeed * time;
 			_waterShotLine.x += (truckSpeed * time);
 			_trampoline.x += (truckSpeed * time);
 		}
+
+		if (!_isOnMenu && _body.x >= screenWidth / 4 && _body.x + _body.width <= screenWidth - screenWidth / 4) {
+			float axisMovementL = GetGamepadAxisMovement(GAMEPAD_PLAYER1, GAMEPAD_AXIS_LEFT_X);
+			float axisMovementR = GetGamepadAxisMovement(GAMEPAD_PLAYER1, GAMEPAD_AXIS_RIGHT_X);
+
+			_body.x -= axisMovementL * gamepadTruckSpeed * time;
+			_body.x -= axisMovementR * gamepadTruckSpeed * time;
+			_waterShotLine.x -= axisMovementL * gamepadTruckSpeed* time;
+			_waterShotLine.x -= axisMovementR * gamepadTruckSpeed* time;
+			_trampoline.x -= axisMovementL * gamepadTruckSpeed* time;
+			_trampoline.x -= axisMovementR * gamepadTruckSpeed* time;
+
+		}
+		else if (!_isOnMenu && _body.x < screenWidth / 4) {
+			_body.x = (screenWidth / 4) + 5;
+			_trampoline.x = _body.x + _trampoline.width - trampXOffset;
+			_waterShotLine.x = _body.x + (_body.width / 3) - 7;
+		}
+		else if (!_isOnMenu && _body.x > screenWidth / 4) {
+			_body.x = screenWidth - (screenWidth / 4) - _body.width - 5;
+			_trampoline.x = _body.x + _trampoline.width - trampXOffset;
+			_waterShotLine.x = _body.x + (_body.width / 3) - 7;
+		}
+
 		if (!IsSoundPlaying(motorLoop)) {
 			PlaySound(motorLoop);
 		}
@@ -188,16 +213,17 @@ namespace SummerLab {
 			if (_waterShotLine.y > _body.y - 630) {
 				_pressure += pressureChargeRate * time;
 				_waterShotLine.y -= pressureChargeRate * time;
-				if (!IsSoundPlaying(waterShot)){
+				if (!IsSoundPlaying(waterShot)) {
 					PlaySound(waterShot);
 				}
 			}
 			_waterTank -= tankDrainRate * time;
-		}		if (IsGamepadButtonPressed(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN) && _waterTank > 0 && _waterShotLine.y > maxWaterY) {
+		}		else if (IsGamepadButtonPressed(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN) && _waterTank > 0 && _waterShotLine.y > maxWaterY) {
 			_pressure += 30000 * time;
 			_waterShotLine.y -= 30000 * time;
-			_waterTank -= tankDrainRate*time;
+			_waterTank -= tankDrainRate * time;
 		}
+
 		if ((_pressure > 0 && !IsKeyDown(KEY_UP)) ||
 			(_pressure > 0 && _waterTank <= 0)) {
 			_pressure -= pressureDischargeRate * time;
@@ -219,19 +245,19 @@ namespace SummerLab {
 
 	BounceDirection truck::checkBounce(Rectangle rec) {
 		int random = GetRandomValue(0, 3);
-		if (CheckCollisionRecs(rec, _trampoline) && (rec.x + rec.width/2 > _trampoline.x - rec.width/2 && rec.x + rec.width/2 < _trampoline.x + trampolineXHitboxWidth)) {
+		if (CheckCollisionRecs(rec, _trampoline) && (rec.x + rec.width / 2 > _trampoline.x - rec.width / 2 && rec.x + rec.width / 2 < _trampoline.x + trampolineXHitboxWidth)) {
 			return bLeft;
-			if (!IsSoundPlaying(trampolineSound[random])){
+			if (!IsSoundPlaying(trampolineSound[random])) {
 				PlaySound(trampolineSound[random]);
 			}
 		}
-		else if (CheckCollisionRecs(rec, _trampoline) && (rec.x+ rec.width/2 >= _trampoline.x + trampolineXHitboxWidth && rec.x + rec.width / 2 <= _trampoline.x + (trampolineXHitboxWidth *2))) {
+		else if (CheckCollisionRecs(rec, _trampoline) && (rec.x + rec.width / 2 >= _trampoline.x + trampolineXHitboxWidth && rec.x + rec.width / 2 <= _trampoline.x + (trampolineXHitboxWidth * 2))) {
 			return bUp;
 			if (!IsSoundPlaying(trampolineSound[random])) {
 				PlaySound(trampolineSound[random]);
 			}
 		}
-		else if (CheckCollisionRecs(rec, _trampoline) && (rec.x + rec.width / 2 > _trampoline.x + (trampolineXHitboxWidth * 2) && rec.x + rec.width / 2 <= _trampoline.x+_trampoline.width+ rec.width/2)) {
+		else if (CheckCollisionRecs(rec, _trampoline) && (rec.x + rec.width / 2 > _trampoline.x + (trampolineXHitboxWidth * 2) && rec.x + rec.width / 2 <= _trampoline.x + _trampoline.width + rec.width / 2)) {
 			return bRight;
 			if (!IsSoundPlaying(trampolineSound[random])) {
 				PlaySound(trampolineSound[random]);
@@ -307,8 +333,8 @@ namespace SummerLab {
 			}
 		}
 
-		if (_waterShotLine.y <= _body.y-20 &&
-			_waterShotLine.y > _body.y-140) {
+		if (_waterShotLine.y <= _body.y - 20 &&
+			_waterShotLine.y > _body.y - 140) {
 			DrawTexture(_waterShot1[_numFrame], _waterShotLine.x - waterShotsXOffset, _body.y - waterShotsYOffset, RAYWHITE);
 		}
 		if (_waterShotLine.y <= _body.y - 140 &&
@@ -335,6 +361,6 @@ namespace SummerLab {
 			_waterShotLine.y > _body.y - 630) {
 			DrawTexture(_waterShot7[_numFrame], _waterShotLine.x - waterShotsXOffset, _body.y - waterShotsYOffset, RAYWHITE);
 		}
-		DrawRectangleRec(_waterShotLine,waterColor);
+		DrawRectangleRec(_waterShotLine, waterColor);
 	}
 }
