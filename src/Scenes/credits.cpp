@@ -11,6 +11,8 @@ namespace SummerLab {
 		_creditsOn = false;
 		_toGameplay = false;
 		_toMenu = false;
+		_onCreditsTimer = false;
+		_background = LoadTexture("res/assets/img/menu/credits.png");
 	}
 
 	credits::~credits() {
@@ -46,12 +48,21 @@ namespace SummerLab {
 			_creditsOn = false;
 			_toMenu = true;
 		}
+		runCreditsTimer();
 	}
 
 	void credits::draw() {
 		BeginDrawing();
 		ClearBackground(BLACK);
-		DrawText("credits", 200, 500, 50, MAROON);
+		DrawTexture(_background,0,0,RAYWHITE);
 		EndDrawing();
+	}
+
+	void credits::runCreditsTimer() {
+		_onCreditsTimer += GetFrameTime();
+		if (_onCreditsTimer >= 10.f) {
+			_creditsOn = false;
+			_toMenu = true;
+		}
 	}
 }

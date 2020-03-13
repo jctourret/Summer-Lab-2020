@@ -14,6 +14,13 @@ namespace SummerLab {
 		crowd,
 		hydrant,
 		street,
+		killCount,
+	};
+
+	enum KillCount {
+		oneDead,
+		twoDead,
+		threeDead,
 	};
 
 	enum SkiesList {
@@ -31,12 +38,17 @@ namespace SummerLab {
 		night
 	};
 
+
+
 	extern Texture2D backgroundSprites[8];
 	extern Texture2D skiesSprites[6];
 	extern Texture2D gameOverBurnSprite[3];
 	extern Texture2D gameOverDeadSprite[3];
 	extern Texture2D gameOverDeadExtraSprite[3];
 	extern Texture2D gameOverWinSprite[3];
+	extern Texture2D killCountSprites[2];
+	extern Texture2D buildingCracks[4];
+	extern Texture2D buildingCollapsing[15];
 
 	void loadBackGroundSprites();
 	void unloadBackGroundSprites();

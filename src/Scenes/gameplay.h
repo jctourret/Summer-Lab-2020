@@ -18,18 +18,26 @@ namespace SummerLab {
 		bool _playCollapseOnce;
 		bool _playMotorOnOnce;
 		bool _playMotorOffOnce;
+		bool _buildingLittlyDamaged;
+		bool _buildingModeratelyDamaged;
+		bool _buildingDamaged;
+		bool _buildingVeryDamaged;
+		bool _buildingSeverelyDamaged;
+		int _deadCivs;
 		truck* _truck;
 		building* _building;
 		Hydrant* _hydrant;
 		Ambulance* _ambulanceLeft;
 		Ambulance* _ambulanceRight;
-		int _deadCivs;
 		Texture2D _background[8];
 		Texture2D _skiesSprites[6];
 		Texture2D _gameOverBurn[3];
 		Texture2D _gameOverDead[3];
 		Texture2D _gameOverDeadExtra[3];
 		Texture2D _gameOverWin[3];
+		Texture2D _killCount[2];
+		Texture2D _buildingCracks[4];
+		Texture2D _buildingCollapsing[15];
 	public:
 		gameplay();
 		~gameplay();

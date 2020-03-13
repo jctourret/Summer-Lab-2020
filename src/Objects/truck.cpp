@@ -49,11 +49,12 @@ namespace SummerLab {
 		_waterShotLine.y = posY;
 		_trampoline.height = height / 10;
 		_trampoline.width = width / 2;
-		_trampoline.x = (posX + width) - _trampoline.width-trampXOffset;
+		_trampoline.x = (posX + width) - _trampoline.width - trampXOffset;
 		_trampoline.y = posY + trampYOffset;
 		trampolineXHitboxWidth = width / 6;
 		_trampColor = trampColor;
 		_bounceOnce = false;
+		_isOnMenu = false;
 		_timerFrame = 0.0f;
 		_numFrame = 0;
 		_timerSiren = 0;
@@ -112,6 +113,10 @@ namespace SummerLab {
 		_waterShotLine.width = width;
 	}
 
+	void truck::setIsOnMenu(bool isOnMenu) {
+		_isOnMenu = isOnMenu;
+	}
+
 	Rectangle truck::getWaterShot() {
 		return _waterShotLine;
 	}
@@ -146,13 +151,24 @@ namespace SummerLab {
 
 	void truck::move() {
 		float time = GetFrameTime();
-		if (IsKeyDown(KEY_LEFT) && _body.x > screenWidth/4) {
+		if (!_isOnMenu && IsKeyDown(KEY_LEFT) && _body.x > screenWidth/4) {
 			_body.x -= truckSpeed * time;
 			_waterShotLine.x -= (truckSpeed * time);
 			_trampoline.x -= (truckSpeed * time);
 			
 		}
-		if (IsKeyDown(KEY_RIGHT) && _body.x +_body.width <screenWidth - screenWidth / 4) {
+		if (!_isOnMenu && IsKeyDown(KEY_RIGHT) && _body.x +_body.width <screenWidth - screenWidth / 4) {
+			_body.x += truckSpeed * time;
+			_waterShotLine.x += (truckSpeed * time);
+			_trampoline.x += (truckSpeed * time);
+		}
+		if (_isOnMenu && IsKeyDown(KEY_LEFT) && _body.x > screenWidth / 3) {
+			_body.x -= truckSpeed * time;
+			_waterShotLine.x -= (truckSpeed * time);
+			_trampoline.x -= (truckSpeed * time);
+
+		}
+		if (_isOnMenu && IsKeyDown(KEY_RIGHT) && _body.x + _body.width < screenWidth - screenWidth / 10) {
 			_body.x += truckSpeed * time;
 			_waterShotLine.x += (truckSpeed * time);
 			_trampoline.x += (truckSpeed * time);
@@ -178,6 +194,10 @@ namespace SummerLab {
 			(_pressure > 0 && _waterTank <= 0)) {
 			_pressure -= pressureDischargeRate * time;
 			_waterShotLine.y += pressureDischargeRate * time;
+		}
+
+		if (_pressure <= 0 && IsSoundPlaying(waterShot)) {
+			StopSound(waterShot);
 		}
 		_waterShotLine.height = _pressure;
 	}
@@ -280,5 +300,6 @@ namespace SummerLab {
 			_waterShotLine.y > _body.y - 630) {
 			DrawTexture(_waterShot7[_numFrame], _waterShotLine.x - waterShotsXOffset, _body.y - waterShotsYOffset, RAYWHITE);
 		}
+		DrawRectangleRec(_waterShotLine,waterColor);
 	}
 }

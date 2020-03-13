@@ -1,5 +1,5 @@
 #ifndef HYDRANT_H
-#define HYDRANY_H
+#define HYDRANT_H
 
 #include "raylib.h"
 

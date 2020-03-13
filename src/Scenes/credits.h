@@ -1,12 +1,16 @@
 #ifndef CREDITS_H
 #define CREDITS_H
 
+#include "raylib.h"
+
 namespace SummerLab {
 	class credits {
 	private:
 		bool _creditsOn;
 		bool _toMenu;
 		bool _toGameplay;
+		float _onCreditsTimer;
+		Texture2D _background;
 	public:
 		credits();
 		~credits();
@@ -17,6 +21,7 @@ namespace SummerLab {
 		void run();
 		void update();
 		void draw();
+		void runCreditsTimer();
 	};
 
 }

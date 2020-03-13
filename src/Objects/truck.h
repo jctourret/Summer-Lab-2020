@@ -39,6 +39,7 @@ namespace SummerLab {
 		float _timerFrame;
 		int _numFrame;
 		bool _bounceOnce;
+		bool _isOnMenu;
 	public:
 		truck(float width, float height, float posX, float posY);
 		~truck();
@@ -51,6 +52,7 @@ namespace SummerLab {
 		void setWaterShotX(float x);
 		void setWaterShotY(float y);
 		void setWaterShotWidth(float width);
+		void setIsOnMenu(bool isOnMenu);
 		Rectangle getWaterShot();
 		float getBodyHeight();
 		float getBodyWidth();

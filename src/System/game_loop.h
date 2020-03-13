@@ -3,13 +3,16 @@
 
 #include "Scenes/menu.h"
 #include "Scenes/gameplay.h"
+#include "Scenes/credits.h"
 #include "System/screen.h"
+
 
 namespace SummerLab {
 	
 	enum gamestate {
 		onMenu,
 		onGameplay,
+		onCredits,
 	};
 	
 	class game_loop{
@@ -19,6 +22,7 @@ namespace SummerLab {
 		screen* _screen;
 		menu* _menu;
 		gameplay* _gameplay;
+		credits* _credits;
 	public:
 		game_loop();
 		~game_loop();

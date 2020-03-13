@@ -97,6 +97,9 @@
     <ClCompile Include="..\src\Music\sound_general.cpp">
       <Filter>Music</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Scenes\credits.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Scenes\gameplay.h">
@@ -164,6 +167,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Music\sound_general.h">
       <Filter>Music</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Scenes\credits.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

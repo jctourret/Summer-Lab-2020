@@ -31,6 +31,7 @@
     <ClCompile Include="..\src\Objects\Hydrant.cpp" />
     <ClCompile Include="..\src\Objects\truck.cpp" />
     <ClCompile Include="..\src\Objects\window.cpp" />
+    <ClCompile Include="..\src\Scenes\credits.cpp" />
     <ClCompile Include="..\src\Scenes\gameplay.cpp" />
     <ClCompile Include="..\src\Scenes\menu.cpp" />
     <ClCompile Include="..\src\Sprites\ambulance_sprites.cpp" />
@@ -55,6 +56,7 @@
     <ClInclude Include="..\src\Objects\Hydrant.h" />
     <ClInclude Include="..\src\Objects\truck.h" />
     <ClInclude Include="..\src\Objects\window.h" />
+    <ClInclude Include="..\src\Scenes\credits.h" />
     <ClInclude Include="..\src\Scenes\gameplay.h" />
     <ClInclude Include="..\src\Scenes\menu.h" />
     <ClInclude Include="..\src\Sprites\ambulance_sprites.h" />
