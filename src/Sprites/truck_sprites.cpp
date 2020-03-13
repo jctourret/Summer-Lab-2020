@@ -44,23 +44,26 @@ namespace SummerLab {
 		menuSirenImage = LoadImage("res/assets/img/truck/LightSiren.png");
 
 		for (int i = 0; i < maxSprites; i++) {
-			ImageResize(&menuTruckImage[i], truckWidth, truckHeight);
+			ImageResize(&menuTruckImage[i], menuTruckWidth, menuTruckHeight);
 		}
 
 		ImageResize(&sirenImage, truckWidth, truckHeight);
-		ImageResize(&menuSirenImage, truckWidth, truckHeight);
+		ImageResize(&menuSirenImage, menuTruckWidth, menuTruckHeight);
 
 		for (int i = 0; i < maxSprites; i++) {
 			truckSprite[i] = LoadTextureFromImage(truckImage[i]);
+			menuTruckSprite[i] = LoadTextureFromImage(menuTruckImage[i]);
 		}
 
 		sirenSprite = LoadTextureFromImage(sirenImage);
 
 		for (int i = 0; i < maxSprites; i++) {
 			UnloadImage(truckImage[i]);
+			UnloadImage(menuTruckImage[i]);
 		}
 
 		UnloadImage(sirenImage);
+		UnloadImage(menuSirenImage);
 	}
 
 	void unloadTruckSprites() {

@@ -62,6 +62,10 @@ namespace SummerLab{
 						_gamestate = onGameplay;
 						_menu->setToGameplay(false);
 					}
+					if (_menu->getToCredits()) {
+						_gamestate = onCredits;
+						_menu->setToCredits(false);
+					}
 				}
 				break;
 			case onGameplay:

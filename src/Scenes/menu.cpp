@@ -52,7 +52,7 @@ namespace SummerLab {
 		_menuButtons = LoadTexture("res/assets/img/menu/menuButtons.png");
 		_playShine = LoadTexture("res/assets/img/menu/playShine.png");
 		_creditsShine = LoadTexture ("res/assets/img/menu/creditsShine.png");
-		_menuTruck = new truck(truckHeight, truckWidth, screenWidth / 2, screenHeight - (screenHeight / 9) - truckHeight);
+		_menuTruck = new truck(truckHeight*2, truckWidth*2, screenWidth / 2, screenHeight - (screenHeight / 4) - truckHeight);
 		_menuTruck->setIsOnMenu(true);
 	}
 

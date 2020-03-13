@@ -64,7 +64,7 @@ namespace SummerLab {
 		}		_sirenSprite = sirenSprite;
 
 		for (int i = 0; i < 5; i++) {
-			_menuTruckSprites[i] = truckSprite[i];
+			_menuTruckSprites[i] = menuTruckSprite[i];
 		}		_menuSirenSprite = menuSirenSprite;
 
 		for (int i = 0; i < maxFramesWater; i++) {
@@ -172,7 +172,7 @@ namespace SummerLab {
 			_trampoline.x -= (truckSpeed * time);
 
 		}
-		if (_isOnMenu && IsKeyDown(KEY_RIGHT) && _body.x + _body.width < screenWidth - screenWidth / 10) {
+		if (_isOnMenu && IsKeyDown(KEY_RIGHT) && _body.x + _body.width < screenWidth + _body.width/2) {
 			_body.x += truckSpeed * time;
 			_waterShotLine.x += (truckSpeed * time);
 			_trampoline.x += (truckSpeed * time);
@@ -194,7 +194,9 @@ namespace SummerLab {
 			}
 			_waterTank -= tankDrainRate * time;
 		}		if (IsGamepadButtonPressed(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN) && _waterTank > 0 && _waterShotLine.y > maxWaterY) {
-
+			_pressure += 30000 * time;
+			_waterShotLine.y -= 30000 * time;
+			_waterTank -= tankDrainRate*time;
 		}
 		if ((_pressure > 0 && !IsKeyDown(KEY_UP)) ||
 			(_pressure > 0 && _waterTank <= 0)) {
@@ -241,16 +243,32 @@ namespace SummerLab {
 	}
 
 	void truck::draw() {
-		if (_waterTank <= 25) {
-			DrawTexture(_truckSprites[0], _body.x, _body.y, RAYWHITE);		}
-		else if (_waterTank > 25 && _waterTank <= 50) {
-			DrawTexture(_truckSprites[1], _body.x, _body.y, RAYWHITE);		}
-		else if (_waterTank > 50 && _waterTank <= 75) {
-			DrawTexture(_truckSprites[2], _body.x, _body.y, RAYWHITE);		}
-		else if (_waterTank > 75 && _waterTank < 100) {
-			DrawTexture(_truckSprites[3], _body.x, _body.y, RAYWHITE);		}
-		else{
-			DrawTexture(_truckSprites[4], _body.x, _body.y, RAYWHITE);
+		if (!_isOnMenu) {
+			if (_waterTank <= 25) {
+				DrawTexture(_truckSprites[0], _body.x, _body.y, RAYWHITE);			}
+			else if (_waterTank > 25 && _waterTank <= 50) {
+				DrawTexture(_truckSprites[1], _body.x, _body.y, RAYWHITE);			}
+			else if (_waterTank > 50 && _waterTank <= 75) {
+				DrawTexture(_truckSprites[2], _body.x, _body.y, RAYWHITE);			}
+			else if (_waterTank > 75 && _waterTank < 100) {
+				DrawTexture(_truckSprites[3], _body.x, _body.y, RAYWHITE);			}
+			else {
+				DrawTexture(_truckSprites[4], _body.x, _body.y, RAYWHITE);
+			}
+		}
+
+		if (_isOnMenu) {
+			if (_waterTank <= 25) {
+				DrawTexture(_menuTruckSprites[0], _body.x, _body.y, RAYWHITE);			}
+			else if (_waterTank > 25 && _waterTank <= 50) {
+				DrawTexture(_menuTruckSprites[1], _body.x, _body.y, RAYWHITE);			}
+			else if (_waterTank > 50 && _waterTank <= 75) {
+				DrawTexture(_menuTruckSprites[2], _body.x, _body.y, RAYWHITE);			}
+			else if (_waterTank > 75 && _waterTank < 100) {
+				DrawTexture(_menuTruckSprites[3], _body.x, _body.y, RAYWHITE);			}
+			else {
+				DrawTexture(_menuTruckSprites[4], _body.x, _body.y, RAYWHITE);
+			}
 		}
 
 		_timerSiren += GetFrameTime();
@@ -262,10 +280,21 @@ namespace SummerLab {
 				sirenShining = true;
 		}
 
-		if (sirenShining == true) {
-			DrawTexture(_sirenSprite, _body.x, _body.y, RAYWHITE);
-			if (!IsSoundPlaying(truckSiren)) {
-				PlaySound(truckSiren);
+		if (!_isOnMenu) {
+			if (sirenShining == true) {
+				DrawTexture(_sirenSprite, _body.x, _body.y, RAYWHITE);
+				if (!IsSoundPlaying(truckSiren)) {
+					PlaySound(truckSiren);
+				}
+			}
+		}
+
+		if (_isOnMenu) {
+			if (sirenShining == true) {
+				DrawTexture(_menuSirenSprite, _body.x, _body.y, RAYWHITE);
+				if (!IsSoundPlaying(truckSiren)) {
+					PlaySound(truckSiren);
+				}
 			}
 		}
 
