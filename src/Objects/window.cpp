@@ -122,7 +122,7 @@ namespace SummerLab {
 
 	void window::growFireTimer() {
 		_growTimer += GetFrameTime();
-		if (_growTimer >= 1.5f) {
+		if (_growTimer >= 12.5f) {
 			growFire();
 			_growTimer = 0.0f;
 			_spreadTimer = 0.0f;
@@ -143,7 +143,7 @@ namespace SummerLab {
 
 	void window::spreadFireTimer() {
 		_spreadTimer += GetFrameTime();
-		if (_spreadTimer >= 1.0f) {
+		if (_spreadTimer >= 10.0f) {
 			catchFire();
 			_spreadTimer = 0.0f;
 			_growTimer = 0.0f;
