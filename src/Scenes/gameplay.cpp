@@ -84,7 +84,7 @@ namespace SummerLab {
 		_buildingVeryDamaged = false;
 		_buildingSeverelyDamaged = false;
 		_truck = new truck(truckHeight, truckWidth, screenWidth / 2, screenHeight - (screenHeight / 9) - truckHeight);
-		_building = new building(buildingHeight, buildingWidth, screenWidth / 2 - (buildingWidth / 2), screenHeight / 7, buildingFloors, buildingColumns);
+		_building = new building(buildingHeight, buildingWidth, screenWidth / 2 - (buildingWidth / 2), screenHeight / 7, buildingFloors, buildingColumns, _keyboardGame, _hoseGame);
 		_hydrant = new Hydrant(screenWidth / 3 - 70, screenHeight - (screenHeight / 4) - 15);
 		_ambulanceLeft = new Ambulance(ambulanceHeight, ambulanceWidth, screenWidth / 15, screenHeight - (screenHeight / 9) - ambulanceHeight, false, true);
 		_ambulanceRight = new Ambulance(ambulanceHeight, ambulanceWidth, screenWidth - screenWidth / 15 - ambulanceWidth, screenHeight - (screenHeight / 9) - ambulanceHeight, true, false);
@@ -215,9 +215,9 @@ namespace SummerLab {
 			_building->playFire();
 			_building->spawnCiv();
 			_building->civJumpTimers();
-			_truck->move();
-			_truck->recharge(_hydrant->getBody());
-			_truck->shoot();
+			_truck->move(_keyboardGame, _hoseGame);
+			_truck->recharge(_hydrant->getBody(), _keyboardGame, _hoseGame);
+			_truck->shoot(_keyboardGame, _hoseGame);
 			_ambulanceLeft->takeCivAway();
 			_ambulanceRight->takeCivAway();
 			checkCiviliansBounce();

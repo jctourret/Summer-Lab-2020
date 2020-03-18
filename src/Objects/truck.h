@@ -65,9 +65,9 @@ namespace SummerLab {
 		float getWaterShotX();
 		float getWaterShotY();
 		float getWaterShotWidth();
-		void move();
-		void shoot();
-		void recharge(Rectangle rec);
+		void move(bool keyboard, bool hose);
+		void shoot(bool keyboard, bool hose);
+		void recharge(Rectangle rec, bool keyboard, bool hose);
 		BounceDirection checkBounce(Rectangle rec);
 		void draw();
 	};

@@ -16,13 +16,15 @@ namespace SummerLab {
 	const float civHeight = 106;
 	const float civWidth = 91;
 
-	building::building(float height, float width, float x, float y, int floors, int columns) {
+	building::building(float height, float width, float x, float y, int floors, int columns, bool keyboard, bool hose) {
 		_body.height = height;
 		_body.width = width;
 		_body.x = x;
 		_body.y = y;
 		_floors = floors;
 		_columns = columns;
+		_keyboardGame = keyboard;
+		_hoseGame = hose;
 		for (int k = 0; k < (columns + floors); k) {
 			for (int i = 0; i < floors; i++) {
 				for (int j = 0; j < columns; j++) {
@@ -97,7 +99,7 @@ namespace SummerLab {
 	void building::growFireTimers() {
 		for (int i = 0; i < (_columns*_floors); i++){
 			if (_windows[i]->getOnFire()){
-				_windows[i]->growFireTimer();
+				_windows[i]->growFireTimer(_keyboardGame, _hoseGame);
 			}
 		}
 	}
@@ -109,7 +111,7 @@ namespace SummerLab {
 					rec.x <= _windows[i]->getWindowX() + _windows[i]->getWindowWidth() + rec.width &&
 					rec.y > _windows[i]->getWindowY() &&
 					rec.y < _windows[i]->getWindowY() + _windows[i]->getWindowHeight()) {
-					_windows[i]->dozeFireTimer();
+					_windows[i]->dozeFireTimer(_keyboardGame, _hoseGame);
 				}
 			}
 		}
@@ -118,24 +120,24 @@ namespace SummerLab {
 	void building::spreadFireTimers() {
 		for (int i = 0; i < _columns; i++) { //Recorre las ventanas del ultimo piso y verifica si las que estan abajo estan prendidas.
 			if (_windows[i + _columns]->getOnFire() && !_windows[i]->getOnFire()) {
-				_windows[i]->spreadFireTimer();
+				_windows[i]->spreadFireTimer(_keyboardGame, _hoseGame);
 			}
 		}
 		for (int i = 0; i < _floors; i++){//Recorre las ventanas de la primera columna desde la derecha y verifica si las que estan a la derecha estan prendidas.
 			if (_windows[(i*_columns) + 1]->getOnFire() && !_windows[i]->getOnFire()) {
-				_windows[i*_columns]->spreadFireTimer();
+				_windows[i*_columns]->spreadFireTimer(_keyboardGame, _hoseGame);
 			}
 		}
 		for  (int i = _columns; i < (_columns*_floors)-_floors; i++){//Recorre las ventanas entre el primer y ultimo piso y verifica si las que estan arriba o abajo estan prendidas.
 			if (_windows[i - _columns]->getOnFire() && !_windows[i]->getOnFire()||
 				_windows[i + _columns]->getOnFire() && !_windows[i]->getOnFire()) {
-				_windows[i]->spreadFireTimer();
+				_windows[i]->spreadFireTimer(_keyboardGame, _hoseGame);
 			}
 		}
 		for (int i = 1; i < (_columns*_floors) - 1; i) {//Recorre las ventanas entre la primera y ultima columna y verifica si las que estan a la izquierda o derecha estan prendidas.
 			if (_windows[i - 1]->getOnFire() && !_windows[i]->getOnFire() ||
 				_windows[i + 1]->getOnFire() && !_windows[i]->getOnFire()) {
-				_windows[i]->spreadFireTimer();
+				_windows[i]->spreadFireTimer(_keyboardGame, _hoseGame);
 			}
 			i++;
 			if (i == _columns - 1) {
@@ -144,12 +146,12 @@ namespace SummerLab {
 		}
 		for (int i = _columns-1; i < (_columns-1)*_floors; i+=_columns) {//Recorre las ventanas de la ultima columna desde la derecha y verifica si las que estan a la izquierda estan prendidas.
 			if (_windows[i - 1]->getOnFire() && !_windows[i]->getOnFire()) {
-				_windows[i]->spreadFireTimer();
+				_windows[i]->spreadFireTimer(_keyboardGame, _hoseGame);
 			}
 		}
 		for (int i = (_columns*_floors) - _columns; i < (_columns*_floors); i++) { //Recorre las ventanas del primer piso y verifica si las que estan arriba estan prendidas.
 			if (_windows[i - _columns]->getOnFire() && !_windows[i]->getOnFire()) {
-				_windows[i]->spreadFireTimer();
+				_windows[i]->spreadFireTimer(_keyboardGame, _hoseGame);
 			}
 		}
 	}

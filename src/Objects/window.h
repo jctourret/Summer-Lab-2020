@@ -39,9 +39,9 @@ namespace SummerLab {
 		void catchFire();
 		void dozeFire();
 		void growFire();
-		void growFireTimer();
-		void dozeFireTimer();
-		void spreadFireTimer();
+		void growFireTimer(bool keyboard, bool hose);
+		void dozeFireTimer(bool keyboard, bool hose);
+		void spreadFireTimer(bool keyboard, bool hose);
 		void draw();
 	};
 }

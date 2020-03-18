@@ -7,6 +7,9 @@
 
 using namespace SummerLab;
 
+#include <iostream>
+using namespace std;
+
 namespace SummerLab {
 
 	const Color waterColor = DARKBLUE;
@@ -21,7 +24,7 @@ namespace SummerLab {
 
 	const float truckSpeed = 500;
 	const float gamepadTruckSpeed = 2000;
-	
+
 	const Color truckColor = RED;
 
 	static const float trampYOffset = 50;
@@ -154,52 +157,55 @@ namespace SummerLab {
 		return _waterShotLine.width;
 	}
 
-	void truck::move() {
+	void truck::move(bool keyboard, bool hose) {
 		float time = GetFrameTime();
-		if (!_isOnMenu && IsKeyDown(KEY_LEFT) && _body.x > screenWidth / 4) {
-			_body.x -= truckSpeed * time;
-			_waterShotLine.x -= (truckSpeed * time);
-			_trampoline.x -= (truckSpeed * time);
 
-		}
-		if (!_isOnMenu && IsKeyDown(KEY_RIGHT) && _body.x + _body.width < screenWidth - screenWidth / 4) {
-			_body.x += truckSpeed * time;
-			_waterShotLine.x += (truckSpeed * time);
-			_trampoline.x += (truckSpeed * time);
-		}
 		if (_isOnMenu && IsKeyDown(KEY_LEFT) && _body.x > screenWidth / 3) {
 			_body.x -= truckSpeed * time;
 			_waterShotLine.x -= (truckSpeed * time);
 			_trampoline.x -= (truckSpeed * time);
 
 		}
-		if (_isOnMenu && IsKeyDown(KEY_RIGHT) && _body.x + _body.width < screenWidth + _body.width / 2) {
+		else if (_isOnMenu && IsKeyDown(KEY_RIGHT) && _body.x + _body.width < screenWidth + _body.width / 2) {
 			_body.x += truckSpeed * time;
 			_waterShotLine.x += (truckSpeed * time);
 			_trampoline.x += (truckSpeed * time);
 		}
 
-		if (!_isOnMenu && _body.x >= screenWidth / 4 && _body.x + _body.width <= screenWidth - screenWidth / 4) {
-			float axisMovementL = GetGamepadAxisMovement(GAMEPAD_PLAYER1, GAMEPAD_AXIS_LEFT_X);
-			float axisMovementR = GetGamepadAxisMovement(GAMEPAD_PLAYER1, GAMEPAD_AXIS_RIGHT_X);
-
-			_body.x -= axisMovementL * gamepadTruckSpeed * time;
-			_body.x -= axisMovementR * gamepadTruckSpeed * time;
-			_waterShotLine.x -= axisMovementL * gamepadTruckSpeed* time;
-			_waterShotLine.x -= axisMovementR * gamepadTruckSpeed* time;
-			_trampoline.x -= axisMovementL * gamepadTruckSpeed* time;
-			_trampoline.x -= axisMovementR * gamepadTruckSpeed* time;
-
+		if (keyboard == true && hose == false && _isOnMenu == false) {
+			if (IsKeyDown(KEY_LEFT) && _body.x > screenWidth / 4) {
+				_body.x -= truckSpeed * time;
+				_waterShotLine.x -= (truckSpeed * time);
+				_trampoline.x -= (truckSpeed * time);
+				if (_body.x < screenWidth / 4) {
+					_body.x = (screenWidth / 4) + 5;
+					_trampoline.x = _body.x + _trampoline.width - trampXOffset;
+					_waterShotLine.x = _body.x + (_body.width / 3) - 7;
+				}
+			}
+			else if (IsKeyDown(KEY_RIGHT) && _body.x < screenWidth - (screenWidth / 4) - _body.width) {
+				_body.x += truckSpeed * time;
+				_waterShotLine.x += (truckSpeed * time);
+				_trampoline.x += (truckSpeed * time);
+				if (_body.x > screenWidth - screenWidth / 4) {
+					_body.x = screenWidth - (screenWidth / 4) - _body.width - 5;
+					_trampoline.x = _body.x + _trampoline.width - trampXOffset;
+					_waterShotLine.x = _body.x + (_body.width / 3) - 7;
+				}
+			}
 		}
-		else if (!_isOnMenu && _body.x < screenWidth / 4) {
-			_body.x = (screenWidth / 4) + 5;
-			_trampoline.x = _body.x + _trampoline.width - trampXOffset;
-			_waterShotLine.x = _body.x + (_body.width / 3) - 7;
-		}
-		else if (!_isOnMenu && _body.x > screenWidth / 4) {
-			_body.x = screenWidth - (screenWidth / 4) - _body.width - 5;
-			_trampoline.x = _body.x + _trampoline.width - trampXOffset;
-			_waterShotLine.x = _body.x + (_body.width / 3) - 7;
+		else if (keyboard == false && hose == true && _isOnMenu == false) {
+			if (_body.x >= screenWidth / 4 && _body.x + _body.width <= screenWidth - screenWidth / 4) {
+				float axisMovementL = GetGamepadAxisMovement(GAMEPAD_PLAYER1, GAMEPAD_AXIS_LEFT_X);
+				float axisMovementR = GetGamepadAxisMovement(GAMEPAD_PLAYER1, GAMEPAD_AXIS_RIGHT_X);
+
+				_body.x -= axisMovementL * gamepadTruckSpeed * time;
+				_body.x -= axisMovementR * gamepadTruckSpeed * time;
+				_waterShotLine.x -= axisMovementL * gamepadTruckSpeed* time;
+				_waterShotLine.x -= axisMovementR * gamepadTruckSpeed* time;
+				_trampoline.x -= axisMovementL * gamepadTruckSpeed* time;
+				_trampoline.x -= axisMovementR * gamepadTruckSpeed* time;
+			}
 		}
 
 		if (!IsSoundPlaying(motorLoop)) {
@@ -207,21 +213,24 @@ namespace SummerLab {
 		}
 	}
 
-	void truck::shoot() {
+	void truck::shoot(bool keyboard, bool hose) {
 		float time = GetFrameTime();
-		if (IsKeyDown(KEY_UP) && _waterTank > 0 && _waterShotLine.y > maxWaterY) {
-			if (_waterShotLine.y > _body.y - 630) {
-				_pressure += pressureChargeRate * time;
-				_waterShotLine.y -= pressureChargeRate * time;
-				if (!IsSoundPlaying(waterShot)) {
-					PlaySound(waterShot);
+		if (keyboard == true && hose == false) {
+			if (IsKeyDown(KEY_UP) && _waterTank > 0 && _waterShotLine.y > maxWaterY) {
+				if (_waterShotLine.y > _body.y - 630) {
+					_pressure += pressureChargeRate * time;
+					_waterShotLine.y -= pressureChargeRate * time;
+					if (!IsSoundPlaying(waterShot)) {
+						PlaySound(waterShot);
+					}
 				}
+				_waterTank -= tankDrainRate * time;
+			}		}		else if (keyboard == false && hose == true) {
+			if (IsGamepadButtonPressed(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN) && _waterTank > 0 && _waterShotLine.y > maxWaterY) {
+				_pressure += 30000 * time;
+				_waterShotLine.y -= 30000 * time;
+				_waterTank -= tankDrainRate * time;
 			}
-			_waterTank -= tankDrainRate * time;
-		}		else if (IsGamepadButtonPressed(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN) && _waterTank > 0 && _waterShotLine.y > maxWaterY) {
-			_pressure += 30000 * time;
-			_waterShotLine.y -= 30000 * time;
-			_waterTank -= tankDrainRate * time;
 		}
 
 		if ((_pressure > 0 && !IsKeyDown(KEY_UP)) ||
@@ -236,15 +245,19 @@ namespace SummerLab {
 		_waterShotLine.height = _pressure;
 	}
 
-	void truck::recharge(Rectangle rec) {
+	void truck::recharge(Rectangle rec, bool keyboard, bool hose) {
 		float time = GetFrameTime();
-		if (CheckCollisionRecs(_body, rec) && IsKeyDown(KEY_DOWN) && IsGamepadAvailable(GAMEPAD_PLAYER1) == false) {
-			if (_waterTank <= maxWaterTank)
-				_waterTank += tankRechargeRate * time;
+		if (keyboard == true && hose == false) {
+			if (CheckCollisionRecs(_body, rec) && IsKeyDown(KEY_DOWN)) {
+				if (_waterTank <= maxWaterTank)
+					_waterTank += tankRechargeRate * time;
+			}
 		}
-		else if (CheckCollisionRecs(_body, rec) && IsGamepadAvailable(GAMEPAD_PLAYER1) == true) {
-			if (_waterTank <= maxWaterTank)
-				_waterTank += tankRechargeRate * time;
+		else if (keyboard == false && hose == true) {
+			if (CheckCollisionRecs(_body, rec)) {
+				if (_waterTank <= maxWaterTank)
+					_waterTank += tankRechargeRate * time;
+			}
 		}
 	}
 

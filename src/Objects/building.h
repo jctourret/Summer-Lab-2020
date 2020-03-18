@@ -11,6 +11,8 @@ namespace SummerLab {
 
 	class building {
 	private:
+		bool _keyboardGame;
+		bool _hoseGame;
 		Rectangle _body;
 		int _floors;
 		int _columns;
@@ -20,7 +22,7 @@ namespace SummerLab {
 		float _civSpawnTimer;
 		bool _firstFire;
 	public:
-		building(float height, float width, float x, float y, int floors, int columns);
+		building(float height, float width, float x, float y, int floors, int columns, bool keyboard, bool hose);
 		~building();
 		void setCivBounceDirection(int i, Direction x);
 		Rectangle getCivilianBody(int i);

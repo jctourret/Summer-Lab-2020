@@ -20,6 +20,15 @@ namespace SummerLab {
 	static const float mediumFireTime = 0.13f;
 	static const float largeFireTime = 0.1f;
 
+	static const float growTimerKeyboard = 12.5f;
+	static const float growTimerHose = 17.5f;
+	
+	static const float dozeTimerKeyboard = 2.0f;
+	static const float dozeTimerHose = 1.75f;
+
+	static const float spreadTimerKeyboard = 10.0f;
+	static const float spreadtimerHose = 12.5f;
+
 	window::window(float height, float width, float x, float y){
 		_body.height = height;
 		_body.width = width;
@@ -120,33 +129,61 @@ namespace SummerLab {
 		}
 	}
 
-	void window::growFireTimer() {
+	void window::growFireTimer(bool keyboard, bool hose) {
 		_growTimer += GetFrameTime();
-		if (_growTimer >= 12.5f) {
-			growFire();
-			_growTimer = 0.0f;
-			_spreadTimer = 0.0f;
+		if (keyboard == true && hose == false) {
+			if (_growTimer >= growTimerKeyboard) {
+				growFire();
+				_growTimer = 0.0f;
+				_spreadTimer = 0.0f;
+			}
+		}
+		else if (keyboard == false && hose == true) {
+			if (_growTimer >= growTimerHose) {
+				growFire();
+				_growTimer = 0.0f;
+				_spreadTimer = 0.0f;
+			}
 		}
 	}
 
-	void window::dozeFireTimer() {
+	void window::dozeFireTimer(bool keyboard, bool hose) {
 		_dozeTimer += GetFrameTime();
-		if (_dozeTimer >= 2.0f) {
-			dozeFire();
-			_dozeTimer = 0.0f;
-			_growTimer = 0.0f;
-			_spreadTimer = 0.0f;
+		if (keyboard == true && hose == false) {
+			if (_dozeTimer >= dozeTimerKeyboard) {
+				dozeFire();
+				_dozeTimer = 0.0f;
+				_growTimer = 0.0f;
+				_spreadTimer = 0.0f;
 
+			}
+		}
+		else if (keyboard == false && hose == true) {
+			if (_dozeTimer >= dozeTimerHose) {
+				dozeFire();
+				_dozeTimer = 0.0f;
+				_growTimer = 0.0f;
+				_spreadTimer = 0.0f;
+			}
 		}
 
 	}
 
-	void window::spreadFireTimer() {
+	void window::spreadFireTimer(bool keyboard, bool hose) {
 		_spreadTimer += GetFrameTime();
-		if (_spreadTimer >= 10.0f) {
-			catchFire();
-			_spreadTimer = 0.0f;
-			_growTimer = 0.0f;
+		if (keyboard == true && hose == false) {
+			if (_spreadTimer >= spreadTimerKeyboard) {
+				catchFire();
+				_spreadTimer = 0.0f;
+				_growTimer = 0.0f;
+			}
+		}
+		else if (keyboard == false && hose == true) {
+			if (_spreadTimer >= spreadtimerHose) {
+				catchFire();
+				_spreadTimer = 0.0f;
+				_growTimer = 0.0f;
+			}
 		}
 	}
 

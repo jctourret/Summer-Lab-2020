@@ -70,11 +70,18 @@ namespace SummerLab {
 		_menuTruck = new truck(truckHeight * 2, truckWidth * 2, screenWidth / 2, screenHeight - (screenHeight / 4) - truckHeight);
 		_menuTruck->setIsOnMenu(true);
 
-		menuGamepad = true;
-		menuGame = false;
-
-		_keyboardGame = false;
-		_hoseGame = false;
+		if (IsGamepadAvailable(GAMEPAD_PLAYER1) == true) {
+			menuGamepad = true;
+			menuGame = false;
+			_keyboardGame = false;
+			_hoseGame = false;
+		}
+		else if (IsGamepadAvailable(GAMEPAD_PLAYER1) == false) {
+			menuGamepad = false;
+			menuGame = true;
+			_keyboardGame = true;
+			_hoseGame = false;
+		}
 
 		_keyboardButtonRec.x = keyboardButtonX;
 		_keyboardButtonRec.y = keyboardButtonY;
@@ -135,8 +142,8 @@ namespace SummerLab {
 			_menuOn = false;
 			_toGameplay = true;
 		}
-		_menuTruck->move();
-		_menuTruck->shoot();
+		_menuTruck->move(_keyboardGame, _hoseGame);
+		_menuTruck->shoot(_keyboardGame, _hoseGame);
 		_menuTruck->setWaterTank(100);
 		shootButtons(_menuTruck->getWaterShot());
 		playMenuTheme();
