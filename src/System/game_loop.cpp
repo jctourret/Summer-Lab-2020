@@ -60,11 +60,14 @@ namespace SummerLab{
 				}
 				if (_menu != NULL) {
 					_menu->run();
+					_hoseGame = _menu->getHoseGame();
+					_keyboardGame = _menu->getKeyboardGame();
+
 					if (_menu->getToGameplay()) {
 						_gamestate = onGameplay;
 						_menu->setToGameplay(false);
 					}
-					if (_menu->getToCredits()) {
+					else if (_menu->getToCredits()) {
 						_gamestate = onCredits;
 						_menu->setToCredits(false);
 					}
@@ -72,7 +75,7 @@ namespace SummerLab{
 				break;
 			case onGameplay:
 				if (_gameplay == NULL) {
-					_gameplay = new gameplay();
+					_gameplay = new gameplay(_keyboardGame, _hoseGame);
 				}
 				else if (_gameplay != NULL) {
 					_gameplay->run();

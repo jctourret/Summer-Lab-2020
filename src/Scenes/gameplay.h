@@ -11,6 +11,8 @@ namespace SummerLab {
 	class gameplay {
 	private:
 		bool _gameplayOn;
+		bool _hoseGame;
+		bool _keyboardGame;
 		bool _toMenu;
 		bool _toCredits;
 		bool _gameWon;
@@ -39,7 +41,7 @@ namespace SummerLab {
 		Texture2D _buildingCracks[5];
 		Texture2D _buildingCollapsing[16];
 	public:
-		gameplay();
+		gameplay(bool keyboard, bool hose);
 		~gameplay();
 		void setToMenu(bool toMenu);
 		void setToCredits(bool toCredits);

@@ -18,6 +18,8 @@ namespace SummerLab {
 	class game_loop{
 	private:
 		bool _gameOn;
+		bool _keyboardGame;
+		bool _hoseGame;
 		gamestate _gamestate;
 		screen* _screen;
 		menu* _menu;

@@ -10,9 +10,6 @@
 
 using namespace SummerLab;
 
-#include <iostream>
-using namespace std;
-
 namespace SummerLab {
 
 	static const float buildingHeight = 700.0f;
@@ -70,8 +67,10 @@ namespace SummerLab {
 	static bool dayToNight = true;
 	static bool firstRotation = true;
 
-	gameplay::gameplay() {
+	gameplay::gameplay(bool keyboard, bool hose){
 		_gameplayOn = true;
+		_hoseGame = hose;
+		_keyboardGame = keyboard;
 		_toMenu = false;
 		_toCredits = false;
 		_gameWon = false;
