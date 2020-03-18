@@ -87,8 +87,8 @@ namespace SummerLab {
 		_truck = new truck(truckHeight, truckWidth, screenWidth / 2, screenHeight - (screenHeight / 9) - truckHeight);
 		_building = new building(buildingHeight, buildingWidth, screenWidth / 2 - (buildingWidth / 2), screenHeight / 7, buildingFloors, buildingColumns);
 		_hydrant = new Hydrant(screenWidth / 3 - 70, screenHeight - (screenHeight / 4) - 15);
-		_ambulanceLeft = new Ambulance(ambulanceHeight, ambulanceWidth, screenWidth / 15, screenHeight - (screenHeight / 9) - ambulanceHeight);
-		_ambulanceRight = new Ambulance(ambulanceHeight, ambulanceWidth, screenWidth - screenWidth / 15 - ambulanceWidth, screenHeight - (screenHeight / 9) - ambulanceHeight);
+		_ambulanceLeft = new Ambulance(ambulanceHeight, ambulanceWidth, screenWidth / 15, screenHeight - (screenHeight / 9) - ambulanceHeight, false, true);
+		_ambulanceRight = new Ambulance(ambulanceHeight, ambulanceWidth, screenWidth - screenWidth / 15 - ambulanceWidth, screenHeight - (screenHeight / 9) - ambulanceHeight, true, false);
 		_deadCivs = 0;
 		gameTimer = 0.0f;
 		timerBackMenu = 0.0f;
@@ -197,6 +197,8 @@ namespace SummerLab {
 	}
 
 	void gameplay::update() {
+		muteAllSounds();
+
 		if (IsKeyPressed(KEY_ENTER)) {
 			_gameplayOn = false;
 			_toMenu = true;
@@ -450,14 +452,14 @@ namespace SummerLab {
 			if (CheckCollisionRecs(_ambulanceLeft->getBody(), _building->getCivilianBody(i))) {
 				if (!_building->getCivIsSaved(i)) {
 					_building->saveCivilians(i);
-					_ambulanceLeft->setWaitingCiv(true);
+					_ambulanceLeft->setWaitingCiv(false);
 
 				};
 			}
 			if (CheckCollisionRecs(_ambulanceRight->getBody(), _building->getCivilianBody(i))) {
 				if (!_building->getCivIsSaved(i)) {
 					_building->saveCivilians(i);
-					_ambulanceRight->setWaitingCiv(true);
+					_ambulanceRight->setWaitingCiv(false);
 				};
 			}
 		}

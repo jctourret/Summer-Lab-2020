@@ -8,6 +8,7 @@ namespace SummerLab {
 	extern Sound menuTheme;
 
 	void loadThemes();
+	void muteAllSounds();
 	void unloadThemes();
 }
 

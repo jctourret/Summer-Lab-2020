@@ -11,15 +11,18 @@ namespace SummerLab {
 
 	const Color ambulanceColor = RAYWHITE;
 
-	Ambulance::Ambulance(float height, float width,float x, float y) {
+	Ambulance::Ambulance(float height, float width,float x, float y, bool positionRight, bool positionLeft) {
 		_body.height = height;
 		_body.width = width;
 		_body.x = x;
+		_posXInitial = x;
 		_body.y = y;
 		_color = ambulanceColor;
 		_ambulanceRight = ambulanceRightSprite;
 		_ambulanceLeft = ambulanceLeftSprite;
-		_waitingCiv = false;
+		_waitingCiv = true;
+		_posRight = positionRight;
+		_posLeft = positionLeft;
 	}
 
 	Ambulance::~Ambulance(){
@@ -37,37 +40,39 @@ namespace SummerLab {
 
 	void Ambulance::takeCivAway() {
 		float time = GetFrameTime();
-		if (_body.x < screenWidth / 2 && _waitingCiv) {
-			_body.x -= ambulanceSpeed * time;
-			if (_body.x < -_body.width) {
-				_waitingCiv = false;
+		if (_posLeft == true) {
+			if (_waitingCiv == false) {
+				_body.x -= ambulanceSpeed * time;
+				if (_body.x < -_body.width) {
+					_waitingCiv = true;
+				}
+			}
+			else if ( _waitingCiv == true) {
+				if (_body.x < _posXInitial) {
+					_body.x += ambulanceSpeed * time;
+				}
 			}
 		}
-		if (_body.x < screenWidth / 2 && !_waitingCiv) {
-			if (_body.x < screenWidth / 15) {
+		else if (_posRight == true) {
+			if (_waitingCiv == false) {
 				_body.x += ambulanceSpeed * time;
-				_waitingCiv = true;
+				if (_body.x > screenWidth + _body.width) {
+					_waitingCiv = true;
+				}
 			}
-		}
-		if (_body.x > screenWidth / 2 && _waitingCiv) {
-			_body.x += ambulanceSpeed * time;
-			if (_body.x > screenWidth + _body.width) {
-				_waitingCiv = false;
-			}
-		}
-		if (_body.x < screenWidth / 2 && !_waitingCiv) {
-			if (_body.x < screenWidth - screenWidth / 15 - 342) {
-				_body.x += ambulanceSpeed * time;
-				_waitingCiv = true;
+			else if (_waitingCiv == true) {
+				if (_body.x > _posXInitial) {
+					_body.x -= ambulanceSpeed * time;
+				}
 			}
 		}
 	}
 
 	void Ambulance::draw() {
-		if (_body.x > screenWidth / 2) {
+		if(_posRight == true) {
 			DrawTexture(_ambulanceRight, _body.x, _body.y, RAYWHITE);
 		}
-		if (_body.x < screenWidth / 2) {
+		else if (_posLeft == true) {
 			DrawTexture(_ambulanceLeft, _body.x, _body.y, RAYWHITE);
 		}
 	}

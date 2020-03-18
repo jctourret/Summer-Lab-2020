@@ -6,9 +6,9 @@
 #include "music.h"
 #include "truck_sfx.h"
 
-
 namespace SummerLab {
 	void loadAllSounds();
 	void unloadAllSounds();
 }
+
 #endif 

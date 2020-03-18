@@ -9,6 +9,8 @@ using namespace SummerLab;
 
 namespace SummerLab{
 
+	static bool gameMuted = false;
+
 	game_loop::game_loop(){
 		_screen = NULL;
 		_screen = new screen();
