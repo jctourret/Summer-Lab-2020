@@ -43,9 +43,9 @@ namespace SummerLab {
 		gameOverDeadSprite[afternoon] = LoadTexture("res/assets/img/gameOver/GameOverDeadAfternoon.png");
 		gameOverDeadSprite[night] = LoadTexture("res/assets/img/gameOver/GameOverDeadNight.png");
 
-		gameOverDeadSprite[day] = LoadTexture("res/assets/img/gameOver/GameOverDeadExtraDay.png");
-		gameOverDeadSprite[afternoon] = LoadTexture("res/assets/img/gameOver/GameOverDeadExtraAfternoon.png");
-		gameOverDeadSprite[night] = LoadTexture("res/assets/img/gameOver/GameOverDeadExtraNight.png");
+		gameOverDeadExtraSprite[day] = LoadTexture("res/assets/img/gameOver/GameOverDeadExtraDay.png");
+		gameOverDeadExtraSprite[afternoon] = LoadTexture("res/assets/img/gameOver/GameOverDeadExtraAfternoon.png");
+		gameOverDeadExtraSprite[night] = LoadTexture("res/assets/img/gameOver/GameOverDeadExtraNight.png");
 
 		gameOverWinSprite[day] = LoadTexture("res/assets/img/gameOver/gameOverWinDay.png");
 		gameOverWinSprite[afternoon] = LoadTexture("res/assets/img/gameOver/gameOverWinAfternoon.png");

@@ -416,7 +416,7 @@ namespace SummerLab {
 				if (deadExtraMessage == false)
 					DrawTexture(_gameOverDead[afternoon], 0, 0, RAYWHITE);
 				else if (deadExtraMessage == true)
-					DrawTexture(_gameOverDeadExtra[afternoon], 0, 0, RAYWHITE);
+					DrawTexture(_gameOverDeadExtra[afternoon], 0, 0, RAYWHITE);		
 			}
 			else if (time == night) {
 				if (deadExtraMessage == false)
