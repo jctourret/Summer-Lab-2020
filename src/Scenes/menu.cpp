@@ -117,6 +117,9 @@ namespace SummerLab {
 	}
 
 	void menu::update() {
+		if (IsKeyPressed(KEY_ESCAPE)) {
+			gameState = closeGame;
+		}
 		_menuTruck->move(_keyboardGame, _hoseGame);
 		_menuTruck->shoot(_keyboardGame, _hoseGame);
 		_menuTruck->setWaterTank(100);
