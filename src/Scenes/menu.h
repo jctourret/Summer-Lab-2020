@@ -8,9 +8,6 @@ namespace SummerLab {
 	
 	class menu {
 	private:
-		bool _menuOn;
-		bool _toGameplay;
-		bool _toCredits;
 		bool _keyboardGame;
 		bool _hoseGame;
 		float _toGameplayTimer;
@@ -34,10 +31,6 @@ namespace SummerLab {
 	public:
 		menu();
 		~menu();
-		void setToGameplay(bool toGameplay);
-		void setToCredits(bool toCreditos);
-		bool getToGameplay();
-		bool getToCredits();
 		void run();
 		void update();
 		void draw();

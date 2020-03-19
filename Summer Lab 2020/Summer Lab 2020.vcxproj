@@ -29,6 +29,7 @@
     <ClCompile Include="..\src\Objects\building.cpp" />
     <ClCompile Include="..\src\Objects\Civilian.cpp" />
     <ClCompile Include="..\src\Objects\Hydrant.cpp" />
+    <ClCompile Include="..\src\Objects\pause.cpp" />
     <ClCompile Include="..\src\Objects\truck.cpp" />
     <ClCompile Include="..\src\Objects\window.cpp" />
     <ClCompile Include="..\src\Scenes\credits.cpp" />
@@ -38,10 +39,12 @@
     <ClCompile Include="..\src\Sprites\background_sprites.cpp" />
     <ClCompile Include="..\src\Sprites\civilians_sprites.cpp" />
     <ClCompile Include="..\src\Sprites\fire_sprites.cpp" />
+    <ClCompile Include="..\src\Sprites\pause_sprites.cpp" />
     <ClCompile Include="..\src\Sprites\sprites_general.cpp" />
     <ClCompile Include="..\src\Sprites\truck_sprites.cpp" />
     <ClCompile Include="..\src\Sprites\water_sprites.cpp" />
     <ClCompile Include="..\src\System\game_loop.cpp" />
+    <ClCompile Include="..\src\System\game_states.cpp" />
     <ClCompile Include="..\src\System\screen.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +57,7 @@
     <ClInclude Include="..\src\Objects\building.h" />
     <ClInclude Include="..\src\Objects\Civilian.h" />
     <ClInclude Include="..\src\Objects\Hydrant.h" />
+    <ClInclude Include="..\src\Objects\pause.h" />
     <ClInclude Include="..\src\Objects\truck.h" />
     <ClInclude Include="..\src\Objects\window.h" />
     <ClInclude Include="..\src\Scenes\credits.h" />
@@ -63,10 +67,12 @@
     <ClInclude Include="..\src\Sprites\background_sprites.h" />
     <ClInclude Include="..\src\Sprites\civilians_sprites.h" />
     <ClInclude Include="..\src\Sprites\fire_sprites.h" />
+    <ClInclude Include="..\src\Sprites\pause_sprites.h" />
     <ClInclude Include="..\src\Sprites\sprites_general.h" />
     <ClInclude Include="..\src\Sprites\truck_sprites.h" />
     <ClInclude Include="..\src\Sprites\water_sprites.h" />
     <ClInclude Include="..\src\System\game_loop.h" />
+    <ClInclude Include="..\src\System\game_states.h" />
     <ClInclude Include="..\src\System\screen.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

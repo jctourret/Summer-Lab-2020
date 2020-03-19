@@ -5,16 +5,14 @@
 #include "Objects/building.h"
 #include "Objects/Hydrant.h"
 #include "Objects/Ambulance.h"
+#include "Objects/pause.h"
 
 namespace SummerLab {
 
 	class gameplay {
 	private:
-		bool _gameplayOn;
 		bool _hoseGame;
 		bool _keyboardGame;
-		bool _toMenu;
-		bool _toCredits;
 		bool _gameWon;
 		bool _gameLost;
 		bool _playCollapseOnce;
@@ -26,6 +24,7 @@ namespace SummerLab {
 		bool _buildingVeryDamaged;
 		bool _buildingSeverelyDamaged;
 		int _deadCivs;
+		Pause* _pause;
 		truck* _truck;
 		building* _building;
 		Hydrant* _hydrant;
@@ -43,10 +42,6 @@ namespace SummerLab {
 	public:
 		gameplay(bool keyboard, bool hose);
 		~gameplay();
-		void setToMenu(bool toMenu);
-		void setToCredits(bool toCredits);
-		bool getToMenu();
-		bool getToCredits();
 		bool getGameWon();
 		void run();
 		void update();

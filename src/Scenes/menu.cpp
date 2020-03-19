@@ -1,6 +1,8 @@
 #include "menu.h"
 
 #include "raylib.h"
+
+#include "System/game_states.h"
 #include "System/screen.h"
 #include "Music/music.h"
 #include "Sprites/truck_sprites.h"
@@ -44,9 +46,6 @@ namespace SummerLab {
 	static bool menuGame = false;
 
 	menu::menu() {
-		_menuOn = true;
-		_toGameplay = false;
-		_toCredits = false;
 		_toGameplayTimer = 0;
 		_toCreditsTimer = 0;
 		_toKeyboardTimer = 0;
@@ -68,7 +67,6 @@ namespace SummerLab {
 		_playShine = LoadTexture("res/assets/img/menu/playShine.png");
 		_creditsShine = LoadTexture("res/assets/img/menu/creditsShine.png");
 		_menuTruck = new truck(truckHeight * 2, truckWidth * 2, screenWidth / 2, screenHeight - (screenHeight / 4) - truckHeight);
-		_menuTruck->setIsOnMenu(true);
 
 		if (IsGamepadAvailable(GAMEPAD_PLAYER1) == true) {
 			menuGamepad = true;
@@ -113,35 +111,12 @@ namespace SummerLab {
 		UnloadTexture(_hoseButtonShine);
 	}
 
-	void menu::setToGameplay(bool toGameplay) {
-		_toGameplay = toGameplay;
-	}
-
-	void menu::setToCredits(bool toCredits) {
-		_toCredits = toCredits;
-	}
-
-	bool menu::getToGameplay() {
-		return _toGameplay;
-	}
-
-	bool menu::getToCredits() {
-		return _toCredits;
-	}
-
 	void menu::run() {
-		_menuOn = true;
-		while (_menuOn && !WindowShouldClose()) {
-			update();
-			draw();
-		}
+		update();
+		draw();
 	}
 
 	void menu::update() {
-		if (IsKeyPressed(KEY_ENTER)) {
-			_menuOn = false;
-			_toGameplay = true;
-		}
 		_menuTruck->move(_keyboardGame, _hoseGame);
 		_menuTruck->shoot(_keyboardGame, _hoseGame);
 		_menuTruck->setWaterTank(100);
@@ -191,16 +166,14 @@ namespace SummerLab {
 			if (isPlayButtonShot(rec) == true) {
 				_toGameplayTimer += GetFrameTime();
 				if (_toGameplayTimer > 3.0f) {
-					_menuOn = false;
-					_toGameplay = true;
+					gameState = onGameplay;
 					_toGameplayTimer = 0;
 				}
 			}
 			else if (isCreditsButtonShot(rec) == true) {
 				_toCreditsTimer += GetFrameTime();
 				if (_toCreditsTimer > 3.0f) {
-					_menuOn = false;
-					_toCredits = true;
+					gameState = onCredits;
 					_toCreditsTimer = 0;
 				}
 			}

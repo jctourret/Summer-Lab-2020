@@ -2,27 +2,26 @@
 
 #include "raylib.h"
 
+#include "System/game_states.h"
 #include "Sprites/sprites_general.h"
 #include "Music/sound_general.h"
-
 using namespace SummerLab;
 
 namespace SummerLab{
 
 	static bool gameMuted = false;
 
-	game_loop::game_loop(){
+	game_loop::game_loop() {
 		_screen = NULL;
 		_screen = new screen();
 		InitWindow(_screen->getScreenWidth(), _screen->getScreenHeight(), "Summerlab");
-		SetExitKey(KEY_ESCAPE);
-		//ToggleFullscreen();
+		SetExitKey(KEY_VOLUME_DOWN);
+		ToggleFullscreen();
 		InitAudioDevice();
 		loadAllSprites();
 		loadAllSounds();
-
-		_gamestate = onMenu;
-		_gameOn = true;
+		SetMasterVolume(0.02f);
+		gameState = onMenu;
 		
 		_menu = NULL;
 		_gameplay = NULL;
@@ -44,11 +43,12 @@ namespace SummerLab{
 		}
 		unloadAllSprites();
 		unloadAllSounds();
+		CloseWindow();
 	}
 
 	void game_loop::gameLoop() {
-		while (_gameOn && !WindowShouldClose()) {
-			switch (_gamestate) {
+		while (gameState != closeGame && !WindowShouldClose()) {
+			switch (gameState) {
 			case onMenu:
 				if (_gameplay != NULL) {
 					delete _gameplay;
@@ -62,15 +62,6 @@ namespace SummerLab{
 					_menu->run();
 					_hoseGame = _menu->getHoseGame();
 					_keyboardGame = _menu->getKeyboardGame();
-
-					if (_menu->getToGameplay()) {
-						_gamestate = onGameplay;
-						_menu->setToGameplay(false);
-					}
-					else if (_menu->getToCredits()) {
-						_gamestate = onCredits;
-						_menu->setToCredits(false);
-					}
 				}
 				break;
 			case onGameplay:
@@ -79,10 +70,6 @@ namespace SummerLab{
 				}
 				else if (_gameplay != NULL) {
 					_gameplay->run();
-					if (_gameplay->getToMenu()) {
-						_gamestate = onMenu;
-						_gameplay->setToMenu(false);
-					}
 				}
 				break;
 			case onCredits:
@@ -91,10 +78,6 @@ namespace SummerLab{
 				}
 				else if (_credits != NULL) {
 					_credits->run();
-					if (_credits->getToMenu()) {
-						_gamestate = onMenu;
-						_credits->setToMenu(false);
-					}
 				}
 			default:
 				break;

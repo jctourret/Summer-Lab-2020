@@ -16,15 +16,13 @@ namespace SummerLab {
 	}
 
 	void muteAllSounds() {
-		if (IsKeyPressed(KEY_M)) {
-			if (gameMuted == false) {
-				gameMuted = true;
-				SetMasterVolume(0.0f);
-			}
-			else if (gameMuted == true) {
-				gameMuted = false;
-				SetMasterVolume(1.0f);
-			}
+		if (gameMuted == false) {
+			gameMuted = true;
+			SetMasterVolume(0.0f);
+		}
+		else if (gameMuted == true) {
+			gameMuted = false;
+			SetMasterVolume(0.02f);
 		}
 	}
 

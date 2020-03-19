@@ -2,6 +2,7 @@
 
 #include "raylib.h"
 
+#include "System/game_states.h"
 #include "System/screen.h"
 #include "Sprites/background_sprites.h"
 #include "Music/fire_sfx.h"
@@ -68,11 +69,8 @@ namespace SummerLab {
 	static bool firstRotation = true;
 
 	gameplay::gameplay(bool keyboard, bool hose){
-		_gameplayOn = true;
 		_hoseGame = hose;
 		_keyboardGame = keyboard;
-		_toMenu = false;
-		_toCredits = false;
 		_gameWon = false;
 		_gameLost = false;
 		_playMotorOffOnce = true;
@@ -83,6 +81,7 @@ namespace SummerLab {
 		_buildingDamaged = false;
 		_buildingVeryDamaged = false;
 		_buildingSeverelyDamaged = false;
+		_pause = new Pause();
 		_truck = new truck(truckHeight, truckWidth, screenWidth / 2, screenHeight - (screenHeight / 9) - truckHeight);
 		_building = new building(buildingHeight, buildingWidth, screenWidth / 2 - (buildingWidth / 2), screenHeight / 7, buildingFloors, buildingColumns, _keyboardGame, _hoseGame);
 		_hydrant = new Hydrant(screenWidth / 3 - 70, screenHeight - (screenHeight / 4) - 15);
@@ -168,42 +167,18 @@ namespace SummerLab {
 		UnloadTexture(_gameOverWin);*/
 	}
 
-	void gameplay::setToMenu(bool toMenu) {
-		_toMenu = toMenu;
-	}
-
-	void gameplay::setToCredits(bool toCredits) {
-		_toCredits = toCredits;
-	}
-
-	bool gameplay::getToCredits() {
-		return _toCredits;
-	}
-
-	bool gameplay::getToMenu() {
-		return _toMenu;
-	}
-
 	bool gameplay::getGameWon() {
 		return _gameWon;
 	}
 
 	void gameplay::run() {
-		while (_gameplayOn && !WindowShouldClose()) {
-			update();
-			draw();
-		}
+		update();
+		draw();
 	}
 
 	void gameplay::update() {
-		muteAllSounds();
-
-		if (IsKeyPressed(KEY_ENTER)) {
-			_gameplayOn = false;
-			_toMenu = true;
-		}
-
-		if (_gameWon == false && _gameLost == false) {
+		_pause->inputPause();
+		if (_gameWon == false && _gameLost == false && _pause->getGamePaused() == false) {
 			if (!IsSoundPlaying(motorOn) && _playMotorOnOnce) {
 				PlaySound(motorOn);
 				_playMotorOnOnce = false;
@@ -231,8 +206,7 @@ namespace SummerLab {
 			timerBackMenu += GetFrameTime();
 			if (timerBackMenu >= maxTimeBackMenu) {
 				timerBackMenu = 0;
-				_gameplayOn = false;
-				_toMenu = true;
+				gameState = onMenu;
 				if (!IsSoundPlaying && _playMotorOffOnce) {
 					PlaySound(motorOff);
 					_playMotorOffOnce = false;
@@ -380,6 +354,7 @@ namespace SummerLab {
 			_building->draw();
 			_truck->draw();
 		}
+		_pause->drawPause();
 
 		if (_gameWon == true && _gameLost == false) {
 			if (time == day)

@@ -28,6 +28,9 @@
     <Filter Include="Sprites">
       <UniqueIdentifier>{05c9fdfd-c422-4763-a043-135c9f5e6706}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objects\Pause">
+      <UniqueIdentifier>{782eb1f3-7cda-403d-afa4-6c1f40cc5fd9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\System\game_loop.cpp">
@@ -100,6 +103,15 @@
     <ClCompile Include="..\src\Scenes\credits.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Sprites\pause_sprites.cpp">
+      <Filter>Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Objects\pause.cpp">
+      <Filter>Objects\Pause</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\System\game_states.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Scenes\gameplay.h">
@@ -170,6 +182,15 @@
     </ClInclude>
     <ClInclude Include="..\src\Scenes\credits.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Sprites\pause_sprites.h">
+      <Filter>Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Objects\pause.h">
+      <Filter>Objects\Pause</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\System\game_states.h">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,6 +6,7 @@
 #include "Sprites/truck_sprites.h" 
 #include "Sprites/water_sprites.h" 
 #include "Sprites/background_sprites.h"
+#include "Sprites/pause_sprites.h"
 
 using namespace SummerLab;
 
@@ -18,6 +19,7 @@ namespace SummerLab {
 		loadTruckSprites();
 		loadWaterShotSprites();
 		loadBackGroundSprites();
+		loadPauseSprites();
 	}
 
 	void unloadAllSprites() {
@@ -27,6 +29,7 @@ namespace SummerLab {
 		unloadTruckSprites();
 		unloadWaterShotSprites();
 		unloadBackGroundSprites();
+		unloadPauseSprites();
 	}
 
 }
